@@ -1,8 +1,8 @@
-package com.twu.model.menu;
+package com.twu.model.menuoption;
 
 import com.twu.output.Output;
 
-public class ListBooks implements Menu {
+public class ListBooksMenuOption implements MenuOption {
 
     public static final String MENU_OPTION = "List Books";
 

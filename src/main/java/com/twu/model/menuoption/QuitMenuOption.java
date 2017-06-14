@@ -1,8 +1,8 @@
-package com.twu.model.menu;
+package com.twu.model.menuoption;
 
 import com.twu.output.Output;
 
-public class Quit implements Menu {
+public class QuitMenuOption implements MenuOption {
     @Override
     public Output action() {
         return null;
