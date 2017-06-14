@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 repositories {
     jcenter()
@@ -8,3 +9,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+mainClassName = 'com.twu.biblioteca.BibliotecaApp'
+
+jar{
+    manifest {
+        attributes 'Implementation-Title': 'biblioteca',
+                'Main-Class': mainClassName
+    }
+}

@@ -1,5 +1,7 @@
 package com.twu.outputwriter;
 
+import com.twu.output.Output;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 
@@ -12,9 +14,9 @@ public class ConsoleOutputWriter implements OutputWriter {
     }
 
     @Override
-    public void write(String output) {
+    public void write(Output output) {
         try {
-            bufferedWriter.write(output);
+            bufferedWriter.write(output.toString());
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
