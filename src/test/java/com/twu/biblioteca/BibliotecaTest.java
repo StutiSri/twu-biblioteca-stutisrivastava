@@ -23,7 +23,8 @@ public class BibliotecaTest {
 
         new BibliotecaApp().startBiblioteca(outputWriter);
 
-        String expectedWelcomeMessage = "Hello User! Welcome to Biblioteca! :)";
+        String expectedWelcomeMessage = "Hello User! Welcome to Biblioteca! " +
+                ":)\n";
 
         assertEquals(expectedWelcomeMessage, stringWriter.toString());
     }

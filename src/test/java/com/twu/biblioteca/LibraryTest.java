@@ -11,7 +11,8 @@ public class LibraryTest {
 
     @Test
     public void libraryShouldHaveAWelcomeMessage(){
-        String expectedWelcomeMessage = "Hello User! Welcome to Biblioteca! :)";
+        String expectedWelcomeMessage = "Hello User! Welcome to Biblioteca! " +
+                ":)\n";
         Output expectedOutput = new ConsoleOutput(expectedWelcomeMessage);
 
         Output output = new Library().getWelcomeMessage();
