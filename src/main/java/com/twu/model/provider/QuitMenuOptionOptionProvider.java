@@ -1,6 +1,7 @@
 package com.twu.model.provider;
 
 import com.twu.model.menuoption.MenuOption;
+import com.twu.model.menuoption.QuitMenuOption;
 
 public class QuitMenuOptionOptionProvider implements MenuOptionProvider {
 
@@ -17,6 +18,6 @@ public class QuitMenuOptionOptionProvider implements MenuOptionProvider {
 
     @Override
     public MenuOption getMenu() {
-        return null;
+        return new QuitMenuOption();
     }
 }

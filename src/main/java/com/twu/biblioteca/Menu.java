@@ -20,10 +20,11 @@ public class Menu {
     }
 
     public Output getMenuOptions(){
-        String outputMessage = "MenuOption";
+        String menuOptions = "Menu\n";
         for(MenuOptionProvider menuOptionProvider : menuOptionProviders)
-            outputMessage += "\n\t" + menuOptionProvider.getMenuOption() +
+            menuOptions += "\n\t" + menuOptionProvider.getMenuOption() + ". " +
                     menuOptionProvider.getMenu();
-        return new ConsoleOutput(outputMessage);
+        menuOptions += "\n\nPlease enter your choice : ";
+        return new ConsoleOutput(menuOptions);
     }
 }

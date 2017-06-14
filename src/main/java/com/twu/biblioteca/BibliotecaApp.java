@@ -10,6 +10,6 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         OutputWriter outputWriter = new ConsoleOutputWriter(new
                 BufferedWriter(new OutputStreamWriter(System.out)));
-        new Library().startLibraryFunctions(outputWriter);
+        new Library().openLibrary(outputWriter);
     }
 }

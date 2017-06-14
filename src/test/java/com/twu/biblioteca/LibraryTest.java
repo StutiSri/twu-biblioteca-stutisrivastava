@@ -20,7 +20,7 @@ public class LibraryTest {
         BufferedWriter bufferedWriter = new BufferedWriter(stringWriter);
         OutputWriter outputWriter = new ConsoleOutputWriter(bufferedWriter);
 
-        new Library().startLibraryFunctions(outputWriter);
+        new Library().openLibrary(outputWriter);
 
         String expectedWelcomeMessage = "Hello User! Welcome to Biblioteca! " +
                 ":)\n";
@@ -30,14 +30,13 @@ public class LibraryTest {
 
     @Test
     public void userShouldGetMenuOnApplicationStartup(){
-        String expectedMessage = "Hello User! Welcome to Biblioteca! :)" +
-                "\n\nMain MenuOption\n\n\t1. List Books\n\t2. Quit\n\nPlease enter " +
-                "your choice" +
-                " : ";
+        String expectedMessage = "Menu\n\n\t1. List Books\n\t2. Quit\n\nPlease enter " +
+                "your choice : ";
         ConsoleOutput expectedOutput = new ConsoleOutput(expectedMessage);
 
         Output output = new Menu().getMenuOptions();
 
-        //assertEquals(expectedOutput, output);
+        assertEquals(expectedOutput, output);
     }
+
 }

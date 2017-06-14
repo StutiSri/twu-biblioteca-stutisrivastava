@@ -9,13 +9,12 @@ public class Library {
     private static final String WELCOME_MESSAGE = "Hello User! Welcome to " +
             "Biblioteca! :)\n";
 
-    public void startLibraryFunctions(OutputWriter outputWriter) {
-        Library library = new Library();
-        Output welcomeMessage = library.getWelcomeMessage();
+    public void openLibrary(OutputWriter outputWriter) {
+        Output welcomeMessage = getWelcomeMessage();
         outputWriter.write(welcomeMessage);
 
-//        Output menuOptions = new Menu().getMenuOptions();
-//        outputWriter.write(menuOptions);
+        Output menuOptions = new Menu().getMenuOptions();
+        outputWriter.write(menuOptions);
     }
 
     public Output getWelcomeMessage() {
