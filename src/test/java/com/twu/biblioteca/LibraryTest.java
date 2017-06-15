@@ -108,4 +108,20 @@ public class LibraryTest {
         assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
     }
 
+    @Test
+    public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected(){
+        String menuOptionInput = "-1";
+        ArrayList<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
+        expectedMenuOptionAcknowledgement.add("Invalid Menu Option Selected");
+        Output expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
+                (expectedMenuOptionAcknowledgement);
+        TestOutputWriter outputWriter = new TestOutputWriter();
+
+        new Library().openLibrary(outputWriter, new TestInputReader(menuOptionInput));
+        ArrayList<Output> outputMessages = outputWriter.getOutputs();
+        Output menuOptionAcknowledgementOutput = outputMessages.get(2);
+
+        assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
+    }
+
 }
