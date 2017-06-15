@@ -27,18 +27,18 @@ public class Library {
         outputWriter.write(menuOptions);
 
         ConsoleInput menuOptionInput = inputReader.read();
-        MenuOption menuOption = getMenuOptionForOption(menuOptionInput.getInput());
+        MenuOption menuOption = getMenuOptionForUserChoice(menuOptionInput.getInput());
         ConsoleOutput menuOptionAcknowledgement = new ConsoleOutput(menuOption.toString());
         outputWriter.write(menuOptionAcknowledgement);
     }
 
-    public ConsoleOutput getWelcomeMessage() {
+    private ConsoleOutput getWelcomeMessage() {
         List<String> messages = new ArrayList<>();
         messages.add(WELCOME_MESSAGE);
         return new ConsoleOutput(messages);
     }
 
-    public MenuOption getMenuOptionForOption(String option) {
-        return menu.getMenuForOption(option);
+    MenuOption getMenuOptionForUserChoice(String userChoice) {
+        return menu.getMenuForOption(userChoice);
     }
 }

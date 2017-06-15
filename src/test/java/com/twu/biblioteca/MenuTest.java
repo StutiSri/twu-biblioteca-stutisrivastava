@@ -14,41 +14,53 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class MenuTest {
+
+    private Menu menu;
+
+    @Before
+    public void setUp(){
+        menu = new Menu();
+    }
+
     @Test
     public void shouldReturnMenuOptions(){
+        ArrayList<String> expectedMenuOptions = getMenuOptions();
+        ConsoleOutput expectedOutput = new ConsoleOutput(expectedMenuOptions);
+
+        ConsoleOutput output = menu.getMenuOptions();
+
+        assertEquals(expectedOutput, output);
+    }
+
+    private ArrayList<String> getMenuOptions() {
         ArrayList<String> expectedMenuOptions = new ArrayList<>();
         expectedMenuOptions.add("Menu\n");
         expectedMenuOptions.add("\t1. List Books");
         expectedMenuOptions.add("\t2. Quit");
         expectedMenuOptions.add("\nPlease enter your choice : ");
-
-        ConsoleOutput expectedOutput = new ConsoleOutput(expectedMenuOptions);
-
-        Output output = new Menu().getMenuOptions();
-
-        assertEquals(expectedOutput, output);
+        return expectedMenuOptions;
     }
 
     @Test
     public void
     shouldReturnListBooksMenuOptionFromMenuOptionInputChoiceForListBooks(){
-        MenuOption menuOption = new Menu().getMenuForOption("1");
+        MenuOption listBooksMenuOption = menu.getMenuForOption("1");
 
-        assertTrue(menuOption instanceof ListBooksMenuOption);
+        assertTrue(listBooksMenuOption instanceof ListBooksMenuOption);
     }
 
     @Test
     public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
-        MenuOption menuOption = new Menu().getMenuForOption("2");
+        MenuOption quitMenuOption = menu.getMenuForOption("2");
 
-        assertTrue(menuOption instanceof QuitMenuOption);
+        assertTrue(quitMenuOption instanceof QuitMenuOption);
     }
 
     @Test
     public void
     shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
-        MenuOption menuOption = new Menu().getMenuForOption("0");
+        MenuOption invalidMenuOption = menu.getMenuForOption("0");
 
-        assertTrue(menuOption instanceof InvalidMenuOption);
+        assertTrue(invalidMenuOption instanceof InvalidMenuOption);
     }
 }

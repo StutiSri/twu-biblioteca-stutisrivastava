@@ -1,125 +1,127 @@
 package com.twu.biblioteca;
 
 
-import com.twu.io.TestInputReader;
-import com.twu.io.TestOutputWriter;
+import com.twu.mockmodels.TestInputReader;
+import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.InvalidMenuOption;
 import com.twu.model.menuoption.ListBooksMenuOption;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.io.output.Output;
 import com.twu.model.menuoption.QuitMenuOption;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LibraryTest {
 
-    @Test
-    public void userShouldBeGreetedWithWelcomeMessageOnStartup(){
-        ArrayList<String> expectedWelcomeMessage = new ArrayList<>();
+    private Library library;
+
+    @Before
+    public void setUp(){
+        library = new Library();
+    }
+
+    private ConsoleOutput getWelcomeMessageOutput() {
+        List<String> expectedWelcomeMessage = new ArrayList<>();
         expectedWelcomeMessage.add("Hello User! Welcome to Biblioteca! :)\n");
-        Output expectedOutput = new ConsoleOutput(expectedWelcomeMessage);
-
-        Output output = new Library().getWelcomeMessage();
-
-        assertEquals(expectedOutput, output);
+        return new ConsoleOutput(expectedWelcomeMessage);
     }
 
     @Test
-    public void userShouldGetWelcomeMessageOnApplicationStartup(){
-        ArrayList<String> expectedWelcomeMessage = new ArrayList<>();
-        expectedWelcomeMessage.add("Hello User! Welcome to Biblioteca! :)\n");
-        Output expectedWelcomeMessageOutput = new ConsoleOutput(expectedWelcomeMessage);
+    public void firstMessageForUserShouldBeWelcomeMessage() {
+        ConsoleOutput expectedWelcomeMessageOutput = getWelcomeMessageOutput();
         TestOutputWriter outputWriter = new TestOutputWriter();
+        int firstOutputIndex = 0;
 
-        new Library().openLibrary(outputWriter, new TestInputReader(null));
-        ArrayList<Output> outputMessages = outputWriter.getOutputs();
-        Output welcomeMessageOutput = outputMessages.get(0);
+        library.openLibrary(outputWriter, new TestInputReader(null));
 
+        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
+        ConsoleOutput welcomeMessageOutput = outputMessages.get(firstOutputIndex);
         assertEquals(expectedWelcomeMessageOutput, welcomeMessageOutput);
     }
 
     @Test
-    public void userShouldGetMenuOptionsOnApplicationStartup(){
+    public void secondMessageForUserShouldBeMenu() {
+        ConsoleOutput expectedMenuOptionOutput = getMenuOptions();
+        TestOutputWriter outputWriter = new TestOutputWriter();
+        int secondOutputIndex = 1;
 
-        ArrayList<String> expectedMenuOptions = new ArrayList<>();
+        library.openLibrary(outputWriter, new TestInputReader(null));
+
+        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
+        ConsoleOutput menuOptionOutput = outputMessages.get(secondOutputIndex);
+        assertEquals(expectedMenuOptionOutput, menuOptionOutput);
+    }
+
+    private ConsoleOutput getMenuOptions() {
+        List<String> expectedMenuOptions = new ArrayList<>();
         expectedMenuOptions.add("Menu\n");
         expectedMenuOptions.add("\t1. List Books");
         expectedMenuOptions.add("\t2. Quit");
         expectedMenuOptions.add("\nPlease enter your choice : ");
-        Output expectedMenuOptionOutput = new ConsoleOutput(expectedMenuOptions);
-        TestOutputWriter outputWriter = new TestOutputWriter();
-
-        new Library().openLibrary(outputWriter, new TestInputReader(null));
-        ArrayList<Output> outputMessages = outputWriter.getOutputs();
-        Output menuOptionOutput = outputMessages.get(1);
-
-        assertEquals(expectedMenuOptionOutput, menuOptionOutput);
+        return new ConsoleOutput(expectedMenuOptions);
     }
 
     @Test
-    public void
-    shouldGetListBooksMenuOptionWhenUserSelectsListBooksMenuOption(){
-        String menuOptionInput = "1";
-        TestInputReader inputReader = new TestInputReader(menuOptionInput);
-        MenuOption menuOption = new Library().getMenuOptionForOption
-                (menuOptionInput);
+    public void shouldGetListBooksMenuOptionWhenUserSelectsListBooksMenuOption() {
+        String listBooksMenuOption = "1";
+
+        MenuOption menuOption = library.getMenuOptionForUserChoice(listBooksMenuOption);
 
         assertTrue(menuOption instanceof ListBooksMenuOption);
     }
 
     @Test
-    public void shouldGetQuitMenuOptionWhenUserSelectsQuitMenuOption(){
-        String menuOptionInput = "2";
-        TestInputReader inputReader = new TestInputReader(menuOptionInput);
-        MenuOption menuOption = new Library().getMenuOptionForOption
-                (menuOptionInput);
+    public void shouldGetQuitMenuOptionWhenUserSelectsQuitMenuOption() {
+        String quitMenuOption = "2";
+
+        MenuOption menuOption = library.getMenuOptionForUserChoice(quitMenuOption);
 
         assertTrue(menuOption instanceof QuitMenuOption);
     }
 
     @Test
-    public void shouldGetInvalidMenuOptionWhenUserSelectsInvalidMenuOption(){
-        String menuOptionInput = "0";
-        TestInputReader inputReader = new TestInputReader(menuOptionInput);
-        MenuOption menuOption = new Library().getMenuOptionForOption
-                (menuOptionInput);
+    public void shouldGetInvalidMenuOptionWhenUserSelectsInvalidMenuOption() {
+        String invalidMenuOption = "0";
+
+        MenuOption menuOption = library.getMenuOptionForUserChoice(invalidMenuOption);
 
         assertTrue(menuOption instanceof InvalidMenuOption);
     }
 
     @Test
-    public void shouldAcknowledgeMenuOptionSelectedByUser(){
+    public void shouldAcknowledgeMenuOptionSelectedByUser() {
         String menuOptionInput = "1";
-        ArrayList<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
+        List<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
         expectedMenuOptionAcknowledgement.add("List Books");
-        Output expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
+        ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
                 (expectedMenuOptionAcknowledgement);
         TestOutputWriter outputWriter = new TestOutputWriter();
 
-        new Library().openLibrary(outputWriter, new TestInputReader(menuOptionInput));
-        ArrayList<Output> outputMessages = outputWriter.getOutputs();
-        Output menuOptionAcknowledgementOutput = outputMessages.get(2);
+        library.openLibrary(outputWriter, new TestInputReader(menuOptionInput));
+        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
+        ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(2);
 
         assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
     }
 
     @Test
-    public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected(){
+    public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected() {
         String menuOptionInput = "-1";
-        ArrayList<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
+        List<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
         expectedMenuOptionAcknowledgement.add("Invalid Menu Option Selected");
-        Output expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
+        ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
                 (expectedMenuOptionAcknowledgement);
         TestOutputWriter outputWriter = new TestOutputWriter();
 
-        new Library().openLibrary(outputWriter, new TestInputReader(menuOptionInput));
-        ArrayList<Output> outputMessages = outputWriter.getOutputs();
-        Output menuOptionAcknowledgementOutput = outputMessages.get(2);
+        library.openLibrary(outputWriter, new TestInputReader(menuOptionInput));
+        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
+        ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(2);
 
         assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
     }
