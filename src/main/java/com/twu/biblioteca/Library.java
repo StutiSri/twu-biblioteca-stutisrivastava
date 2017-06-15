@@ -5,6 +5,7 @@ import com.twu.io.inputreader.InputReader;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.MenuOption;
+import com.twu.model.menuoption.QuitMenuOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +24,18 @@ public class Library {
         ConsoleOutput welcomeMessage = getWelcomeMessage();
         outputWriter.write(welcomeMessage);
 
-        ConsoleOutput menuOptions = menu.getMenuOptions();
-        outputWriter.write(menuOptions);
+        ConsoleOutput menuOptionsOutput = menu.getMenuOptions();
+        MenuOption menuOption;
 
-        ConsoleInput menuOptionInput = inputReader.read();
-        MenuOption menuOption = getMenuOptionForUserChoice(menuOptionInput.getInput());
+        do {
+            outputWriter.write(menuOptionsOutput);
 
-        ConsoleOutput menuActionOutput = menuOption.action(new BookRepository());
-        outputWriter.write(menuActionOutput);
+            ConsoleInput menuOptionInput = inputReader.read();
+            menuOption = getMenuOptionForUserChoice(menuOptionInput.getInput());
+
+            ConsoleOutput menuActionOutput = menuOption.action(new BookRepository());
+            outputWriter.write(menuActionOutput);
+        }while(!(menuOption instanceof QuitMenuOption));
     }
 
     private ConsoleOutput getWelcomeMessage() {

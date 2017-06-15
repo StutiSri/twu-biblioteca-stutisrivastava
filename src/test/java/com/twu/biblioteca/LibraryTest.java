@@ -19,10 +19,12 @@ import static org.junit.Assert.assertTrue;
 public class LibraryTest {
 
     private Library library;
+    private String quitMenuOption;
 
     @Before
     public void setUp(){
         library = new Library();
+        quitMenuOption = "2\n";
     }
 
     private ConsoleOutput getWelcomeMessageOutput() {
@@ -37,7 +39,7 @@ public class LibraryTest {
         TestOutputWriter outputWriter = new TestOutputWriter();
         int firstOutputIndex = 0;
 
-        library.openLibrary(outputWriter, new TestInputReader(null));
+        library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
 
         ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
         ConsoleOutput welcomeMessageOutput = outputMessages.get(firstOutputIndex);
@@ -50,7 +52,7 @@ public class LibraryTest {
         TestOutputWriter outputWriter = new TestOutputWriter();
         int secondOutputIndex = 1;
 
-        library.openLibrary(outputWriter, new TestInputReader(null));
+        library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
 
         ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
         ConsoleOutput menuOptionOutput = outputMessages.get(secondOutputIndex);
@@ -81,14 +83,15 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected() {
-        String invalidMenuOption = "-1";
+    public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected(){
+        String invalidMenuOption = "-1\n";
+        String menuOption = invalidMenuOption + quitMenuOption;
         String invalidMenuOptionAcknowledgement = "Invalid Menu Option Selected";
         ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
                 (invalidMenuOptionAcknowledgement);
         TestOutputWriter outputWriter = new TestOutputWriter();
 
-        library.openLibrary(outputWriter, new TestInputReader(invalidMenuOption));
+        library.openLibrary(outputWriter, new TestInputReader(menuOption));
         ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
         ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(2);
 
@@ -97,12 +100,13 @@ public class LibraryTest {
 
     @Test
     public void shouldDisplayAllBooksWhenUserSelectsListBooksMenuOption() {
-        String listBooksMenuOption = "1";
+        String listBooksMenuOption = "1\n";
+        String menuOption = listBooksMenuOption + quitMenuOption;
         TestOutputWriter outputWriter = new TestOutputWriter();
         ConsoleOutput expectedBookListOutput = new ConsoleOutput
                 (getBookListRepresentation());
 
-        library.openLibrary(outputWriter, new TestInputReader(listBooksMenuOption));
+        library.openLibrary(outputWriter, new TestInputReader(menuOption));
         ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
         ConsoleOutput bookListOutput = outputMessages.get(2);
 
@@ -115,6 +119,22 @@ public class LibraryTest {
         expectedBooks.add("Life of Pi");
         expectedBooks.add("Fellowship of the Ring");
         return expectedBooks;
+    }
+
+    @Test
+    public void shouldExitFromMenuWhenUserSelectsQuitOption(){
+        String quitMenuOption = "2";
+        TestOutputWriter outputWriter = new TestOutputWriter();
+
+        String quitMenuOptionMessage = "Thank you for using Biblioteca.";
+        ConsoleOutput expectedQuitMenuOptionAcknowledgementOutput = new ConsoleOutput(quitMenuOptionMessage);
+
+        library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
+        List<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
+        ConsoleOutput quitMenuOptionOutput = outputMessages.get(2);
+
+        assertEquals(expectedQuitMenuOptionAcknowledgementOutput, quitMenuOptionOutput);
+
     }
 
 }
