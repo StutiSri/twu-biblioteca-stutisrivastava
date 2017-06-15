@@ -4,7 +4,6 @@ package com.twu.biblioteca;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.InvalidMenuOption;
-import com.twu.model.menuoption.ListBooksMenuOption;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.menuoption.QuitMenuOption;
@@ -68,13 +67,6 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldGetListBooksMenuOptionWhenUserSelectsListBooksMenuOption() {
-        String listBooksMenuOption = "1";
-        MenuOption menuOption = library.getMenuOptionForUserChoice(listBooksMenuOption);
-        assertTrue(menuOption instanceof ListBooksMenuOption);
-    }
-
-    @Test
     public void shouldGetQuitMenuOptionWhenUserSelectsQuitMenuOption() {
         String quitMenuOption = "2";
         MenuOption menuOption = library.getMenuOptionForUserChoice(quitMenuOption);
@@ -89,28 +81,11 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldAcknowledgeMenuOptionSelectedByUser() {
-        String listBooksMenuOption = "1";
-        List<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
-        expectedMenuOptionAcknowledgement.add("List Books");
-        ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
-                (expectedMenuOptionAcknowledgement);
-        TestOutputWriter outputWriter = new TestOutputWriter();
-
-        library.openLibrary(outputWriter, new TestInputReader(listBooksMenuOption));
-        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
-        ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(2);
-
-        assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
-    }
-
-    @Test
     public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected() {
         String invalidMenuOption = "-1";
-        List<String> expectedMenuOptionAcknowledgement = new ArrayList<>();
-        expectedMenuOptionAcknowledgement.add("Invalid Menu Option Selected");
+        String invalidMenuOptionAcknowledgement = "Invalid Menu Option Selected";
         ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
-                (expectedMenuOptionAcknowledgement);
+                (invalidMenuOptionAcknowledgement);
         TestOutputWriter outputWriter = new TestOutputWriter();
 
         library.openLibrary(outputWriter, new TestInputReader(invalidMenuOption));
@@ -118,6 +93,28 @@ public class LibraryTest {
         ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(2);
 
         assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
+    }
+
+    @Test
+    public void shouldDisplayAllBooksWhenUserSelectsListBooksMenuOption() {
+        String listBooksMenuOption = "1";
+        TestOutputWriter outputWriter = new TestOutputWriter();
+        ConsoleOutput expectedBookListOutput = new ConsoleOutput
+                (getBookListRepresentation());
+
+        library.openLibrary(outputWriter, new TestInputReader(listBooksMenuOption));
+        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
+        ConsoleOutput bookListOutput = outputMessages.get(2);
+
+        assertEquals(expectedBookListOutput, bookListOutput);
+    }
+
+    public List<String> getBookListRepresentation() {
+        List<String> expectedBooks = new ArrayList<>();
+        expectedBooks.add("\nAvailable Books :-\n");
+        expectedBooks.add("Life of Pi");
+        expectedBooks.add("Fellowship of the Ring");
+        return expectedBooks;
     }
 
 }

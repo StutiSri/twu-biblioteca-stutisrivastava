@@ -28,8 +28,9 @@ public class Library {
 
         ConsoleInput menuOptionInput = inputReader.read();
         MenuOption menuOption = getMenuOptionForUserChoice(menuOptionInput.getInput());
-        ConsoleOutput menuOptionAcknowledgement = new ConsoleOutput(menuOption.toString());
-        outputWriter.write(menuOptionAcknowledgement);
+
+        ConsoleOutput menuActionOutput = menuOption.action(new BookRepository());
+        outputWriter.write(menuActionOutput);
     }
 
     private ConsoleOutput getWelcomeMessage() {
