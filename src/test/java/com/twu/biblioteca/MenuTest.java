@@ -4,14 +4,13 @@ import com.twu.model.menuoption.InvalidMenuOption;
 import com.twu.model.menuoption.ListBooksMenuOption;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.menuoption.QuitMenuOption;
-import com.twu.output.ConsoleOutput;
-import com.twu.output.Output;
+import com.twu.io.output.ConsoleOutput;
+import com.twu.io.output.Output;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class MenuTest {

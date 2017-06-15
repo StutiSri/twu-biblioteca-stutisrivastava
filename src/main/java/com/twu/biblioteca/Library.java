@@ -1,9 +1,11 @@
 package com.twu.biblioteca;
 
+import com.twu.io.input.Input;
+import com.twu.io.inputreader.InputReader;
+import com.twu.io.output.ConsoleOutput;
+import com.twu.io.output.Output;
+import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.MenuOption;
-import com.twu.output.ConsoleOutput;
-import com.twu.output.Output;
-import com.twu.outputwriter.OutputWriter;
 
 import java.util.ArrayList;
 
@@ -11,14 +13,23 @@ public class Library {
 
     private static final String WELCOME_MESSAGE = "Hello User! Welcome to " +
             "Biblioteca! :)\n";
+    private Menu menu;
 
+    public Library() {
+        this.menu = new Menu();
+    }
 
-    public void openLibrary(OutputWriter outputWriter) {
+    public void openLibrary(OutputWriter outputWriter, InputReader inputReader) {
         Output welcomeMessage = getWelcomeMessage();
         outputWriter.write(welcomeMessage);
 
-        Output menuOptions = new Menu().getMenuOptions();
+        Output menuOptions = menu.getMenuOptions();
         outputWriter.write(menuOptions);
+
+        Input menuOptionInput = inputReader.read();
+        MenuOption menuOption = getMenuOptionForOption(menuOptionInput.getInput());
+        Output menuOptionAcknowledgement = new ConsoleOutput(menuOption.toString());
+        outputWriter.write(menuOptionAcknowledgement);
     }
 
     public Output getWelcomeMessage() {
@@ -28,6 +39,6 @@ public class Library {
     }
 
     public MenuOption getMenuOptionForOption(String option) {
-        return null;
+        return menu.getMenuForOption(option);
     }
 }

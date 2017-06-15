@@ -1,13 +1,12 @@
 package com.twu.biblioteca;
 
+import com.twu.io.output.ConsoleOutput;
+import com.twu.io.output.Output;
 import com.twu.model.menuoption.InvalidMenuOption;
-import com.twu.model.menuoption.ListBooksMenuOption;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.provider.ListBookMenuOptionOptionProvider;
 import com.twu.model.provider.MenuOptionProvider;
 import com.twu.model.provider.QuitMenuOptionOptionProvider;
-import com.twu.output.ConsoleOutput;
-import com.twu.output.Output;
 
 import java.util.ArrayList;
 import java.util.List;

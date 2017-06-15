@@ -1,19 +1,18 @@
-package com.twu.biblioteca;
+package com.twu.io;
 
-import com.twu.output.ConsoleOutput;
-import com.twu.output.Output;
-import com.twu.outputwriter.ConsoleOutputWriter;
-import com.twu.outputwriter.OutputWriter;
+import com.twu.io.output.ConsoleOutput;
+import com.twu.io.output.Output;
+import com.twu.io.outputwriter.ConsoleOutputWriter;
+import com.twu.io.outputwriter.OutputWriter;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class ConsoleOutputWriterTest {
+public class OutputWriterTest {
     @Test
     public void shouldWriteOnOutputStream(){
         StringWriter stringWriter = new StringWriter();

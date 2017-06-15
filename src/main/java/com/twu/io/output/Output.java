@@ -1,4 +1,4 @@
-package com.twu.output;
+package com.twu.io.output;
 
 public interface Output {
 

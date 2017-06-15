@@ -1,8 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.io;
 
-import com.twu.output.Output;
-import com.twu.outputwriter.ConsoleOutputWriter;
-import com.twu.outputwriter.OutputWriter;
+import com.twu.io.output.Output;
+import com.twu.io.outputwriter.OutputWriter;
 
 import java.util.ArrayList;
 

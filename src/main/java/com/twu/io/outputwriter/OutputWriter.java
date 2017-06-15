@@ -1,6 +1,6 @@
-package com.twu.outputwriter;
+package com.twu.io.outputwriter;
 
-import com.twu.output.Output;
+import com.twu.io.output.Output;
 
 public interface OutputWriter {
     void write(Output output);
