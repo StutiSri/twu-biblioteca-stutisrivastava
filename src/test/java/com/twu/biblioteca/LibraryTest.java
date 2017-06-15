@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 
+import com.twu.model.menuoption.MenuOption;
 import com.twu.output.ConsoleOutput;
 import com.twu.output.Output;
 import com.twu.outputwriter.ConsoleOutputWriter;
@@ -9,6 +10,7 @@ import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,27 +18,20 @@ public class LibraryTest {
 
     @Test
     public void userShouldBeGreetedWithWelcomeMessageOnStartup(){
-        StringWriter stringWriter = new StringWriter();
-        BufferedWriter bufferedWriter = new BufferedWriter(stringWriter);
-        OutputWriter outputWriter = new ConsoleOutputWriter(bufferedWriter);
+        ArrayList<String> expectedWelcomeMessage = new ArrayList<>();
+        expectedWelcomeMessage.add("Hello User! Welcome to Biblioteca! :)\n");
+        Output expectedOutput = new ConsoleOutput(expectedWelcomeMessage);
 
-        new Library().openLibrary(outputWriter);
+        Output output = new Library().getWelcomeMessage();
 
-        String expectedWelcomeMessage = "Hello User! Welcome to Biblioteca! " +
-                ":)\n";
-
-        assertEquals(expectedWelcomeMessage, stringWriter.toString());
+        assertEquals(expectedOutput, output);
     }
 
     @Test
-    public void userShouldGetMenuOnApplicationStartup(){
-        String expectedMessage = "Menu\n\n\t1. List Books\n\t2. Quit\n\nPlease enter " +
-                "your choice : ";
-        ConsoleOutput expectedOutput = new ConsoleOutput(expectedMessage);
+    public void
+    shouldGetListBooksMenuOptionWhenUserSelectsListBooksMenuOption(){
+        MenuOption menuOption = new Library().getMenuOptionForOption("1");
 
-        Output output = new Menu().getMenuOptions();
-
-        assertEquals(expectedOutput, output);
     }
 
 }

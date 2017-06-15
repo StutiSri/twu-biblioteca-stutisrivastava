@@ -1,14 +1,20 @@
 package com.twu.output;
 
-public class ConsoleOutput implements Output{
-    private final String outputMessage;
+import java.util.ArrayList;
 
-    public ConsoleOutput(String outputMessage){
-        this.outputMessage = outputMessage;
+public class ConsoleOutput implements Output{
+
+    private ArrayList<String> outputMessages;
+
+    public ConsoleOutput(ArrayList<String> outputMessages){
+        this.outputMessages = outputMessages;
     }
 
     @Override
     public String toString() {
+        String outputMessage = "";
+        for(String message : outputMessages)
+            outputMessage += message + "\n";
         return outputMessage;
     }
 

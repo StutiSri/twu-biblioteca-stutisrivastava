@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.model.menuoption.InvalidMenuOption;
+import com.twu.model.menuoption.ListBooksMenuOption;
+import com.twu.model.menuoption.MenuOption;
 import com.twu.model.provider.ListBookMenuOptionOptionProvider;
 import com.twu.model.provider.MenuOptionProvider;
 import com.twu.model.provider.QuitMenuOptionOptionProvider;
@@ -20,11 +23,19 @@ public class Menu {
     }
 
     public Output getMenuOptions(){
-        String menuOptions = "Menu\n";
+        ArrayList<String> menuOptions = new ArrayList<>();
+        menuOptions.add("Menu\n");
         for(MenuOptionProvider menuOptionProvider : menuOptionProviders)
-            menuOptions += "\n\t" + menuOptionProvider.getMenuOption() + ". " +
-                    menuOptionProvider.getMenu();
-        menuOptions += "\n\nPlease enter your choice : ";
+            menuOptions.add("\t" + menuOptionProvider.getMenuOption() + ". " +
+                    menuOptionProvider.getMenu());
+        menuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(menuOptions);
+    }
+
+    public MenuOption getMenuForOption(String option) {
+        for(MenuOptionProvider menuOptionProvider : menuOptionProviders)
+            if(menuOptionProvider.getMenuOption().equals(option))
+                return menuOptionProvider.getMenu();
+        return new InvalidMenuOption();
     }
 }
