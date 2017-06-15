@@ -1,7 +1,6 @@
 package com.twu.io;
 
 import com.twu.io.output.ConsoleOutput;
-import com.twu.io.output.Output;
 import com.twu.io.outputwriter.ConsoleOutputWriter;
 import com.twu.io.outputwriter.OutputWriter;
 import org.junit.Test;
@@ -21,7 +20,7 @@ public class OutputWriterTest {
         String expectedOutputMessage = "Hey, This is a test.\n";
         ArrayList<String> outputMessages = new ArrayList<>();
         outputMessages.add("Hey, This is a test.");
-        Output output = new ConsoleOutput(outputMessages);
+        ConsoleOutput output = new ConsoleOutput(outputMessages);
 
         outputWriter.write(output);
 

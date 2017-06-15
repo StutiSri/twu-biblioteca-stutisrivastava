@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import com.twu.io.output.ConsoleOutput;
-import com.twu.io.output.Output;
 import com.twu.model.menuoption.InvalidMenuOption;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.provider.ListBookMenuOptionOptionProvider;
@@ -21,7 +20,7 @@ public class Menu {
         menuOptionProviders.add(new QuitMenuOptionOptionProvider());
     }
 
-    public Output getMenuOptions(){
+    public ConsoleOutput getMenuOptions(){
         ArrayList<String> menuOptions = new ArrayList<>();
         menuOptions.add("Menu\n");
         for(MenuOptionProvider menuOptionProvider : menuOptionProviders)

@@ -1,7 +1,6 @@
 package com.twu.io.inputreader;
 
 import com.twu.io.input.ConsoleInput;
-import com.twu.io.input.Input;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class ConsoleInputReader implements InputReader {
     }
 
     @Override
-    public Input read() {
+    public ConsoleInput read() {
         try {
             String line = bufferedReader.readLine();
             return new ConsoleInput(line);

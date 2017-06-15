@@ -1,6 +1,6 @@
 package com.twu.io.input;
 
-public class ConsoleInput implements Input {
+public class ConsoleInput {
     private final String input;
 
     public ConsoleInput(String input) {
@@ -13,6 +13,7 @@ public class ConsoleInput implements Input {
 
     @Override
     public boolean equals(Object obj) {
-        return input.equals(((ConsoleInput)obj).getInput());
+        return input.equals(((ConsoleInput) obj).getInput());
     }
 }
+

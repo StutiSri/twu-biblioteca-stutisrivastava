@@ -1,7 +1,6 @@
-package com.twu.io;
+package com.twu.mockmodels;
 
 import com.twu.io.input.ConsoleInput;
-import com.twu.io.input.Input;
 import com.twu.io.inputreader.InputReader;
 
 public class TestInputReader implements InputReader{
@@ -14,7 +13,7 @@ public class TestInputReader implements InputReader{
     }
 
     @Override
-    public Input read() {
+    public ConsoleInput read() {
         return new ConsoleInput(input);
     }
 }

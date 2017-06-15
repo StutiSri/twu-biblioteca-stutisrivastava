@@ -1,12 +1,13 @@
 package com.twu.io.output;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ConsoleOutput implements Output {
+public class ConsoleOutput {
 
-    private ArrayList<String> outputMessages;
+    private List<String> outputMessages;
 
-    public ConsoleOutput(ArrayList<String> outputMessages){
+    public ConsoleOutput(List<String> outputMessages){
         this.outputMessages = outputMessages;
     }
 

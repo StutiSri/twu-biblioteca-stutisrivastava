@@ -1,7 +1,6 @@
 package com.twu.io;
 
 import com.twu.io.input.ConsoleInput;
-import com.twu.io.input.Input;
 import com.twu.io.inputreader.ConsoleInputReader;
 import com.twu.io.inputreader.InputReader;
 import org.junit.Test;
@@ -17,9 +16,9 @@ public class InputReaderTest {
         String inputString = "This is input.";
         InputReader inputReader = new ConsoleInputReader(new BufferedReader
                 (new StringReader(inputString)));
-        Input expectedInput = new ConsoleInput(inputString);
+        ConsoleInput expectedInput = new ConsoleInput(inputString);
 
-        Input input = inputReader.read();
+        ConsoleInput input = inputReader.read();
 
         assertEquals(expectedInput, input);
     }

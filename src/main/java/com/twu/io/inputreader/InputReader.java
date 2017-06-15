@@ -1,7 +1,7 @@
 package com.twu.io.inputreader;
 
-import com.twu.io.input.Input;
+import com.twu.io.input.ConsoleInput;
 
 public interface InputReader {
-    Input read();
+    ConsoleInput read();
 }

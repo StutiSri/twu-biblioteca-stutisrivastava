@@ -1,7 +1,7 @@
 package com.twu.io.outputwriter;
 
-import com.twu.io.output.Output;
+import com.twu.io.output.ConsoleOutput;
 
 public interface OutputWriter {
-    void write(Output output);
+    void write(ConsoleOutput output);
 }
