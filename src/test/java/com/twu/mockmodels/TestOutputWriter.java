@@ -19,7 +19,15 @@ public class TestOutputWriter implements OutputWriter {
         outputMessages.add(output);
     }
 
-    public ArrayList<ConsoleOutput> getOutputMessages() {
-        return outputMessages;
+    public ConsoleOutput getOutputForWelcomeMessage(){
+        return outputMessages.get(0);
+    }
+
+    public ConsoleOutput getOutputForMenuAfterWelcomeMessage(){
+        return outputMessages.get(1);
+    }
+
+    public List<ConsoleOutput> getOutputMessagesAfterUsersChoosesAMenuOption(){
+        return outputMessages.subList(2, outputMessages.size());
     }
 }

@@ -37,12 +37,10 @@ public class LibraryTest {
     public void userShouldBeGreetedWithWelcomeMessageOnApplicationStartup() {
         ConsoleOutput expectedWelcomeMessageOutput = getWelcomeMessageOutput();
         TestOutputWriter outputWriter = new TestOutputWriter();
-        int firstOutputIndex = 0;
 
         library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
 
-        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
-        ConsoleOutput welcomeMessageOutput = outputMessages.get(firstOutputIndex);
+        ConsoleOutput welcomeMessageOutput = outputWriter.getOutputForWelcomeMessage();
         assertEquals(expectedWelcomeMessageOutput, welcomeMessageOutput);
     }
 
@@ -54,9 +52,8 @@ public class LibraryTest {
 
         library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
 
-        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
-        ConsoleOutput menuOptionOutput = outputMessages.get(secondOutputIndex);
-        assertEquals(expectedMenuOptionOutput, menuOptionOutput);
+        ConsoleOutput menuOutput = outputWriter.getOutputForMenuAfterWelcomeMessage();
+        assertEquals(expectedMenuOptionOutput, menuOutput);
     }
 
     private ConsoleOutput getMenuOptions() {
@@ -92,8 +89,8 @@ public class LibraryTest {
         TestOutputWriter outputWriter = new TestOutputWriter();
 
         library.openLibrary(outputWriter, new TestInputReader(menuOption));
-        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
-        ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(2);
+        List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
+        ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(0);
 
         assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
     }
@@ -107,8 +104,8 @@ public class LibraryTest {
                 (getBookListRepresentation());
 
         library.openLibrary(outputWriter, new TestInputReader(menuOption));
-        ArrayList<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
-        ConsoleOutput bookListOutput = outputMessages.get(2);
+        List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
+        ConsoleOutput bookListOutput = outputMessages.get(0);
 
         assertEquals(expectedBookListOutput, bookListOutput);
     }
@@ -130,8 +127,8 @@ public class LibraryTest {
         ConsoleOutput expectedQuitMenuOptionAcknowledgementOutput = new ConsoleOutput(quitMenuOptionMessage);
 
         library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
-        List<ConsoleOutput> outputMessages = outputWriter.getOutputMessages();
-        ConsoleOutput quitMenuOptionOutput = outputMessages.get(2);
+        List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
+        ConsoleOutput quitMenuOptionOutput = outputMessages.get(0);
 
         assertEquals(expectedQuitMenuOptionAcknowledgementOutput, quitMenuOptionOutput);
 
