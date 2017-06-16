@@ -7,11 +7,6 @@ public class InvalidMenuOption implements MenuOption {
     private final String ERROR_MESSAGE = "Select a valid option!\n";
 
     @Override
-    public String toString() {
-        return ERROR_MESSAGE;
-    }
-
-    @Override
     public ConsoleOutput action(BookRepository bookRepository) {
         return new ConsoleOutput(ERROR_MESSAGE);
     }

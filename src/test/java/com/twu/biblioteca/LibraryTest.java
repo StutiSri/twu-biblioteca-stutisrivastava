@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 
 import com.twu.io.output.ConsoleOutput;
+import com.twu.mockmodels.TestBookRepository;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestOutputWriter;
 import org.junit.Before;
@@ -18,11 +19,11 @@ public class LibraryTest {
     private String quitMenuOption;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         quitMenuOption = "2\n";
     }
 
-    private ConsoleOutput getWelcomeMessageOutput() {
+    private ConsoleOutput getExpectedWelcomeMessage() {
         List<String> expectedWelcomeMessage = new ArrayList<>();
         expectedWelcomeMessage.add("Hello User! Welcome to Biblioteca! :)\n");
         return new ConsoleOutput(expectedWelcomeMessage);
@@ -30,29 +31,29 @@ public class LibraryTest {
 
     @Test
     public void userShouldBeGreetedWithWelcomeMessageOnApplicationStartup() {
-        ConsoleOutput expectedWelcomeMessageOutput = getWelcomeMessageOutput();
+        ConsoleOutput expectedWelcomeMessage = getExpectedWelcomeMessage();
         TestOutputWriter outputWriter = new TestOutputWriter();
         librarySystem = new LibrarySystem(new TestInputReader(quitMenuOption), outputWriter);
 
         librarySystem.run();
 
-        ConsoleOutput welcomeMessageOutput = outputWriter.getOutputForWelcomeMessage();
-        assertEquals(expectedWelcomeMessageOutput, welcomeMessageOutput);
+        ConsoleOutput welcomeMessage = outputWriter.getOutputForWelcomeMessage();
+        assertEquals(expectedWelcomeMessage, welcomeMessage);
     }
 
     @Test
     public void userShouldGetAMenuAfterWelcomeMessage() {
-        ConsoleOutput expectedMenuOptionOutput = getMenuOptions();
+        ConsoleOutput expectedMenuOptions = getExpectedMenuOptions();
         TestOutputWriter outputWriter = new TestOutputWriter();
         librarySystem = new LibrarySystem(new TestInputReader(quitMenuOption), outputWriter);
 
         librarySystem.run();
 
-        ConsoleOutput menuOutput = outputWriter.getOutputForMenuAfterWelcomeMessage();
-        assertEquals(expectedMenuOptionOutput, menuOutput);
+        ConsoleOutput menuOptions = outputWriter.getOutputForMenuAfterWelcomeMessage();
+        assertEquals(expectedMenuOptions, menuOptions);
     }
 
-    private ConsoleOutput getMenuOptions() {
+    private ConsoleOutput getExpectedMenuOptions() {
         List<String> expectedMenuOptions = new ArrayList<>();
         expectedMenuOptions.add("Menu\n");
         expectedMenuOptions.add("\t1. List Books");
@@ -62,36 +63,44 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected(){
-        String invalidMenuOption = "-1\n";
-        String menuOption = invalidMenuOption + quitMenuOption;
-        String invalidMenuOptionAcknowledgement = "Invalid Menu Option Selected\n";
-        ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
-                (invalidMenuOptionAcknowledgement);
+    public void shouldExitFromMenuWhenUserSelectsQuitOption() {
+        String quitMenuOptionInput = "2";
         TestOutputWriter outputWriter = new TestOutputWriter();
-        librarySystem = new LibrarySystem(new TestInputReader(menuOption), outputWriter);
+        String quitMenuOptionMessage = "Thank you for using Biblioteca.";
+        ConsoleOutput expectedQuitMenuOptionMessage = new ConsoleOutput(quitMenuOptionMessage);
+        librarySystem = new LibrarySystem(new TestInputReader(quitMenuOptionInput), outputWriter);
 
         librarySystem.run();
 
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
-        ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(0);
-        assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
+        ConsoleOutput actualQuitMenuOptionMessage = outputMessages.get(0);
+        assertEquals(expectedQuitMenuOptionMessage, actualQuitMenuOptionMessage);
     }
 
     @Test
-    public void shouldExitFromMenuWhenUserSelectsQuitOption(){
-        String quitMenuOption = "2";
+    public void shouldKeepOnDisplayingMenuUntilUserChoosesToQuit() {
+        String bookListingMenuOptionInput = "1\n";
+        String quitMenuOptionInput = "2\n";
         TestOutputWriter outputWriter = new TestOutputWriter();
+        librarySystem = new LibrarySystem(new TestInputReader
+                (bookListingMenuOptionInput + quitMenuOptionInput), outputWriter);
+        ConsoleOutput outputForListBooksMenuOption = new ConsoleOutput
+                (new TestBookRepository().getBookListing());
+        ConsoleOutput menuOptionsOutput = getExpectedMenuOptions();
         String quitMenuOptionMessage = "Thank you for using Biblioteca.";
-        ConsoleOutput expectedQuitMenuOptionAcknowledgementOutput = new ConsoleOutput(quitMenuOptionMessage);
-        librarySystem = new LibrarySystem(new TestInputReader(quitMenuOption), outputWriter);
+        ConsoleOutput expectedQuitMenuOptionMessage = new ConsoleOutput(quitMenuOptionMessage);
 
         librarySystem.run();
 
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
-        ConsoleOutput quitMenuOptionOutput = outputMessages.get(0);
-        assertEquals(expectedQuitMenuOptionAcknowledgementOutput, quitMenuOptionOutput);
+        ConsoleOutput bookListingOutput = outputMessages.get(0);
+        assertEquals(outputForListBooksMenuOption, bookListingOutput);
 
+        ConsoleOutput menuOptions = outputMessages.get(1);
+        assertEquals(menuOptionsOutput, menuOptions);
+
+        ConsoleOutput actualQuitMenuOptionMessage = outputMessages.get(2);
+        assertEquals(expectedQuitMenuOptionMessage, actualQuitMenuOptionMessage);
     }
 
 }

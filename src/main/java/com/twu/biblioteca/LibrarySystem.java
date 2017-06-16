@@ -14,11 +14,13 @@ public class LibrarySystem {
     private InputReader inputReader;
     private OutputWriter outputWriter;
     private Menu menu;
+    private BookRepository bookRepository;
 
     public LibrarySystem(InputReader inputReader, OutputWriter outputWriter) {
-        this.menu = new Menu();
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
+        bookRepository = new BookRepository();
+        menu = new Menu();
     }
 
     public void run() {
@@ -28,13 +30,13 @@ public class LibrarySystem {
         ConsoleOutput menuOptionsOutput = menu.getMenuOptions();
         MenuOption menuOption;
 
-        do {
+        do{
             outputWriter.write(menuOptionsOutput);
 
             ConsoleInput menuOptionInput = inputReader.read();
             menuOption = getMenuOptionForUserInput(menuOptionInput.getInput());
 
-            ConsoleOutput menuActionOutput = menuOption.action(new BookRepository());
+            ConsoleOutput menuActionOutput = menuOption.action(bookRepository);
             outputWriter.write(menuActionOutput);
         }while(!(menuOption instanceof QuitMenuOption));
     }

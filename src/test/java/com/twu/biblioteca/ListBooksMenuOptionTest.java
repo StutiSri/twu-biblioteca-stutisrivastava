@@ -5,9 +5,6 @@ import com.twu.mockmodels.TestBookRepository;
 import com.twu.model.menuoption.ListBooksMenuOption;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public class ListBooksMenuOptionTest {

@@ -12,11 +12,6 @@ public class Book {
     }
 
     @Override
-    public String toString() {
-        return title;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if(!(obj instanceof Book))
             return false;
