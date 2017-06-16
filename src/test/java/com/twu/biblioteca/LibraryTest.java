@@ -48,7 +48,6 @@ public class LibraryTest {
     public void userShouldGetAMenuAfterWelcomeMessage() {
         ConsoleOutput expectedMenuOptionOutput = getMenuOptions();
         TestOutputWriter outputWriter = new TestOutputWriter();
-        int secondOutputIndex = 1;
 
         library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
 
@@ -89,9 +88,9 @@ public class LibraryTest {
         TestOutputWriter outputWriter = new TestOutputWriter();
 
         library.openLibrary(outputWriter, new TestInputReader(menuOption));
+
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
         ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(0);
-
         assertEquals(expectedMenuOptionAcknowledgementOutput, menuOptionAcknowledgementOutput);
     }
 
@@ -104,9 +103,9 @@ public class LibraryTest {
                 (getBookListRepresentation());
 
         library.openLibrary(outputWriter, new TestInputReader(menuOption));
+
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
         ConsoleOutput bookListOutput = outputMessages.get(0);
-
         assertEquals(expectedBookListOutput, bookListOutput);
     }
 
@@ -122,14 +121,13 @@ public class LibraryTest {
     public void shouldExitFromMenuWhenUserSelectsQuitOption(){
         String quitMenuOption = "2";
         TestOutputWriter outputWriter = new TestOutputWriter();
-
         String quitMenuOptionMessage = "Thank you for using Biblioteca.";
         ConsoleOutput expectedQuitMenuOptionAcknowledgementOutput = new ConsoleOutput(quitMenuOptionMessage);
 
         library.openLibrary(outputWriter, new TestInputReader(quitMenuOption));
+
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
         ConsoleOutput quitMenuOptionOutput = outputMessages.get(0);
-
         assertEquals(expectedQuitMenuOptionAcknowledgementOutput, quitMenuOptionOutput);
 
     }

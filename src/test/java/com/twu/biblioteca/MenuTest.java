@@ -45,14 +45,12 @@ public class MenuTest {
     public void
     shouldReturnListBooksMenuOptionFromMenuOptionInputChoiceForListBooks(){
         MenuOption listBooksMenuOption = menu.getMenuForOption("1");
-
         assertTrue(listBooksMenuOption instanceof ListBooksMenuOption);
     }
 
     @Test
     public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
         MenuOption quitMenuOption = menu.getMenuForOption("2");
-
         assertTrue(quitMenuOption instanceof QuitMenuOption);
     }
 
@@ -60,7 +58,6 @@ public class MenuTest {
     public void
     shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
         MenuOption invalidMenuOption = menu.getMenuForOption("0");
-
         assertTrue(invalidMenuOption instanceof InvalidMenuOption);
     }
 }
