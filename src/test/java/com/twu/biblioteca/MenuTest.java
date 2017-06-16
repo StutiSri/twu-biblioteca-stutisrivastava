@@ -11,7 +11,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.instanceOf;
 
 public class MenuTest {
 
@@ -44,20 +46,22 @@ public class MenuTest {
     @Test
     public void
     shouldReturnListBooksMenuOptionFromMenuOptionInputChoiceForListBooks(){
-        MenuOption listBooksMenuOption = menu.getMenuForOption("1");
-        assertTrue(listBooksMenuOption instanceof ListBooksMenuOption);
+        String listBooksMenuOption = "1";
+        assertThat(menu.getMenuForOption(listBooksMenuOption),
+                          instanceOf(ListBooksMenuOption.class));
     }
 
     @Test
     public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
-        MenuOption quitMenuOption = menu.getMenuForOption("2");
-        assertTrue(quitMenuOption instanceof QuitMenuOption);
+        String quitMenuOption = "2";
+        assertThat(menu.getMenuForOption(quitMenuOption),
+                instanceOf(QuitMenuOption.class));
     }
 
     @Test
     public void
     shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
-        MenuOption invalidMenuOption = menu.getMenuForOption("0");
-        assertTrue(invalidMenuOption instanceof InvalidMenuOption);
+        String invalidMenuOption = "0";
+        assertThat(menu.getMenuForOption("0"), instanceOf(InvalidMenuOption.class));
     }
 }
