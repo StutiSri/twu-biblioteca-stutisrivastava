@@ -16,5 +16,4 @@ public class BookRepositoryTest {
         assertEquals(expectedBooks, books);
     }
 
-
 }

@@ -1,19 +1,17 @@
 package com.twu.biblioteca;
 
+import com.twu.io.output.ConsoleOutput;
 import com.twu.model.menuoption.InvalidMenuOption;
 import com.twu.model.menuoption.ListBooksMenuOption;
-import com.twu.model.menuoption.MenuOption;
 import com.twu.model.menuoption.QuitMenuOption;
-import com.twu.io.output.ConsoleOutput;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 public class MenuTest {
 
@@ -47,8 +45,7 @@ public class MenuTest {
     public void
     shouldReturnListBooksMenuOptionFromMenuOptionInputChoiceForListBooks(){
         String listBooksMenuOption = "1";
-        assertThat(menu.getMenuForOption(listBooksMenuOption),
-                          instanceOf(ListBooksMenuOption.class));
+        assertThat(menu.getMenuForOption(listBooksMenuOption), instanceOf(ListBooksMenuOption.class));
     }
 
     @Test
