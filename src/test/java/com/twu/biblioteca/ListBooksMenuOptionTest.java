@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.io.output.ConsoleOutput;
+import com.twu.mockmodels.TestInputReader;
+import com.twu.mockmodels.TestOutputWriter;
+import com.twu.model.menuoption.ListBooksMenuOption;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,16 +14,22 @@ import static org.junit.Assert.assertEquals;
 public class ListBooksMenuOptionTest {
 
     @Test
-    public void shouldReturnListOfBooks() {
-        List<Book> expectedBooks = getExpectedBooks();
-        List<Book> books = new BookRepository().getAllBooks();
-        assertEquals(expectedBooks, books);
+    public void shouldReturnConsoleOutputRepresentationOfListOfBooks() {
+        ConsoleOutput expectedBookListOutput = new ConsoleOutput
+                (getBookListRepresentation());
+
+        ConsoleOutput bookListOutput = new ListBooksMenuOption().action(new BookRepository());
+
+        assertEquals(expectedBookListOutput, bookListOutput);
     }
 
-    public List<Book> getExpectedBooks() {
-        List<Book> expectedBooks = new ArrayList<>();
-        expectedBooks.add(new Book("Life of Pi"));
-        expectedBooks.add(new Book("Fellowship of the Ring"));
-        return expectedBooks;
+    public List<String> getBookListRepresentation() {
+        List<String> bookListRepresentation = new ArrayList<>();
+        bookListRepresentation.add("\nAvailable Books :-\n");
+        bookListRepresentation.add("Life of Pi");
+        bookListRepresentation.add("Fellowship of the Ring");
+        bookListRepresentation.add("---------------------------------\n");
+        return bookListRepresentation;
     }
+
 }

@@ -23,6 +23,7 @@ public class ListBooksMenuOption implements MenuOption {
         booksAsStrings.add("\nAvailable Books :-\n");
         for(Book book : allBooks)
             booksAsStrings.add(book.toString());
+        booksAsStrings.add("---------------------------------\n");
         return new ConsoleOutput(booksAsStrings);
     }
 }

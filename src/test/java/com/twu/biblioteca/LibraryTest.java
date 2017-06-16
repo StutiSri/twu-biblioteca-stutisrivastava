@@ -95,29 +95,6 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldDisplayAllBooksWhenUserSelectsListBooksMenuOption() {
-        String listBooksMenuOption = "1\n";
-        String menuOption = listBooksMenuOption + quitMenuOption;
-        TestOutputWriter outputWriter = new TestOutputWriter();
-        ConsoleOutput expectedBookListOutput = new ConsoleOutput
-                (getBookListRepresentation());
-
-        library.openLibrary(outputWriter, new TestInputReader(menuOption));
-
-        List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
-        ConsoleOutput bookListOutput = outputMessages.get(0);
-        assertEquals(expectedBookListOutput, bookListOutput);
-    }
-
-    public List<String> getBookListRepresentation() {
-        List<String> expectedBooks = new ArrayList<>();
-        expectedBooks.add("\nAvailable Books :-\n");
-        expectedBooks.add("Life of Pi");
-        expectedBooks.add("Fellowship of the Ring");
-        return expectedBooks;
-    }
-
-    @Test
     public void shouldExitFromMenuWhenUserSelectsQuitOption(){
         String quitMenuOption = "2";
         TestOutputWriter outputWriter = new TestOutputWriter();
