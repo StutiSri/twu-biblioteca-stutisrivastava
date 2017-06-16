@@ -4,11 +4,11 @@ package com.twu.model.provider;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.menuoption.QuitMenuOption;
 
-public class QuitMenuOptionOptionProvider implements MenuOptionProvider {
+public class QuitMenuOptionProvider implements MenuOptionProvider {
 
     private String menuOption;
 
-    public QuitMenuOptionOptionProvider() {
+    public QuitMenuOptionProvider() {
         this.menuOption = "2";
     }
 

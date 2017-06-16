@@ -18,8 +18,16 @@ public class BookRepositoryTest {
 
     public List<Book> getExpectedBooks() {
         List<Book> expectedBooks = new ArrayList<>();
-        expectedBooks.add(new Book("Life of Pi"));
-        expectedBooks.add(new Book("Fellowship of the Ring"));
+        expectedBooks.add(new Book("Life of Pi", "Yann Martel", "2001"));
+        expectedBooks.add(new Book("Fellowship of the Ring",
+                "J. R. R. Tolkein","1991"));
+        expectedBooks.add(new Book("Atlas Shrugged", "Ayn Rand", "1939"));
+        expectedBooks.add(new Book("The Immortals of Meluha",
+                "Amish Tripathi", "2010"));
+        expectedBooks.add(new Book("Game of Thrones", "George R. R. Martin",
+                "2001"));
+        expectedBooks.add(new Book("To Kill a Mockingbird", "Harper Lee",
+                "1960"));
         return expectedBooks;
     }
 

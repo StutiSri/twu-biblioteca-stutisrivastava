@@ -19,11 +19,24 @@ public class ListBooksMenuOption implements MenuOption {
     @Override
     public ConsoleOutput action(BookRepository bookRepository) {
         List<Book> allBooks = bookRepository.getAllBooks();
-        List<String> booksAsStrings = new ArrayList<>();
-        booksAsStrings.add("\nAvailable Books :-\n");
+        List<String> bookListing = new ArrayList<>();
+        bookListing.add("\nAvailable Books :-\n");
+        addColumnNames(bookListing);
         for(Book book : allBooks)
-            booksAsStrings.add(book.toString());
-        booksAsStrings.add("---------------------------------\n");
-        return new ConsoleOutput(booksAsStrings);
+            addFormattedBookToBookListing(bookListing, book);
+        bookListing.add("--------------------------------------------------\n");
+        return new ConsoleOutput(bookListing);
+    }
+
+    private void addFormattedBookToBookListing(List<String> bookListing, Book book) {
+        String bookRepresentation = String.format("%-30s%-30s%-14s",book.getTitle(),
+                   book.getAuthor(), book.getYearPublished());
+        bookListing.add(bookRepresentation);
+    }
+
+    private void addColumnNames(List<String> bookListing) {
+        String column = String.format("%-30s%-29s%-14s", "Title","Author",
+                "Year Published\n");
+        bookListing.add(column);
     }
 }
