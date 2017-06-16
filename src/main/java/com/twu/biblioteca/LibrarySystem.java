@@ -7,17 +7,21 @@ import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.menuoption.QuitMenuOption;
 
-public class Library {
+public class LibrarySystem {
 
     private static final String WELCOME_MESSAGE = "Hello User! Welcome to " +
             "Biblioteca! :)\n";
+    private InputReader inputReader;
+    private OutputWriter outputWriter;
     private Menu menu;
 
-    public Library() {
+    public LibrarySystem(InputReader inputReader, OutputWriter outputWriter) {
         this.menu = new Menu();
+        this.inputReader = inputReader;
+        this.outputWriter = outputWriter;
     }
 
-    public void startLibrary(OutputWriter outputWriter, InputReader inputReader) {
+    public void run() {
         ConsoleOutput welcomeMessage = new ConsoleOutput(WELCOME_MESSAGE);
         outputWriter.write(welcomeMessage);
 
@@ -35,7 +39,7 @@ public class Library {
         }while(!(menuOption instanceof QuitMenuOption));
     }
 
-    MenuOption getMenuOptionForUserInput(String userInput) {
+    private MenuOption getMenuOptionForUserInput(String userInput) {
         return menu.getMenuForOption(userInput);
     }
 }

@@ -18,6 +18,6 @@ public class BibliotecaApp {
         InputReader inputReader = new ConsoleInputReader(new BufferedReader
                 (new InputStreamReader(System.in)));
 
-        new Library().startLibrary(outputWriter, inputReader);
+        new LibrarySystem(inputReader, outputWriter).run();
     }
 }

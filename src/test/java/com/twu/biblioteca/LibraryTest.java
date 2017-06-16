@@ -1,12 +1,9 @@
 package com.twu.biblioteca;
 
 
+import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestOutputWriter;
-import com.twu.model.menuoption.InvalidMenuOption;
-import com.twu.model.menuoption.MenuOption;
-import com.twu.io.output.ConsoleOutput;
-import com.twu.model.menuoption.QuitMenuOption;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,16 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class LibraryTest {
 
-    private Library library;
+    private LibrarySystem librarySystem;
     private String quitMenuOption;
 
     @Before
     public void setUp(){
-        library = new Library();
         quitMenuOption = "2\n";
     }
 
@@ -37,8 +32,9 @@ public class LibraryTest {
     public void userShouldBeGreetedWithWelcomeMessageOnApplicationStartup() {
         ConsoleOutput expectedWelcomeMessageOutput = getWelcomeMessageOutput();
         TestOutputWriter outputWriter = new TestOutputWriter();
+        librarySystem = new LibrarySystem(new TestInputReader(quitMenuOption), outputWriter);
 
-        library.startLibrary(outputWriter, new TestInputReader(quitMenuOption));
+        librarySystem.run();
 
         ConsoleOutput welcomeMessageOutput = outputWriter.getOutputForWelcomeMessage();
         assertEquals(expectedWelcomeMessageOutput, welcomeMessageOutput);
@@ -48,8 +44,9 @@ public class LibraryTest {
     public void userShouldGetAMenuAfterWelcomeMessage() {
         ConsoleOutput expectedMenuOptionOutput = getMenuOptions();
         TestOutputWriter outputWriter = new TestOutputWriter();
+        librarySystem = new LibrarySystem(new TestInputReader(quitMenuOption), outputWriter);
 
-        library.startLibrary(outputWriter, new TestInputReader(quitMenuOption));
+        librarySystem.run();
 
         ConsoleOutput menuOutput = outputWriter.getOutputForMenuAfterWelcomeMessage();
         assertEquals(expectedMenuOptionOutput, menuOutput);
@@ -65,20 +62,6 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldGetQuitMenuOptionWhenUserSelectsQuitMenuOption() {
-        String quitMenuOption = "2";
-        MenuOption menuOption = library.getMenuOptionForUserInput(quitMenuOption);
-        assertTrue(menuOption instanceof QuitMenuOption);
-    }
-
-    @Test
-    public void shouldGetInvalidMenuOptionWhenUserSelectsInvalidMenuOption() {
-        String invalidMenuOption = "0";
-        MenuOption menuOption = library.getMenuOptionForUserInput(invalidMenuOption);
-        assertTrue(menuOption instanceof InvalidMenuOption);
-    }
-
-    @Test
     public void shouldPrintErrorMessageWhenInvalidMenuOptionIsSelected(){
         String invalidMenuOption = "-1\n";
         String menuOption = invalidMenuOption + quitMenuOption;
@@ -86,8 +69,9 @@ public class LibraryTest {
         ConsoleOutput expectedMenuOptionAcknowledgementOutput = new ConsoleOutput
                 (invalidMenuOptionAcknowledgement);
         TestOutputWriter outputWriter = new TestOutputWriter();
+        librarySystem = new LibrarySystem(new TestInputReader(menuOption), outputWriter);
 
-        library.startLibrary(outputWriter, new TestInputReader(menuOption));
+        librarySystem.run();
 
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
         ConsoleOutput menuOptionAcknowledgementOutput = outputMessages.get(0);
@@ -100,8 +84,9 @@ public class LibraryTest {
         TestOutputWriter outputWriter = new TestOutputWriter();
         String quitMenuOptionMessage = "Thank you for using Biblioteca.";
         ConsoleOutput expectedQuitMenuOptionAcknowledgementOutput = new ConsoleOutput(quitMenuOptionMessage);
+        librarySystem = new LibrarySystem(new TestInputReader(quitMenuOption), outputWriter);
 
-        library.startLibrary(outputWriter, new TestInputReader(quitMenuOption));
+        librarySystem.run();
 
         List<ConsoleOutput> outputMessages = outputWriter.getOutputMessagesAfterUsersChoosesAMenuOption();
         ConsoleOutput quitMenuOptionOutput = outputMessages.get(0);
