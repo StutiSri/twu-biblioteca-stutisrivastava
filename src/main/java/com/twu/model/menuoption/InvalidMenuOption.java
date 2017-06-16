@@ -4,7 +4,7 @@ import com.twu.biblioteca.BookRepository;
 import com.twu.io.output.ConsoleOutput;
 
 public class InvalidMenuOption implements MenuOption {
-    public static final String ERROR_MESSAGE = "Invalid Menu Option Selected\n";
+    private final String ERROR_MESSAGE = "Invalid Menu Option Selected\n";
 
     @Override
     public String toString() {

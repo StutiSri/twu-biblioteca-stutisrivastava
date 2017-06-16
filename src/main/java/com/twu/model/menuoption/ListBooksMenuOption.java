@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ListBooksMenuOption implements MenuOption {
 
-    public static final String MENU_OPTION = "List Books";
+    private final String MENU_OPTION = "List Books";
 
     @Override
     public String toString() {
