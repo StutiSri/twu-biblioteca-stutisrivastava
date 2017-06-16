@@ -4,6 +4,7 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.io.outputwriter.OutputWriter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestOutputWriter implements OutputWriter {
 

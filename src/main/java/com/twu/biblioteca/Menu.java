@@ -21,7 +21,7 @@ public class Menu {
     }
 
     public ConsoleOutput getMenuOptions(){
-        ArrayList<String> menuOptions = new ArrayList<>();
+        List<String> menuOptions = new ArrayList<>();
         menuOptions.add("Menu\n");
         for(MenuOptionProvider menuOptionProvider : menuOptionProviders)
             menuOptions.add("\t" + menuOptionProvider.getMenuOption() + ". " +
