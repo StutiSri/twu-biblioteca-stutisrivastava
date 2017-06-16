@@ -1,9 +1,8 @@
 package com.twu.biblioteca;
 
+import com.sun.tools.javac.comp.Check;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.model.menuoption.InvalidMenuOption;
-import com.twu.model.menuoption.ListBooksMenuOption;
-import com.twu.model.menuoption.QuitMenuOption;
+import com.twu.model.menuoption.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,25 +22,6 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldReturnMenuOptions(){
-        ArrayList<String> expectedMenuOptions = getMenuOptions();
-        ConsoleOutput expectedOutput = new ConsoleOutput(expectedMenuOptions);
-
-        ConsoleOutput output = menu.getMenuOptions();
-
-        assertEquals(expectedOutput, output);
-    }
-
-    private ArrayList<String> getMenuOptions() {
-        ArrayList<String> expectedMenuOptions = new ArrayList<>();
-        expectedMenuOptions.add("Menu\n");
-        expectedMenuOptions.add("\t1. List Books");
-        expectedMenuOptions.add("\t2. Quit");
-        expectedMenuOptions.add("\nPlease enter your choice : ");
-        return expectedMenuOptions;
-    }
-
-    @Test
     public void
     shouldReturnListBooksMenuOptionFromMenuOptionInputChoiceForListBooks(){
         String listBooksMenuOption = "1";
@@ -49,8 +29,20 @@ public class MenuTest {
     }
 
     @Test
+    public void shouldReturnCheckoutMenuOptionFromMenuOptionChoiceForCheckout(){
+        String checkoutMenuOption = "2";
+        assertThat(menu.getMenuForOption(checkoutMenuOption), instanceOf(CheckoutMenuOption.class));
+    }
+
+    @Test
+    public void shouldReturnReturnBookMenuOptionFromMenuOptionInputChoiceForReturnBook(){
+        String returnBookMenuOption = "3";
+        assertThat(menu.getMenuForOption(returnBookMenuOption), instanceOf(ReturnBookMenuOption.class));
+    }
+
+    @Test
     public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
-        String quitMenuOption = "2";
+        String quitMenuOption = "4";
         assertThat(menu.getMenuForOption(quitMenuOption),
                 instanceOf(QuitMenuOption.class));
     }
@@ -59,6 +51,6 @@ public class MenuTest {
     public void
     shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
         String invalidMenuOption = "0";
-        assertThat(menu.getMenuForOption("0"), instanceOf(InvalidMenuOption.class));
+        assertThat(menu.getMenuForOption(invalidMenuOption), instanceOf(InvalidMenuOption.class));
     }
 }

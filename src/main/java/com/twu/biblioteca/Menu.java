@@ -3,9 +3,7 @@ package com.twu.biblioteca;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.menuoption.InvalidMenuOption;
 import com.twu.model.menuoption.MenuOption;
-import com.twu.model.provider.ListBookMenuOptionProvider;
-import com.twu.model.provider.MenuOptionProvider;
-import com.twu.model.provider.QuitMenuOptionProvider;
+import com.twu.model.provider.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +15,8 @@ public class Menu {
     public Menu(){
         menuOptionProviders = new ArrayList<>();
         menuOptionProviders.add(new ListBookMenuOptionProvider());
+        menuOptionProviders.add(new CheckoutMenuOptionProvider());
+        menuOptionProviders.add(new ReturnBookMenuOptionProvider());
         menuOptionProviders.add(new QuitMenuOptionProvider());
     }
 

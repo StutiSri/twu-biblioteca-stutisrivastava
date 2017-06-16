@@ -20,7 +20,7 @@ public class LibraryTest {
 
     @Before
     public void setUp() {
-        quitMenuOption = "2\n";
+        quitMenuOption = "4\n";
     }
 
     private ConsoleOutput getExpectedWelcomeMessage() {
@@ -57,14 +57,16 @@ public class LibraryTest {
         List<String> expectedMenuOptions = new ArrayList<>();
         expectedMenuOptions.add("Menu\n");
         expectedMenuOptions.add("\t1. List Books");
-        expectedMenuOptions.add("\t2. Quit");
+        expectedMenuOptions.add("\t2. Checkout Book");
+        expectedMenuOptions.add("\t3. Return Book");
+        expectedMenuOptions.add("\t4. Quit");
         expectedMenuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(expectedMenuOptions);
     }
 
     @Test
     public void shouldExitFromMenuWhenUserSelectsQuitOption() {
-        String quitMenuOptionInput = "2";
+        String quitMenuOptionInput = "4";
         TestOutputWriter outputWriter = new TestOutputWriter();
         String quitMenuOptionMessage = "Thank you for using Biblioteca.";
         ConsoleOutput expectedQuitMenuOptionMessage = new ConsoleOutput(quitMenuOptionMessage);
@@ -80,7 +82,7 @@ public class LibraryTest {
     @Test
     public void shouldKeepOnDisplayingMenuUntilUserChoosesToQuit() {
         String bookListingMenuOptionInput = "1\n";
-        String quitMenuOptionInput = "2\n";
+        String quitMenuOptionInput = "4\n";
         TestOutputWriter outputWriter = new TestOutputWriter();
         librarySystem = new LibrarySystem(new TestInputReader
                 (bookListingMenuOptionInput + quitMenuOptionInput), outputWriter);

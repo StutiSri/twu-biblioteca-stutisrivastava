@@ -9,7 +9,7 @@ public class QuitMenuOptionProvider implements MenuOptionProvider {
     private String menuOption;
 
     public QuitMenuOptionProvider() {
-        this.menuOption = "2";
+        this.menuOption = "4";
     }
 
     @Override
