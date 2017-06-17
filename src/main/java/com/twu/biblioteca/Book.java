@@ -39,6 +39,16 @@ public class Book {
     }
 
     public void checkout() {
-        this.isAvailable = false;
+        isAvailable = false;
+    }
+
+    public void makeAvailable() {
+        isAvailable = true;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-30s%-30s%-14s", getTitle(),
+                getAuthor(), getYearPublished());
     }
 }

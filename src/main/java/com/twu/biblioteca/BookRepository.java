@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.model.menuoption.ListBooksMenuOption;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,13 @@ public class BookRepository {
                 "1960"));
     }
 
-    public List<Book> getAllBooks() {
-        return books;
+    public List<Book> getAvailableBooks() {
+        List<Book> availableBooks = new ArrayList<>();
+        for(Book book : books){
+            if(book.isAvailable())
+                availableBooks.add(book);
+        }
+        return availableBooks;
     }
 
     public boolean checkoutBook(String bookToBeCheckedOut) {

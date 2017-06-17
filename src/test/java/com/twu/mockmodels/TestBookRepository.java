@@ -1,48 +1,58 @@
 package com.twu.mockmodels;
 
 import com.twu.biblioteca.Book;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestBookRepository {
 
-    private final List<Book> expectedBooks;
+    private final List<Book> books;
+    private Book checkedOutBook;
 
     public TestBookRepository(){
-        expectedBooks = new ArrayList<>();
-        expectedBooks.add(new Book("Life of Pi", "Yann Martel", "2001"));
-        expectedBooks.add(new Book("Fellowship of the Ring",
+        books = new ArrayList<>();
+        books.add(new Book("Life of Pi", "Yann Martel", "2001"));
+        books.add(new Book("Fellowship of the Ring",
                 "J. R. R. Tolkein","1991"));
-        expectedBooks.add(new Book("Atlas Shrugged", "Ayn Rand", "1939"));
-        expectedBooks.add(new Book("The Immortals of Meluha",
+
+        checkedOutBook = new Book("Atlas Shrugged", "Ayn Rand", "1939");
+        books.add(checkedOutBook);
+
+        books.add(new Book("The Immortals of Meluha",
                 "Amish Tripathi", "2010"));
-        expectedBooks.add(new Book("Game of Thrones", "George R. R. Martin",
+        books.add(new Book("Game of Thrones", "George R. R. Martin",
                 "2001"));
-        expectedBooks.add(new Book("To Kill a Mockingbird", "Harper Lee",
+        books.add(new Book("To Kill a Mockingbird", "Harper Lee",
                 "1960"));
     }
 
-    public List<Book> getExpectedBooks() {
-        return expectedBooks;
+    public List<Book> getBooks() {
+        List<Book> availableBooks = new ArrayList<>();
+        for(Book book : books)
+            if(book.isAvailable())
+                availableBooks.add(book);
+        return availableBooks;
     }
 
     public List<String> getBookListing(){
         List<String> bookListing = new ArrayList<>();
+
         bookListing.add("\nAvailable Books :-\n");
-        addColumnNames(bookListing, "Title", "Author", " Year " +
-                "Published");
-        for(Book book : expectedBooks)
-            addBookInColumnRepresentation(bookListing, book);
+        addColumnNames(bookListing);
+
+        for(Book book : books) {
+                addBookInColumnRepresentation(bookListing, book);
+        }
+
         bookListing.add("--------------------------------------------------\n");
+
         return bookListing;
     }
 
-    private void addColumnNames(List<String> bookListing, String columnTitle,
-                                String columnAuthor, String columnYearPublished) {
+    private void addColumnNames(List<String> bookListing) {
         String columns = String.format("%-30s%-28s%-14s\n",
-                columnTitle, columnAuthor, columnYearPublished);
+                "Title", "Author", " Year Published");
         bookListing.add(columns);
     }
 
@@ -52,4 +62,7 @@ public class TestBookRepository {
         bookListRepresentation.add(bookRepresentation);
     }
 
+    public void checkoutBook(){
+        checkedOutBook.checkout();
+    }
 }

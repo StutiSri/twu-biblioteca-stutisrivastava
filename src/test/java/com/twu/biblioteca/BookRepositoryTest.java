@@ -13,11 +13,15 @@ public class BookRepositoryTest {
 
     @Test
     public void shouldReturnListOfAvailableBooks() {
-        List<Book> expectedBooks = new TestBookRepository().getExpectedBooks();
+        TestBookRepository testBookRepository = new TestBookRepository();
+        testBookRepository.checkoutBook();
+        List<Book> expectedBooks = testBookRepository.getBooks();
         BookRepository bookRepository = new BookRepository();
         String bookToBeCheckedOut = "Atlas Shrugged";
         bookRepository.checkoutBook(bookToBeCheckedOut);
-        List<Book> books = bookRepository.getAllBooks();
+
+        List<Book> books = bookRepository.getAvailableBooks();
+
         assertEquals(expectedBooks, books);
     }
 
