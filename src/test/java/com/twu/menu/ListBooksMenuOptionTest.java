@@ -15,7 +15,7 @@ public class ListBooksMenuOptionTest {
         ConsoleOutput expectedBookListingOutput = new ConsoleOutput
                 (new TestBookRepository().getBookListing());
 
-        ConsoleOutput bookListOutput = new ListBooksMenuOption().action(new BookRepository());
+        ConsoleOutput bookListOutput = new ListBooksMenuOption().action(new TestBookRepository());
 
         assertEquals(expectedBookListingOutput, bookListOutput);
     }

@@ -1,11 +1,13 @@
 package com.twu.mockmodels;
 
 import com.twu.biblioteca.Book;
+import com.twu.biblioteca.BookRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class TestBookRepository {
+public class TestBookRepository extends BookRepository{
 
     private final List<Book> books;
     private Book checkedOutBook;
@@ -25,9 +27,28 @@ public class TestBookRepository {
                 "2001"));
         books.add(new Book("To Kill a Mockingbird", "Harper Lee",
                 "1960"));
+
+        Collections.sort(books);
     }
 
-    public List<Book> getBooks() {
+    @Override
+    public boolean checkoutBook(String titleOfBook) {
+        if(!checkedOutBook.getTitle().equalsIgnoreCase(titleOfBook))
+            return false;
+        checkedOutBook.checkoutBook();
+        return true;
+    }
+
+    @Override
+    public boolean returnBook(String titleOfBook) {
+        if(!checkedOutBook.getTitle().equalsIgnoreCase(titleOfBook))
+            return false;
+        checkedOutBook.returnBook();
+        return true;
+    }
+
+    @Override
+    public List<Book> getAvailableBooks() {
         List<Book> availableBooks = new ArrayList<>();
         for(Book book : books)
             if(book.isAvailable())
@@ -62,7 +83,4 @@ public class TestBookRepository {
         bookListRepresentation.add(bookRepresentation);
     }
 
-    public void checkoutBook(){
-        checkedOutBook.checkout();
-    }
 }

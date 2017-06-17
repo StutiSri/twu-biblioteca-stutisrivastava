@@ -1,8 +1,6 @@
 package com.twu.menu;
 
 import com.twu.biblioteca.Menu;
-import com.twu.io.inputreader.InputReader;
-import com.twu.io.outputwriter.ConsoleOutputWriter;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.*;
@@ -31,7 +29,7 @@ public class MenuTest {
     @Test
     public void shouldReturnCheckoutMenuOptionFromMenuOptionChoiceForCheckout(){
         String checkoutMenuOption = "2";
-        assertThat(menu.getMenuForOption(checkoutMenuOption), instanceOf(CheckoutMenuOption.class));
+        assertThat(menu.getMenuForOption(checkoutMenuOption), instanceOf(CheckoutBookMenuOption.class));
     }
 
     @Test

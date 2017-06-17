@@ -1,43 +1,65 @@
 package com.twu.biblioteca;
 
-import com.twu.model.menuoption.ListBooksMenuOption;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.twu.biblioteca.BookStatus.AVAILABLE;
+import static com.twu.biblioteca.BookStatus.CHECKED_OUT;
 
 public class BookRepository {
-    private List<Book> books;
+    private Map<Book, BookStatus> bookToBookStatusMap;
 
     public BookRepository(){
-        books = new ArrayList<>();
-        books.add(new Book("Life of Pi", "Yann Martel", "2001"));
-        books.add(new Book("Fellowship of the Ring",
-                "J. R. R. Tolkein","1991"));
-        books.add(new Book("Atlas Shrugged", "Ayn Rand", "1939"));
-        books.add(new Book("The Immortals of Meluha",
-                "Amish Tripathi", "2010"));
-        books.add(new Book("Game of Thrones", "George R. R. Martin",
-                "2001"));
-        books.add(new Book("To Kill a Mockingbird", "Harper Lee",
-                "1960"));
+        bookToBookStatusMap = new HashMap<>();
+        bookToBookStatusMap.put(new Book("Life of Pi", "Yann Martel", "2001"), AVAILABLE);
+        bookToBookStatusMap.put(new Book("Fellowship of the Ring",
+                "J. R. R. Tolkein","1991"), AVAILABLE);
+        bookToBookStatusMap.put(new Book("Atlas Shrugged", "Ayn Rand", "1939"), AVAILABLE);
+        bookToBookStatusMap.put(new Book("The Immortals of Meluha",
+                "Amish Tripathi", "2010"), AVAILABLE);
+        bookToBookStatusMap.put(new Book("Game of Thrones", "George R. R. Martin",
+                "2001"), AVAILABLE);
+        bookToBookStatusMap.put(new Book("To Kill a Mockingbird", "Harper Lee",
+                "1960"), AVAILABLE);
     }
 
     public List<Book> getAvailableBooks() {
         List<Book> availableBooks = new ArrayList<>();
-        for(Book book : books){
-            if(book.isAvailable())
-                availableBooks.add(book);
+        for(Map.Entry bookEntry : bookToBookStatusMap.entrySet()){
+            if(bookEntry.getValue() == AVAILABLE)
+                availableBooks.add((Book)bookEntry.getKey());
         }
+        Collections.sort(availableBooks);
         return availableBooks;
     }
 
-    public boolean checkoutBook(String bookToBeCheckedOut) {
-        for(Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(bookToBeCheckedOut)) {
-                book.checkout();
-                return true;
+    public boolean checkoutBook(String titleOfBook) {
+        Book bookToBeCheckedOut = findBook(titleOfBook);
+        if( bookToBeCheckedOut == null) {
+            return false;
+        }
+        bookToBookStatusMap.replace(bookToBeCheckedOut, CHECKED_OUT);
+        return true;
+    }
+
+    private Book findBook(String titleOfBook) {
+        for(Map.Entry bookEntry : bookToBookStatusMap.entrySet()) {
+            Book book = (Book)bookEntry.getKey();
+            if (book.getTitle().equalsIgnoreCase(titleOfBook)) {
+                return book;
             }
         }
-        return false;
+        return null;
+    }
+
+    public boolean returnBook(String titleOfBook) {
+        Book bookToBeReturned = findBook(titleOfBook);
+        if( bookToBeReturned == null)
+            return false;
+
+        if(bookToBookStatusMap.get(bookToBeReturned) == AVAILABLE)
+            return false;
+
+        bookToBookStatusMap.replace(bookToBeReturned, AVAILABLE);
+        return true;
     }
 }

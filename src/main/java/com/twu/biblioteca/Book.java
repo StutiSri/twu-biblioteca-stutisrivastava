@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Book {
+public class Book implements Comparable<Book> {
     private String title;
     private final String author;
     private final String yearPublished;
@@ -38,8 +38,9 @@ public class Book {
         return isAvailable;
     }
 
-    public void checkout() {
+    public boolean checkoutBook() {
         isAvailable = false;
+        return true;
     }
 
     public void makeAvailable() {
@@ -50,5 +51,15 @@ public class Book {
     public String toString() {
         return String.format("%-30s%-30s%-14s", getTitle(),
                 getAuthor(), getYearPublished());
+    }
+
+    public boolean returnBook() {
+        isAvailable = true;
+        return true;
+    }
+
+    @Override
+    public int compareTo(Book book) {
+        return book.getTitle().compareTo(title);
     }
 }

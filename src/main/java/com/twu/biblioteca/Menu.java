@@ -17,8 +17,8 @@ public class Menu {
     public Menu(InputReader inputReader, OutputWriter outputWriter){
         menuOptionProviders = new ArrayList<>();
         menuOptionProviders.add(new ListBookMenuOptionProvider());
-        menuOptionProviders.add(new CheckoutMenuOptionProvider(inputReader, outputWriter));
-        menuOptionProviders.add(new ReturnBookMenuOptionProvider());
+        menuOptionProviders.add(new CheckoutBookMenuOptionProvider(inputReader, outputWriter));
+        menuOptionProviders.add(new ReturnBookMenuOptionProvider(inputReader, outputWriter));
         menuOptionProviders.add(new QuitMenuOptionProvider());
     }
 
