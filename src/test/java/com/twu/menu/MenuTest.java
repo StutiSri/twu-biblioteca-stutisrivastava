@@ -2,7 +2,9 @@ package com.twu.menu;
 
 import com.twu.biblioteca.Menu;
 import com.twu.io.inputreader.InputReader;
+import com.twu.io.outputwriter.ConsoleOutputWriter;
 import com.twu.mockmodels.TestInputReader;
+import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +18,7 @@ public class MenuTest {
 
     @Before
     public void setUp(){
-        menu = new Menu(new TestInputReader(""));
+        menu = new Menu(new TestInputReader(""), new TestOutputWriter());
     }
 
     @Test

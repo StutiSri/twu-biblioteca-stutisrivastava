@@ -26,14 +26,14 @@ public class BookRepositoryTest {
     }
 
     @Test
-    public void shouldBeAbleToCheckoutAnAvailable(){
+    public void shouldCheckoutAnAvailableBook(){
         BookRepository bookRepository = new BookRepository();
         String bookToBeCheckedOut = "life of pi";
         assertTrue(bookRepository.checkoutBook(bookToBeCheckedOut));
     }
 
     @Test
-    public void shouldNotCheckoutABookThatIsNotAvailable(){
+    public void shouldNotCheckoutAnUnavailableBook(){
         BookRepository bookRepository = new BookRepository();
         String bookToBeCheckedOut = "harry potter";
         assertFalse(bookRepository.checkoutBook(bookToBeCheckedOut));

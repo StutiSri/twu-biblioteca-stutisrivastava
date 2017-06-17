@@ -33,7 +33,7 @@ public class BookRepository {
 
     public boolean checkoutBook(String bookToBeCheckedOut) {
         for(Book book : books) {
-            if (book.getTitle().toLowerCase().contains(bookToBeCheckedOut.toLowerCase())) {
+            if (book.getTitle().equalsIgnoreCase(bookToBeCheckedOut)) {
                 book.checkout();
                 return true;
             }

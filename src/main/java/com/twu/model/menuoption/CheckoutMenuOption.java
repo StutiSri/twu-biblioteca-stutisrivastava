@@ -6,8 +6,8 @@ import com.twu.io.output.ConsoleOutput;
 public class CheckoutMenuOption implements MenuOption {
 
     private final String bookToBeCheckedOut;
-    private static final String CHECKOUT_FAIL_MESSAGE = "That book is not available.";
-    private final String CHECKOUT_SUCCESS_MESSAGE = "Thank you! Enjoy the book.";
+    private static final String CHECKOUT_FAIL_MESSAGE = "\nThat book is not available.\n";
+    private final String CHECKOUT_SUCCESS_MESSAGE = "\nThank you! Enjoy the book.\n";
 
     public CheckoutMenuOption(String bookToBeCheckedOut) {
         this.bookToBeCheckedOut = bookToBeCheckedOut;
