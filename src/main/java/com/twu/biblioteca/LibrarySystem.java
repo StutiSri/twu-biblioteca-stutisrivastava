@@ -38,6 +38,7 @@ public class LibrarySystem {
 
             ConsoleOutput menuActionOutput = menuOption.action(bookRepository);
             outputWriter.write(menuActionOutput);
+
         }while(!(menuOption instanceof QuitMenuOption));
     }
 

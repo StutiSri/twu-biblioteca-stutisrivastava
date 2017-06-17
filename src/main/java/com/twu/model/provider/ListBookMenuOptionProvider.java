@@ -4,6 +4,8 @@ import com.twu.model.menuoption.ListBooksMenuOption;
 import com.twu.model.menuoption.MenuOption;
 
 public class ListBookMenuOptionProvider implements MenuOptionProvider {
+
+    private final String MENU_OPTION_NAME = "List Books";
     private String menuOption;
 
     public ListBookMenuOptionProvider(){
@@ -18,5 +20,10 @@ public class ListBookMenuOptionProvider implements MenuOptionProvider {
     @Override
     public MenuOption getMenu() {
         return new ListBooksMenuOption();
+    }
+
+    @Override
+    public String getMenuOptionName() {
+        return MENU_OPTION_NAME;
     }
 }

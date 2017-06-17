@@ -26,15 +26,16 @@ public class Menu {
         menuOptions.add("Menu\n");
         for(MenuOptionProvider menuOptionProvider : menuOptionProviders)
             menuOptions.add("\t" + menuOptionProvider.getMenuOption() + ". " +
-                    menuOptionProvider.getMenu());
+                    menuOptionProvider.getMenuOptionName());
         menuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(menuOptions);
     }
 
     public MenuOption getMenuForOption(String option) {
-        for(MenuOptionProvider menuOptionProvider : menuOptionProviders)
-            if(menuOptionProvider.getMenuOption().equals(option))
+        for(MenuOptionProvider menuOptionProvider : menuOptionProviders) {
+            if (menuOptionProvider.getMenuOption().equals(option))
                 return menuOptionProvider.getMenu();
+        }
         return new InvalidMenuOption();
     }
 }

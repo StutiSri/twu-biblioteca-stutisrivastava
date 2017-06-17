@@ -6,4 +6,6 @@ public interface MenuOptionProvider {
     String getMenuOption();
 
     MenuOption getMenu();
+
+    String getMenuOptionName();
 }

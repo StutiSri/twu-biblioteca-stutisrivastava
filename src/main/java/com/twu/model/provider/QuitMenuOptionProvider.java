@@ -6,6 +6,7 @@ import com.twu.model.menuoption.QuitMenuOption;
 
 public class QuitMenuOptionProvider implements MenuOptionProvider {
 
+    private final String MENU_OPTION_MESSAGE = "Quit";
     private String menuOption;
 
     public QuitMenuOptionProvider() {
@@ -20,5 +21,10 @@ public class QuitMenuOptionProvider implements MenuOptionProvider {
     @Override
     public MenuOption getMenu() {
         return new QuitMenuOption();
+    }
+
+    @Override
+    public String getMenuOptionName() {
+        return MENU_OPTION_MESSAGE;
     }
 }

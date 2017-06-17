@@ -9,13 +9,6 @@ import java.util.List;
 
 public class ListBooksMenuOption implements MenuOption {
 
-    private final String MENU_OPTION_MESSAGE = "List Books";
-
-    @Override
-    public String toString() {
-        return MENU_OPTION_MESSAGE;
-    }
-
     @Override
     public ConsoleOutput action(BookRepository bookRepository) {
         List<Book> allBooks = bookRepository.getAllBooks();
