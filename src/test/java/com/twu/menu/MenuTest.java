@@ -1,15 +1,11 @@
-package com.twu.biblioteca;
+package com.twu.menu;
 
-import com.sun.tools.javac.comp.Check;
-import com.twu.io.output.ConsoleOutput;
+import com.twu.biblioteca.Menu;
 import com.twu.model.menuoption.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class MenuTest {
@@ -18,7 +14,7 @@ public class MenuTest {
 
     @Before
     public void setUp(){
-        menu = new Menu();
+        menu = new Menu(null);
     }
 
     @Test
@@ -48,8 +44,7 @@ public class MenuTest {
     }
 
     @Test
-    public void
-    shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
+    public void shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
         String invalidMenuOption = "0";
         assertThat(menu.getMenuForOption(invalidMenuOption), instanceOf(InvalidMenuOption.class));
     }

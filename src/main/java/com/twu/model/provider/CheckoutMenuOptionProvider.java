@@ -1,13 +1,17 @@
 package com.twu.model.provider;
 
+import com.twu.io.input.ConsoleInput;
+import com.twu.io.inputreader.InputReader;
 import com.twu.model.menuoption.CheckoutMenuOption;
 import com.twu.model.menuoption.MenuOption;
 
 public class CheckoutMenuOptionProvider implements MenuOptionProvider {
 
+    private final InputReader inputReader;
     private String menuOption;
 
-    public CheckoutMenuOptionProvider(){
+    public CheckoutMenuOptionProvider(InputReader InputReader){
+        inputReader = InputReader;
         menuOption = "2";
     }
 
@@ -18,6 +22,10 @@ public class CheckoutMenuOptionProvider implements MenuOptionProvider {
 
     @Override
     public MenuOption getMenu() {
-        return new CheckoutMenuOption();
+        return new CheckoutMenuOption(readBookToBeCheckedOut());
+    }
+
+    private String readBookToBeCheckedOut() {
+        return inputReader.read().getInput();
     }
 }

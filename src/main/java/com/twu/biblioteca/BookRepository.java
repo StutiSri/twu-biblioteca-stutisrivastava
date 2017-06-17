@@ -17,9 +17,21 @@ public class BookRepository {
         books.add(new Book("Game of Thrones", "George R. R. Martin",
                 "2001"));
         books.add(new Book("To Kill a Mockingbird", "Harper Lee",
-                "1960"));}
+                "1960"));
+    }
 
     public List<Book> getAllBooks() {
         return books;
+    }
+
+    public boolean checkoutBook(String bookToBeCheckedOut) {
+        Book checkedOutBook = null;
+        for(Book book : books) {
+            if (book.getTitle().toLowerCase().contains(bookToBeCheckedOut.toLowerCase())) {
+                book.setIsAvailable(false);
+                return true;
+            }
+        }
+        return false;
     }
 }

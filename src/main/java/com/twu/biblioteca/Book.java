@@ -4,11 +4,13 @@ public class Book {
     private String title;
     private final String author;
     private final String yearPublished;
+    private boolean isAvailable;
 
     public Book(String title, String author, String yearPublished) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
+        isAvailable = true;
     }
 
     @Override
@@ -30,5 +32,9 @@ public class Book {
 
     public String getYearPublished() {
         return yearPublished;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }

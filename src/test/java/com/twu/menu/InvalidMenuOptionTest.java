@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.menu;
 
+import com.twu.biblioteca.BookRepository;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.menuoption.InvalidMenuOption;
 import org.junit.Test;

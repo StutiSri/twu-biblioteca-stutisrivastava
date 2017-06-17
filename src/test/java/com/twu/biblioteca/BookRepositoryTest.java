@@ -5,15 +5,34 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class BookRepositoryTest {
 
     @Test
-    public void shouldReturnListOfBooks() {
+    public void shouldReturnListOfAvailableBooks() {
         List<Book> expectedBooks = new TestBookRepository().getExpectedBooks();
-        List<Book> books = new BookRepository().getAllBooks();
+        BookRepository bookRepository = new BookRepository();
+        String bookToBeCheckedOut = "Atlas Shrugged";
+        bookRepository.checkoutBook(bookToBeCheckedOut);
+        List<Book> books = bookRepository.getAllBooks();
         assertEquals(expectedBooks, books);
+    }
+
+    @Test
+    public void shouldBeAbleToCheckoutAnAvailable(){
+        BookRepository bookRepository = new BookRepository();
+        String bookToBeCheckedOut = "life of pi";
+        assertTrue(bookRepository.checkoutBook(bookToBeCheckedOut));
+    }
+
+    @Test
+    public void shouldNotCheckoutABookThatIsNotAvailable(){
+        BookRepository bookRepository = new BookRepository();
+        String bookToBeCheckedOut = "harry potter";
+        assertFalse(bookRepository.checkoutBook(bookToBeCheckedOut));
     }
 
 }

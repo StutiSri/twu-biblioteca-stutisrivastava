@@ -20,7 +20,7 @@ public class LibrarySystem {
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
         bookRepository = new BookRepository();
-        menu = new Menu();
+        menu = new Menu(inputReader);
     }
 
     public void run() {
