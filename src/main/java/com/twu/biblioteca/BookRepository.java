@@ -25,10 +25,9 @@ public class BookRepository {
     }
 
     public boolean checkoutBook(String bookToBeCheckedOut) {
-        Book checkedOutBook = null;
         for(Book book : books) {
             if (book.getTitle().toLowerCase().contains(bookToBeCheckedOut.toLowerCase())) {
-                book.setIsAvailable(false);
+                book.checkout();
                 return true;
             }
         }

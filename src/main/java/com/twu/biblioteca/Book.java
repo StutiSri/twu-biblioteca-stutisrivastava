@@ -34,7 +34,11 @@ public class Book {
         return yearPublished;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void checkout() {
+        this.isAvailable = false;
     }
 }
