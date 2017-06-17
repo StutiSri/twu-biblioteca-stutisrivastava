@@ -11,18 +11,17 @@ public class CheckoutBookMenuOptionProvider implements MenuOptionProvider {
 
     private final InputReader inputReader;
     private final OutputWriter outputWriter;
-    private String menuOption;
     private final String MENU_OPTION_NAME = "Checkout Book";
+    private final String MENU_OPTION = "2";
 
     public CheckoutBookMenuOptionProvider(InputReader inputReader, OutputWriter outputWriter){
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
-        menuOption = "2";
     }
 
     @Override
     public String  getMenuOption() {
-        return menuOption;
+        return MENU_OPTION;
     }
 
     @Override

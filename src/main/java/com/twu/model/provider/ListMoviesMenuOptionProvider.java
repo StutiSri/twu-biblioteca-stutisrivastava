@@ -1,20 +1,21 @@
 package com.twu.model.provider;
 
 import com.twu.model.menuoption.ListBooksMenuOption;
+import com.twu.model.menuoption.ListMoviesMenuOption;
 import com.twu.model.menuoption.MenuOption;
 
-public class ListBookMenuOptionProvider implements MenuOptionProvider {
+public class ListMoviesMenuOptionProvider implements MenuOptionProvider {
+    private final String MENU_OPTION_NAME = "List Movies";
+    private String MENU_OPTION = "4";
 
-    private final String MENU_OPTION_NAME = "List Books";
-    private final String MENU_OPTION = "1";
     @Override
-    public String  getMenuOption() {
+    public String getMenuOption() {
         return MENU_OPTION;
     }
 
     @Override
     public MenuOption getMenu() {
-        return new ListBooksMenuOption();
+        return new ListMoviesMenuOption();
     }
 
     @Override

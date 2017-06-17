@@ -19,6 +19,7 @@ public class Menu {
         menuOptionProviders.add(new ListBookMenuOptionProvider());
         menuOptionProviders.add(new CheckoutBookMenuOptionProvider(inputReader, outputWriter));
         menuOptionProviders.add(new ReturnBookMenuOptionProvider(inputReader, outputWriter));
+        menuOptionProviders.add(new ListMoviesMenuOptionProvider());
         menuOptionProviders.add(new QuitMenuOptionProvider());
     }
 

@@ -12,17 +12,16 @@ public class ReturnBookMenuOptionProvider implements MenuOptionProvider {
     private final String MENU_OPTION_NAME = "Return Book";
     private InputReader inputReader;
     private OutputWriter outputWriter;
-    private String menuOption;
+    private final String MENU_OPTION = "3";
 
     public ReturnBookMenuOptionProvider(InputReader inputReader, OutputWriter outputWriter){
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
-        menuOption = "3";
     }
 
     @Override
     public String  getMenuOption() {
-        return menuOption;
+        return MENU_OPTION;
     }
 
     @Override

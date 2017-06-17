@@ -39,8 +39,15 @@ public class MenuTest {
     }
 
     @Test
+    public void shouldReturnListMoviesOptionFromMenuOptionInputChoiceForListMovies(){
+        String listMoviesMenuOption = "4";
+        assertThat(menu.getMenuForOption(listMoviesMenuOption),
+                instanceOf(ListMoviesMenuOption.class));
+    }
+
+    @Test
     public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
-        String quitMenuOption = "4";
+        String quitMenuOption = "6";
         assertThat(menu.getMenuForOption(quitMenuOption),
                 instanceOf(QuitMenuOption.class));
     }
