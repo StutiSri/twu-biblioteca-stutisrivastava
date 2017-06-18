@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TestMovieRepository implements Repository {
     private final List<Movie> movies;
-    private final boolean isMovieCheckedOut;
+    private boolean isMovieCheckedOut;
     private Movie checkedOutMovie;
 
     public TestMovieRepository() {
@@ -56,7 +56,10 @@ public class TestMovieRepository implements Repository {
 
     @Override
     public boolean checkoutArtifact(String title) {
-        return false;
+        if(!checkedOutMovie.getTitle().equalsIgnoreCase(title))
+            return false;
+        isMovieCheckedOut = true;
+        return true;
     }
 
     @Override

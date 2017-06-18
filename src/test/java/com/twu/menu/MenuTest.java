@@ -6,7 +6,6 @@ import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestMovieRepository;
 import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.*;
-import com.twu.model.repository.BookRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,8 +49,15 @@ public class MenuTest {
     }
 
     @Test
+    public void shouldReturnLoginOptionFromMenuOptionInputChoiceForLogin(){
+        String loginMenuOption = "6";
+        assertThat(menu.getMenuForOption(loginMenuOption),
+                instanceOf(LoginMenuOption.class));
+    }
+
+    @Test
     public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
-        String quitMenuOption = "6";
+        String quitMenuOption = "7";
         assertThat(menu.getMenuForOption(quitMenuOption),
                 instanceOf(QuitMenuOption.class));
     }

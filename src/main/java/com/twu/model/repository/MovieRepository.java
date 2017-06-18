@@ -6,6 +6,7 @@ import com.twu.model.artifacts.*;
 import java.util.*;
 
 import static com.twu.biblioteca.Status.AVAILABLE;
+import static com.twu.biblioteca.Status.CHECKED_OUT;
 
 public class MovieRepository implements Repository{
 
@@ -28,7 +29,7 @@ public class MovieRepository implements Repository{
         List<Artifact> availableMovies = new ArrayList<>();
         for (Map.Entry movieEntry : movieToStatusMap.entrySet()) {
             if (movieEntry.getValue() == AVAILABLE)
-                availableMovies.add((Movie) movieEntry.getKey());
+                availableMovies.add((Artifact) movieEntry.getKey());
         }
         Collections.sort(availableMovies, new MovieSorter());
         return availableMovies;
@@ -36,9 +37,24 @@ public class MovieRepository implements Repository{
 
     @Override
     public boolean checkoutArtifact(String title) {
-        return false;
+        Movie movieToBeCheckedOut = findMovie(title);
+        if( movieToBeCheckedOut == null) {
+            return false;
+        }
+        movieToStatusMap.replace(movieToBeCheckedOut, CHECKED_OUT);
+        return true;
     }
 
+    private Movie findMovie(String titleOfMovie) {
+        for(Map.Entry movieEntry : movieToStatusMap.entrySet()) {
+            Movie movie = (Movie)movieEntry.getKey();
+            if (movie.getTitle().equalsIgnoreCase(titleOfMovie)) {
+                return movie;
+            }
+        }
+        return null;
+    }
+    
     @Override
     public boolean returnArtifact(String title) {
         return false;

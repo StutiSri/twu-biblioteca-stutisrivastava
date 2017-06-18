@@ -7,7 +7,7 @@ import com.twu.model.menuoption.QuitMenuOption;
 public class QuitMenuOptionProvider implements MenuOptionProvider {
 
     private final String MENU_OPTION_MESSAGE = "Quit";
-    private final String MENU_OPTION = "6";
+    private final String MENU_OPTION = "7";
 
     @Override
     public String getMenuOption() {
