@@ -1,6 +1,5 @@
 package com.twu.menu;
 
-import com.twu.biblioteca.BookRepository;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestBookRepository;
 import com.twu.model.menuoption.ListBooksMenuOption;
@@ -15,7 +14,7 @@ public class ListBooksMenuOptionTest {
         ConsoleOutput expectedBookListingOutput = new ConsoleOutput
                 (new TestBookRepository().getBookListing());
 
-        ConsoleOutput bookListOutput = new ListBooksMenuOption().action(new TestBookRepository());
+        ConsoleOutput bookListOutput = new ListBooksMenuOption(new TestBookRepository()).action();
 
         assertEquals(expectedBookListingOutput, bookListOutput);
     }

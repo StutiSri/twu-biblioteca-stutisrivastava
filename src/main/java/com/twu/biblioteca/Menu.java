@@ -6,6 +6,7 @@ import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.InvalidMenuOption;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.provider.*;
+import com.twu.model.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,13 @@ public class Menu {
 
     private List<MenuOptionProvider> menuOptionProviders;
 
-    public Menu(InputReader inputReader, OutputWriter outputWriter){
+    public Menu(InputReader inputReader, OutputWriter outputWriter,
+                        Repository bookRepository, Repository movieRepository){
         menuOptionProviders = new ArrayList<>();
-        menuOptionProviders.add(new ListBookMenuOptionProvider());
-        menuOptionProviders.add(new CheckoutBookMenuOptionProvider(inputReader, outputWriter));
-        menuOptionProviders.add(new ReturnBookMenuOptionProvider(inputReader, outputWriter));
-        menuOptionProviders.add(new ListMoviesMenuOptionProvider());
+        menuOptionProviders.add(new ListBookMenuOptionProvider(bookRepository));
+        menuOptionProviders.add(new CheckoutBookMenuOptionProvider(inputReader, outputWriter, bookRepository));
+        menuOptionProviders.add(new ReturnBookMenuOptionProvider(inputReader, outputWriter, bookRepository));
+        menuOptionProviders.add(new ListMoviesMenuOptionProvider(movieRepository));
         menuOptionProviders.add(new QuitMenuOptionProvider());
     }
 

@@ -1,9 +1,12 @@
 package com.twu.menu;
 
 import com.twu.biblioteca.Menu;
+import com.twu.mockmodels.TestBookRepository;
 import com.twu.mockmodels.TestInputReader;
+import com.twu.mockmodels.TestMovieRepository;
 import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.*;
+import com.twu.model.repository.BookRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +19,8 @@ public class MenuTest {
 
     @Before
     public void setUp(){
-        menu = new Menu(new TestInputReader(""), new TestOutputWriter());
+        menu = new Menu(new TestInputReader(""), new TestOutputWriter(),
+                new TestBookRepository(), new TestMovieRepository());
     }
 
     @Test

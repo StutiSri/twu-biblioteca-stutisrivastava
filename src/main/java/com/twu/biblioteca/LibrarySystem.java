@@ -6,6 +6,9 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.menuoption.QuitMenuOption;
+import com.twu.model.repository.BookRepository;
+import com.twu.model.repository.MovieRepository;
+import com.twu.model.repository.Repository;
 
 public class LibrarySystem {
 
@@ -14,13 +17,12 @@ public class LibrarySystem {
     private InputReader inputReader;
     private OutputWriter outputWriter;
     private Menu menu;
-    private BookRepository bookRepository;
 
     public LibrarySystem(InputReader inputReader, OutputWriter outputWriter) {
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
-        bookRepository = new BookRepository();
-        menu = new Menu(inputReader, outputWriter);
+        menu = new Menu(inputReader, outputWriter,
+                new BookRepository(), new MovieRepository());
     }
 
     public void run() {
@@ -36,7 +38,7 @@ public class LibrarySystem {
             ConsoleInput menuOptionInput = inputReader.read();
             menuOption = getMenuOptionForUserInput(menuOptionInput.getInput());
 
-            ConsoleOutput menuActionOutput = menuOption.action(bookRepository);
+            ConsoleOutput menuActionOutput = menuOption.action();
             outputWriter.write(menuActionOutput);
 
         }while(!(menuOption instanceof QuitMenuOption));

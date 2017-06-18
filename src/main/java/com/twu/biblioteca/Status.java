@@ -1,5 +1,5 @@
 package com.twu.biblioteca;
 
-public enum BookStatus {
+public enum Status {
     AVAILABLE, CHECKED_OUT;
 }

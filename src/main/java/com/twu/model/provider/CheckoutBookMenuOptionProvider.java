@@ -6,17 +6,20 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.CheckoutBookMenuOption;
 import com.twu.model.menuoption.MenuOption;
+import com.twu.model.repository.Repository;
 
 public class CheckoutBookMenuOptionProvider implements MenuOptionProvider {
 
     private final InputReader inputReader;
     private final OutputWriter outputWriter;
+    private final Repository bookRepository;
     private final String MENU_OPTION_NAME = "Checkout Book";
     private final String MENU_OPTION = "2";
 
-    public CheckoutBookMenuOptionProvider(InputReader inputReader, OutputWriter outputWriter){
+    public CheckoutBookMenuOptionProvider(InputReader inputReader, OutputWriter outputWriter, Repository bookRepository){
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class CheckoutBookMenuOptionProvider implements MenuOptionProvider {
 
     @Override
     public MenuOption getMenu() {
-        return new CheckoutBookMenuOption(readBookToBeCheckedOut());
+        return new CheckoutBookMenuOption(bookRepository, readBookToBeCheckedOut());
     }
 
     @Override

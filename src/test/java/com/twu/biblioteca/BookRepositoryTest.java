@@ -1,6 +1,10 @@
 package com.twu.biblioteca;
 
 import com.twu.mockmodels.TestBookRepository;
+import com.twu.model.artifacts.Artifact;
+import com.twu.model.artifacts.Book;
+import com.twu.model.repository.BookRepository;
+import com.twu.model.repository.Repository;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,42 +19,42 @@ public class BookRepositoryTest {
     public void shouldReturnListOfAvailableBooks() {
         String bookToBeCheckedOut = "Atlas Shrugged";
         TestBookRepository testBookRepository = new TestBookRepository();
-        testBookRepository.checkoutBook(bookToBeCheckedOut);
-        List<Book> expectedBooks = testBookRepository.getAvailableBooks();
-        BookRepository bookRepository = new BookRepository();
-        bookRepository.checkoutBook(bookToBeCheckedOut);
+        testBookRepository.checkoutArtifact(bookToBeCheckedOut);
+        List<Artifact> expectedBooks = testBookRepository.getAvailableArtifacts();
+        Repository repository = new BookRepository();
+        repository.checkoutArtifact(bookToBeCheckedOut);
 
-        List<Book> books = bookRepository.getAvailableBooks();
+        List<Artifact> books = repository.getAvailableArtifacts();
 
         assertEquals(expectedBooks, books);
     }
 
     @Test
     public void shouldCheckoutAnAvailableBook(){
-        BookRepository bookRepository = new BookRepository();
+        Repository repository = new BookRepository();
         String bookToBeCheckedOut = "life of pi";
-        assertTrue(bookRepository.checkoutBook(bookToBeCheckedOut));
+        assertTrue(repository.checkoutArtifact(bookToBeCheckedOut));
     }
 
     @Test
     public void shouldNotCheckoutAnUnavailableBook(){
-        BookRepository bookRepository = new BookRepository();
+        Repository repository = new BookRepository();
         String bookToBeCheckedOut = "harry potter";
-        assertFalse(bookRepository.checkoutBook(bookToBeCheckedOut));
+        assertFalse(repository.checkoutArtifact(bookToBeCheckedOut));
     }
 
     @Test
     public void shouldReturnACheckedOutBook(){
-        BookRepository bookRepository = new BookRepository();
+        Repository repository = new BookRepository();
         String bookTitle = "game of thrones";
-        bookRepository.checkoutBook(bookTitle);
-        assertTrue(bookRepository.returnBook(bookTitle));
+        repository.checkoutArtifact(bookTitle);
+        assertTrue(repository.returnArtifact(bookTitle));
     }
 
     @Test
     public void shouldNotReturnABookThatIsNotCheckedOut(){
-        BookRepository bookRepository = new BookRepository();
+        Repository repository = new BookRepository();
         String bookTitle = "game of thrones";
-        assertFalse(bookRepository.returnBook(bookTitle));
+        assertFalse(repository.returnArtifact(bookTitle));
     }
 }

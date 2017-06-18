@@ -13,11 +13,11 @@ public class CheckoutBookMenuOptionTest {
     public void shouldCheckoutAvailableBook(){
         String bookInput = "atlas shrugged";
         CheckoutBookMenuOption checkoutBookMenuOption = new CheckoutBookMenuOption
-                (new ConsoleInput(bookInput));
+                (new TestBookRepository(), new ConsoleInput(bookInput));
         String successfulCheckoutMessage = "\nThank you! Enjoy the book.\n";
         ConsoleOutput expectedOutput = new ConsoleOutput(successfulCheckoutMessage);
 
-        ConsoleOutput output = checkoutBookMenuOption.action(new TestBookRepository());
+        ConsoleOutput output = checkoutBookMenuOption.action();
 
         assertEquals(expectedOutput, output);
     }
@@ -26,11 +26,11 @@ public class CheckoutBookMenuOptionTest {
     public void shouldNotCheckoutUnavailableBook(){
         String bookInput = "harry potter";
         CheckoutBookMenuOption checkoutBookMenuOption = new CheckoutBookMenuOption
-                (new ConsoleInput(bookInput));
+                (new TestBookRepository(), new ConsoleInput(bookInput));
         String unsuccessfulCheckoutMessage = "\nThat book is not available.\n";
         ConsoleOutput expectedOutput = new ConsoleOutput(unsuccessfulCheckoutMessage);
 
-        ConsoleOutput output = checkoutBookMenuOption.action(new TestBookRepository());
+        ConsoleOutput output = checkoutBookMenuOption.action();
 
         assertEquals(expectedOutput, output);
     }

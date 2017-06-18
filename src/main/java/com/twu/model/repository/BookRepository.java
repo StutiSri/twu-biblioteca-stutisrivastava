@@ -1,12 +1,17 @@
-package com.twu.biblioteca;
+package com.twu.model.repository;
+
+import com.twu.biblioteca.Status;
+import com.twu.model.artifacts.Artifact;
+import com.twu.model.artifacts.Book;
+import com.twu.model.artifacts.BookSorter;
 
 import java.util.*;
 
-import static com.twu.biblioteca.BookStatus.AVAILABLE;
-import static com.twu.biblioteca.BookStatus.CHECKED_OUT;
+import static com.twu.biblioteca.Status.AVAILABLE;
+import static com.twu.biblioteca.Status.CHECKED_OUT;
 
-public class BookRepository {
-    private Map<Book, BookStatus> bookToBookStatusMap;
+public class BookRepository implements Repository {
+    private Map<Book, Status> bookToBookStatusMap;
 
     public BookRepository(){
         bookToBookStatusMap = new HashMap<>();
@@ -22,18 +27,20 @@ public class BookRepository {
                 "1960"), AVAILABLE);
     }
 
-    public List<Book> getAvailableBooks() {
-        List<Book> availableBooks = new ArrayList<>();
+    @Override
+    public List<Artifact> getAvailableArtifacts() {
+        List<Artifact> availableBooks = new ArrayList<>();
         for(Map.Entry bookEntry : bookToBookStatusMap.entrySet()){
             if(bookEntry.getValue() == AVAILABLE)
                 availableBooks.add((Book)bookEntry.getKey());
         }
-        Collections.sort(availableBooks);
+        Collections.sort(availableBooks, new BookSorter());
         return availableBooks;
     }
 
-    public boolean checkoutBook(String titleOfBook) {
-        Book bookToBeCheckedOut = findBook(titleOfBook);
+    @Override
+    public boolean checkoutArtifact(String title) {
+        Book bookToBeCheckedOut = findBook(title);
         if( bookToBeCheckedOut == null) {
             return false;
         }
@@ -51,8 +58,9 @@ public class BookRepository {
         return null;
     }
 
-    public boolean returnBook(String titleOfBook) {
-        Book bookToBeReturned = findBook(titleOfBook);
+    @Override
+    public boolean returnArtifact(String title) {
+        Book bookToBeReturned = findBook(title);
         if( bookToBeReturned == null)
             return false;
 

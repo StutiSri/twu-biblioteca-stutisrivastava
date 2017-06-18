@@ -1,16 +1,19 @@
 package com.twu.mockmodels;
 
-import com.twu.biblioteca.Book;
-import com.twu.biblioteca.BookRepository;
+import com.twu.model.artifacts.Artifact;
+import com.twu.model.artifacts.Book;
+import com.twu.model.artifacts.BookSorter;
+import com.twu.model.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TestBookRepository extends BookRepository{
+public class TestBookRepository implements Repository{
 
     private final List<Book> books;
     private Book checkedOutBook;
+    private boolean isBookCheckedOut;
 
     public TestBookRepository(){
         books = new ArrayList<>();
@@ -28,31 +31,33 @@ public class TestBookRepository extends BookRepository{
         books.add(new Book("To Kill a Mockingbird", "Harper Lee",
                 "1960"));
 
-        Collections.sort(books);
+        Collections.sort(books, new BookSorter());
+        isBookCheckedOut = false;
     }
 
     @Override
-    public boolean checkoutBook(String titleOfBook) {
-        if(!checkedOutBook.getTitle().equalsIgnoreCase(titleOfBook))
+    public boolean checkoutArtifact(String title) {
+        if(!checkedOutBook.getTitle().equalsIgnoreCase(title))
             return false;
-        checkedOutBook.checkoutBook();
+        isBookCheckedOut = true;
         return true;
     }
 
     @Override
-    public boolean returnBook(String titleOfBook) {
-        if(!checkedOutBook.getTitle().equalsIgnoreCase(titleOfBook))
+    public boolean returnArtifact(String title) {
+        if(!checkedOutBook.getTitle().equalsIgnoreCase(title))
             return false;
-        checkedOutBook.returnBook();
+        isBookCheckedOut = false;
         return true;
     }
 
     @Override
-    public List<Book> getAvailableBooks() {
-        List<Book> availableBooks = new ArrayList<>();
-        for(Book book : books)
-            if(book.isAvailable())
+    public List<Artifact> getAvailableArtifacts() {
+        List<Artifact> availableBooks = new ArrayList<>();
+        for(Book book : books) {
+            if(!(book.equals(checkedOutBook) && isBookCheckedOut))
                 availableBooks.add(book);
+        }
         return availableBooks;
     }
 

@@ -6,17 +6,20 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.MenuOption;
 import com.twu.model.menuoption.ReturnBookMenuOption;
+import com.twu.model.repository.Repository;
 
 public class ReturnBookMenuOptionProvider implements MenuOptionProvider {
 
     private final String MENU_OPTION_NAME = "Return Book";
     private InputReader inputReader;
     private OutputWriter outputWriter;
+    private final Repository bookRepository;
     private final String MENU_OPTION = "3";
 
-    public ReturnBookMenuOptionProvider(InputReader inputReader, OutputWriter outputWriter){
+    public ReturnBookMenuOptionProvider(InputReader inputReader, OutputWriter outputWriter, Repository bookRepository){
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class ReturnBookMenuOptionProvider implements MenuOptionProvider {
 
     @Override
     public MenuOption getMenu() {
-        return new ReturnBookMenuOption(getBookToBeReturned());
+        return new ReturnBookMenuOption(bookRepository, getBookToBeReturned());
     }
 
     @Override
