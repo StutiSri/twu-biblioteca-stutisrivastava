@@ -25,7 +25,7 @@ public class LibrarySystem {
         this.outputWriter = outputWriter;
         loggedInUser = null;
         menu = new Menu(inputReader, outputWriter,
-                new BookRepository(), new MovieRepository(), loggedInUser);
+                new BookRepository(), new MovieRepository());
     }
 
     public void run() {

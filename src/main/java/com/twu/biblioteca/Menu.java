@@ -14,20 +14,17 @@ import java.util.List;
 
 public class Menu {
 
-    private final boolean isUserLoggedIn;
     private List<MenuOptionProvider> menuOptionProviders;
 
     public Menu(InputReader inputReader, OutputWriter outputWriter,
-                        Repository bookRepository, Repository movieRepository, User loggedInUser){
+                        Repository bookRepository, Repository movieRepository){
         menuOptionProviders = new ArrayList<>();
         menuOptionProviders.add(new ListBookMenuOptionProvider(bookRepository));
         menuOptionProviders.add(new CheckoutBookMenuOptionProvider(inputReader, outputWriter, bookRepository));
         menuOptionProviders.add(new ReturnBookMenuOptionProvider(inputReader, outputWriter, bookRepository));
         menuOptionProviders.add(new ListMoviesMenuOptionProvider(movieRepository));
         menuOptionProviders.add(new LoginMenuOptionProvider(inputReader, outputWriter));
-      //  menuOptionProviders.add(new UserInformationMenuOptionProvider(loggedInUser));
         menuOptionProviders.add(new QuitMenuOptionProvider());
-        isUserLoggedIn = false;
     }
 
     public ConsoleOutput getMenuOptions(){

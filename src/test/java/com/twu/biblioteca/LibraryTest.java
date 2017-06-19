@@ -107,7 +107,7 @@ public class LibraryTest {
         assertEquals(expectedQuitMenuOptionMessage, actualQuitMenuOptionMessage);
     }
 
-    @Test
+    /*@Test
     public void menuOptionsShouldChangeAfterSuccesfulLogin(){
         String loginMenuOptionInput = "6\n";
         String loginDetails = "STU-9176\npassword\n";
@@ -126,7 +126,7 @@ public class LibraryTest {
 
         ConsoleOutput menuOptions = outputWriter.getMenuAfterLogin();
         assertEquals(menuOptionsOutput, menuOptions);
-    }
+    }*/
 
     private ConsoleOutput getExpectedMenuOptionsAfterSuccesfulLogin() {
         List<String> expectedMenuOptions = new ArrayList<>();

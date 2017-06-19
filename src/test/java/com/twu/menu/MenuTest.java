@@ -22,7 +22,7 @@ public class MenuTest {
     @Before
     public void setUp(){
         menu = new Menu(new TestInputReader(""), new TestOutputWriter(),
-                new TestBookRepository(), new TestMovieRepository(), null);
+                new TestBookRepository(), new TestMovieRepository());
     }
 
     @Test
