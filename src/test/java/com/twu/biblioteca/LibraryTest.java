@@ -60,6 +60,7 @@ public class LibraryTest {
         expectedMenuOptions.add("\t2. Checkout Book");
         expectedMenuOptions.add("\t3. Return Book");
         expectedMenuOptions.add("\t4. List Movies");
+        expectedMenuOptions.add("\t5. Checkout Movie");
         expectedMenuOptions.add("\t6. Login");
         expectedMenuOptions.add("\t7. Quit");
         expectedMenuOptions.add("\nPlease enter your choice :- ");

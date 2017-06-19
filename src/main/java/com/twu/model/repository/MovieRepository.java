@@ -29,7 +29,7 @@ public class MovieRepository implements Repository{
         List<Artifact> availableMovies = new ArrayList<>();
         for (Map.Entry movieEntry : movieToStatusMap.entrySet()) {
             if (movieEntry.getValue() == AVAILABLE)
-                availableMovies.add((Artifact) movieEntry.getKey());
+                availableMovies.add((Movie) movieEntry.getKey());
         }
         Collections.sort(availableMovies, new MovieSorter());
         return availableMovies;

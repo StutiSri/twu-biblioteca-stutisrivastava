@@ -23,6 +23,7 @@ public class Menu {
         menuOptionProviders.add(new CheckoutBookMenuOptionProvider(inputReader, outputWriter, bookRepository));
         menuOptionProviders.add(new ReturnBookMenuOptionProvider(inputReader, outputWriter, bookRepository));
         menuOptionProviders.add(new ListMoviesMenuOptionProvider(movieRepository));
+        menuOptionProviders.add(new CheckoutMovieMenuOptionProvider(inputReader, outputWriter, movieRepository));
         menuOptionProviders.add(new LoginMenuOptionProvider(inputReader, outputWriter));
         menuOptionProviders.add(new QuitMenuOptionProvider());
     }

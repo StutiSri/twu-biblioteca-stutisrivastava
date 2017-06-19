@@ -9,9 +9,6 @@ import com.twu.model.menuoption.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
@@ -33,9 +30,9 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldReturnCheckoutMenuOptionFromMenuOptionChoiceForCheckout(){
-        String checkoutMenuOption = "2";
-        assertThat(menu.getMenuForOption(checkoutMenuOption),
+    public void shouldReturnCheckoutBookMenuOptionFromMenuOptionChoiceForCheckoutBook(){
+        String checkoutBookMenuOption = "2";
+        assertThat(menu.getMenuForOption(checkoutBookMenuOption),
                             instanceOf(CheckoutBookMenuOption.class));
     }
 
@@ -51,6 +48,14 @@ public class MenuTest {
         String listMoviesMenuOption = "4";
         assertThat(menu.getMenuForOption(listMoviesMenuOption),
                           instanceOf(ListMoviesMenuOption.class));
+    }
+
+
+    @Test
+    public void shouldReturnCheckoutMovieMenuOptionFromMenuOptionChoiceForCheckoutMovie(){
+        String checkoutMovieMenuOption = "5";
+        assertThat(menu.getMenuForOption(checkoutMovieMenuOption),
+                instanceOf(CheckoutMovieMenuOption.class));
     }
 
     @Test
@@ -72,7 +77,5 @@ public class MenuTest {
         String invalidMenuOption = "0";
         assertThat(menu.getMenuForOption(invalidMenuOption),
                            instanceOf(InvalidMenuOption.class));
-
-        Map<Integer, String> x = new LinkedHashMap<>();
     }
 }
