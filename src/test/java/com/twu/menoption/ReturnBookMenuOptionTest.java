@@ -21,7 +21,7 @@ public class ReturnBookMenuOptionTest {
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(titleOfBook), new TestOutputWriter());
         TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
-        testLibraryRepository.checkoutBook(titleOfBook);
+        testLibraryRepository.checkoutBook(titleOfBook, null);
         ReturnBookMenuOption returnBookMenuOption =
                 new ReturnBookMenuOption(inputOutputHandler, testLibraryRepository);
         String successfulReturnMessage = "\nThank you for returning the book.\n";
@@ -38,7 +38,7 @@ public class ReturnBookMenuOptionTest {
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(titleOfBook), new TestOutputWriter());
         TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
-        testLibraryRepository.checkoutBook(titleOfBook);
+        testLibraryRepository.checkoutBook(titleOfBook, null);
         ReturnBookMenuOption returnBookMenuOption =
                 new ReturnBookMenuOption(inputOutputHandler, testLibraryRepository);
         String unsuccessfulReturnMessage = "\nThat is not a valid book to return.\n";

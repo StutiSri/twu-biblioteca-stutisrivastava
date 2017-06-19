@@ -6,6 +6,7 @@ import com.twu.io.InputOutputHandler;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.mockmodels.TestOutputWriter;
+import com.twu.mockmodels.TestUserLogin;
 import com.twu.model.menuoption.ReturnBookMenuOption;
 import com.twu.model.user.Customer;
 import com.twu.model.user.Librarian;
@@ -16,6 +17,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class UserLoginTest {
+    @Test(expected = InvalidLogoutException.class)
+    public void shouldThrowExceptionForInvalidLogout() throws InvalidLogoutException {
+        new TestUserLogin(null).reset();
+        TestInputReader inputReader = new TestInputReader("");
+        InputOutputHandler inputOutputHandler =
+                new InputOutputHandler(inputReader, new TestOutputWriter());
+        UserLogin userLogin = new UserLogin(inputOutputHandler);
+
+        userLogin.logout();
+    }
+
     @Test(expected = InvalidLoginException.class)
     public void shouldThrowExceptionForInvalidLogin() throws InvalidLoginException {
         String libraryNumber = "STU-9176\n";
@@ -73,15 +85,6 @@ public class UserLoginTest {
         assertEquals(expectedUser, user);
     }
 
-    @Test(expected = InvalidLogoutException.class)
-    public void shouldThrowExceptionForInvalidLogout() throws InvalidLogoutException {
-        TestInputReader inputReader = new TestInputReader("");
-        InputOutputHandler inputOutputHandler =
-                new InputOutputHandler(inputReader, new TestOutputWriter());
-        UserLogin userLogin = new UserLogin(inputOutputHandler);
-
-        userLogin.logout();
-    }
 
     @Test
     public void shouldResetLoggedInUserAfterLogout() throws InvalidLoginException, InvalidLogoutException {

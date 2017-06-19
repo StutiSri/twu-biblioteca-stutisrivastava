@@ -6,6 +6,7 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestOutputWriter;
+import com.twu.mockmodels.TestUserLogin;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,6 +27,7 @@ public class LibraryTest {
 
     @Test
     public void userShouldBeGreetedWithWelcomeMessageOnApplicationStartup() {
+        new TestUserLogin(null).reset();
         String quitMenuOption = "4\n";
         ConsoleOutput expectedWelcomeMessage = getExpectedWelcomeMessage();
         TestOutputWriter outputWriter = new TestOutputWriter();
@@ -41,6 +43,7 @@ public class LibraryTest {
 
     @Test
     public void userShouldGetGeneralMenuAfterWelcomeMessage() {
+        new TestUserLogin(null).reset();
         String quitMenuOption = "4\n";
         ConsoleOutput expectedMenuOptions = getGeneralMenuOptions();
         TestOutputWriter outputWriter = new TestOutputWriter();
@@ -56,6 +59,7 @@ public class LibraryTest {
 
     @Test
     public void shouldExitFromMenuWhenUserSelectsQuitOption() {
+        new TestUserLogin(null).reset();
         String quitMenuOption = "4\n";
         TestOutputWriter outputWriter = new TestOutputWriter();
         String quitMenuOptionMessage = "Thank you for using Biblioteca.";
@@ -73,6 +77,7 @@ public class LibraryTest {
 
     @Test
     public void shouldKeepOnDisplayingMenuUntilUserChoosesToQuit() {
+        new TestUserLogin(null).reset();
         String bookListingMenuOptionInput = "2\n";
         String quitMenuOptionInput = "4\n";
         TestOutputWriter outputWriter = new TestOutputWriter();
@@ -126,6 +131,7 @@ public class LibraryTest {
 
     @Test
     public void customerShouldSeeCustomerMenuAfterLogin() {
+        new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "STU-9176\npassword\n";
         String quitMenuOptionForUserMenu = "8\n";
@@ -144,6 +150,7 @@ public class LibraryTest {
 
     @Test
     public void shouldDisplayLoginSuccessfulAfterSuccessfulLoginByCustomer(){
+        new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "STU-9176\npassword\n";
         String quitMenuOptionForUserMenu = "8\n";
@@ -162,6 +169,7 @@ public class LibraryTest {
 
     @Test
     public void shouldDisplayLoginSuccessfulAfterSuccessfulLoginByLibrarian(){
+        new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "LIB-9176\npassword\n";
         String quitMenuOptionForUserMenu = "4\n";
@@ -180,6 +188,7 @@ public class LibraryTest {
 
     @Test
     public void librarianShouldSeeLibrarianMenuAfterLogin() {
+        new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "LIB-9176\npassword\n";
         String quitMenuOptionForLibrarianMenu = "4\n";
@@ -209,6 +218,7 @@ public class LibraryTest {
 
     @Test
     public void shouldDisplayGeneralMenuAfterCustomerLogout(){
+        new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "STU-9176\npassword\n";
         String logoutMenuOption = "7\n";
@@ -228,6 +238,7 @@ public class LibraryTest {
 
     @Test
     public void shouldDisplayGeneralMenuAfterLibrarianLogout(){
+        new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "LIB-9176\npassword\n";
         String logoutMenuOption = "3\n";

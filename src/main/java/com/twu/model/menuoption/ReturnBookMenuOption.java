@@ -20,6 +20,7 @@ public class ReturnBookMenuOption implements MenuOption {
 
     @Override
     public ConsoleOutput action() {
+        titleOfBook = readBookForReturn();
         if(libraryRepository.returnBook(titleOfBook))
             return new ConsoleOutput(RETURN_SUCCESSFUL_MESSAGE);
         return new ConsoleOutput(RETURN_UNSUCCESSFUL_MESSAGE);
@@ -28,5 +29,10 @@ public class ReturnBookMenuOption implements MenuOption {
     @Override
     public String getMenuOptionName() {
         return MENU_OPTION_NAME;
+    }
+
+    private String readBookForReturn() {
+        inputOutputHandler.writeOutput(new ConsoleOutput("Enter title of the book :- "));
+        return inputOutputHandler.readInput();
     }
 }

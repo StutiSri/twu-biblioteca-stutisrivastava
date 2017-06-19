@@ -73,7 +73,7 @@ public class LibraryRepositoryTest {
         String bookToBeCheckedOut = "atlas shrugged";
         LibraryRepository repository = new LibraryRepository();
         TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
-        testLibraryRepository.checkoutBook(bookToBeCheckedOut);
+        testLibraryRepository.checkoutBook(bookToBeCheckedOut, null);
         List<Book> expectedBooks = testLibraryRepository.getAvailableBooks();
 
         repository.checkoutBook(bookToBeCheckedOut, customer);
@@ -87,7 +87,7 @@ public class LibraryRepositoryTest {
         String movieToBeCheckedOut = "atlas shrugged";
         LibraryRepository repository = new LibraryRepository();
         TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
-        testLibraryRepository.checkoutMovie(movieToBeCheckedOut);
+        testLibraryRepository.checkoutMovie(movieToBeCheckedOut, null);
         List<Movie> expectedMovies = testLibraryRepository.getAvailableMovies();
 
         repository.checkoutMovie(movieToBeCheckedOut, customer);

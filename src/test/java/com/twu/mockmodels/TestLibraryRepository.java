@@ -5,6 +5,7 @@ import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.sorter.BookSorter;
 import com.twu.model.sorter.MovieSorter;
+import com.twu.model.user.Customer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,20 +61,23 @@ public class TestLibraryRepository extends LibraryRepository{
         isBookCheckedOut = false;
     }
 
-    public boolean checkoutBook(String title) {
-        if(!checkedOutBook.getTitle().equalsIgnoreCase(title))
-            return false;
+    @Override
+    public Book checkoutBook(String title, Customer customer) {
+        if(!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
+            return null;
         isBookCheckedOut = true;
-        return true;
+        return checkedOutBook;
     }
-    
+
+    @Override
     public boolean returnBook(String title) {
-        if(!checkedOutBook.getTitle().equalsIgnoreCase(title))
+        if(!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
             return false;
         isBookCheckedOut = false;
         return true;
     }
-    
+
+    @Override
     public List<Book> getAvailableBooks() {
         List<Book> availableBooks = new ArrayList<>();
         for(Book book : books) {
@@ -82,6 +86,7 @@ public class TestLibraryRepository extends LibraryRepository{
         }
         return availableBooks;
     }
+
 
     public List<String> getBookListing(){
         List<String> bookListing = new ArrayList<>();
@@ -125,6 +130,7 @@ public class TestLibraryRepository extends LibraryRepository{
         return movieListing;
     }
 
+    @Override
     public List<Movie> getAvailableMovies() {
         List<Movie> availableMovies = new ArrayList<>();
         for(Movie movie : movies) {
@@ -134,12 +140,12 @@ public class TestLibraryRepository extends LibraryRepository{
         return availableMovies;
     }
 
-
-    public boolean checkoutMovie(String title) {
+    @Override
+    public Movie checkoutMovie(String title, Customer customer) {
         if(!(checkedOutMovie.getTitle().equalsIgnoreCase(title)))
-            return false;
+            return null;
         isMovieCheckedOut = true;
-        return true;
+        return checkedOutMovie;
     }
 
     private void addColumnNamesForMovies(List<String> movieListing) {
