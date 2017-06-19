@@ -42,4 +42,8 @@ public class TestOutputWriter implements OutputWriter {
     public ConsoleOutput getOutput() {
         return outputMessages.get(0);
     }
+
+    public ConsoleOutput getMenuAfterLogout() {
+        return outputMessages.get(7);
+    }
 }

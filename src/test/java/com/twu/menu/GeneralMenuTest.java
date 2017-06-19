@@ -1,5 +1,9 @@
 package com.twu.menu;
 
+import com.twu.io.InputOutputHandler;
+import com.twu.mockmodels.TestInputReader;
+import com.twu.mockmodels.TestLibraryRepository;
+import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menu.GeneralMenu;
 import com.twu.model.menuoption.*;
 import org.junit.Before;
@@ -13,8 +17,8 @@ public class GeneralMenuTest {
 
     @Before
     public void setUp(){
-//        menu = new GeneralMenu(new TestInputReader(""), new TestOutputWriter(),
-//                new TestLibraryRepository(), new TestMovieRepository(), null);
+        menu = new GeneralMenu(new InputOutputHandler(new TestInputReader(""), new TestOutputWriter()),
+                new TestLibraryRepository());
     }
 
     @Test

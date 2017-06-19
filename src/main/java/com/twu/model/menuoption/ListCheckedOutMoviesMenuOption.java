@@ -3,11 +3,11 @@ package com.twu.model.menuoption;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.repository.LibraryRepository;
 
-public class ListCheckedOutBooksMenuOption implements MenuOption {
+public class ListCheckedOutMoviesMenuOption implements MenuOption {
 
-    private final String MENU_OPTION_NAME = "List checked out books";
+    private final String MENU_OPTION_NAME = "List checked out movies";
 
-    public ListCheckedOutBooksMenuOption(LibraryRepository repository) {
+    public ListCheckedOutMoviesMenuOption(LibraryRepository repository) {
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.exception.InvalidLoginException;
+import com.twu.exception.InvalidLogoutException;
 import com.twu.io.InputOutputHandler;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.user.Customer;
@@ -46,5 +47,12 @@ public class UserLogin {
 
     public static LibraryUser getLoggedInUser() {
         return loggedInUser;
+    }
+
+    public boolean logout() throws InvalidLogoutException {
+        if(loggedInUser == null)
+            throw new InvalidLogoutException();
+        loggedInUser = null;
+        return true;
     }
 }

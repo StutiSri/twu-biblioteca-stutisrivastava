@@ -8,6 +8,7 @@ public class LibraryUser {
     public LibraryUser(String libraryNumber, String password, UserType userType) {
         this.libraryNumber = libraryNumber;
         this.password = password;
+        this.userType = userType;
     }
 
     public boolean verifyCredentials(String inputLibraryNumber, String inputPassword){
@@ -24,7 +25,8 @@ public class LibraryUser {
         if(!(obj instanceof LibraryUser))
             return false;
         LibraryUser user = (LibraryUser)obj;
-        return user.getLibraryNumber().equals(getLibraryNumber());
+        return user.getLibraryNumber().equals(getLibraryNumber())
+                 && userType == user.userType;
     }
 
     public UserType getUserType() {

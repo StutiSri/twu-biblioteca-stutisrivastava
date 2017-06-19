@@ -24,7 +24,7 @@ public class UserMenu extends Menu {
         menuOptionProviders.put("4", new ListMoviesMenuOption(repository));
         menuOptionProviders.put("5", new CheckoutMovieMenuOption(inputOutputHandler, repository, loggedInUser));
         menuOptionProviders.put("6", new UserInformationMenuOption(loggedInUser));
-        menuOptionProviders.put("7", new LogoutMenuOption(loggedInUser));
+        menuOptionProviders.put("7", new LogoutMenuOption());
         menuOptionProviders.put("8", new QuitMenuOption());
     }
 

@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.exception.InvalidLoginException;
+import com.twu.exception.InvalidLogoutException;
 import com.twu.io.InputOutputHandler;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestLibraryRepository;
@@ -12,6 +13,7 @@ import com.twu.model.user.LibraryUser;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class UserLoginTest {
     @Test(expected = InvalidLoginException.class)
@@ -69,6 +71,32 @@ public class UserLoginTest {
         LibraryUser user = userLogin.login();
 
         assertEquals(expectedUser, user);
+    }
+
+    @Test(expected = InvalidLogoutException.class)
+    public void shouldThrowExceptionForInvalidLogout() throws InvalidLogoutException {
+        TestInputReader inputReader = new TestInputReader("");
+        InputOutputHandler inputOutputHandler =
+                new InputOutputHandler(inputReader, new TestOutputWriter());
+        UserLogin userLogin = new UserLogin(inputOutputHandler);
+
+        userLogin.logout();
+    }
+
+    @Test
+    public void shouldResetLoggedInUserAfterLogout() throws InvalidLoginException, InvalidLogoutException {
+        String libraryNumber = "LIB-9176\n";
+        String password = "password";
+        TestInputReader inputReader = new TestInputReader(libraryNumber + password);
+        InputOutputHandler inputOutputHandler =
+                new InputOutputHandler(inputReader, new TestOutputWriter());
+        UserLogin userLogin = new UserLogin(inputOutputHandler);
+        Librarian expectedUser = new Librarian("LIB-9176", "password");
+        LibraryUser user = userLogin.login();
+
+        userLogin.logout();
+
+        assertNull(UserLogin.getLoggedInUser());
     }
 
 }

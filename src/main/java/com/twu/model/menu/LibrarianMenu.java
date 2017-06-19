@@ -14,16 +14,18 @@ public class LibrarianMenu extends Menu {
     public LibrarianMenu(LibraryRepository repository) {
         menuOptionProviders = new LinkedHashMap<>();
         menuOptionProviders.put("1", new ListCheckedOutBooksMenuOption(repository));
-        menuOptionProviders.put("5", new QuitMenuOption());
+        menuOptionProviders.put("2", new ListCheckedOutMoviesMenuOption(repository));
+        menuOptionProviders.put("3", new LogoutMenuOption());
+        menuOptionProviders.put("4", new QuitMenuOption());
     }
 
     @Override
     public ConsoleOutput getMenuOptions() {
-        return null;
+        return super.getMenuOptionsFromMenuProviders(menuOptionProviders);
     }
 
     @Override
     public MenuOption getMenuForOption(String option) {
-        return null;
+        return super.getMenuFromMenuProviders(menuOptionProviders, option);
     }
 }
