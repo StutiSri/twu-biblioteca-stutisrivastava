@@ -1,12 +1,8 @@
 package com.twu.model.menuoption;
 
 import com.twu.io.InputOutputHandler;
-import com.twu.io.input.ConsoleInput;
-import com.twu.io.inputreader.InputReader;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.repository.LibraryRepository;
-import com.twu.model.repository.Repository;
 import com.twu.model.user.Customer;
 
 public class CheckoutMovieMenuOption implements MenuOption{

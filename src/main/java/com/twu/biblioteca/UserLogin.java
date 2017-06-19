@@ -20,8 +20,9 @@ public class UserLogin {
 
     List<Customer> users;
 
-    public UserLogin(InputOutputHandler inputOutputHandler) {
+    static Customer loggedInUser;
 
+    public UserLogin(InputOutputHandler inputOutputHandler) {
         this.inputOutputHandler = inputOutputHandler;
         users = new ArrayList<>();
         users.add(new Customer("Stuti", "STU-9176", "stuti@gmail.com", "9176835429", "password"));
@@ -36,9 +37,15 @@ public class UserLogin {
 
         for(Customer user : users){
             if(user.getLibraryNumber().equals(libraryNumberInput)
-                    && user.getPassword().equals(passwordInput))
+                    && user.getPassword().equals(passwordInput)) {
+                loggedInUser = user;
                 return user;
+            }
         }
         throw new InvalidLoginException();
+    }
+
+    public static Customer getLoggedInUser() {
+        return loggedInUser;
     }
 }

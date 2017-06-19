@@ -1,12 +1,9 @@
 package com.twu.mockmodels;
 
-import com.twu.model.artifacts.Artifact;
-import com.twu.model.artifacts.Book;
 import com.twu.model.artifacts.Book;
 import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.sorter.BookSorter;
-import com.twu.model.repository.Repository;
 import com.twu.model.sorter.MovieSorter;
 
 import java.util.ArrayList;

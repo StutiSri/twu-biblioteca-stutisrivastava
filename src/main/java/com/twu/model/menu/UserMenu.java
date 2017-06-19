@@ -6,7 +6,6 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.*;
 import com.twu.model.repository.LibraryRepository;
-import com.twu.model.repository.Repository;
 import com.twu.model.user.Customer;
 
 import java.util.LinkedHashMap;
@@ -15,11 +14,6 @@ import java.util.Map;
 public class UserMenu extends Menu {
 
     private Map<String, MenuOption> menuOptionProviders;
-
-    public UserMenu(InputReader inputReader, OutputWriter outputWriter,
-                       Repository bookRepository, Repository movieRepository, Customer loggedInUser){
-
-    }
 
     public UserMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository,
                     Customer loggedInUser){

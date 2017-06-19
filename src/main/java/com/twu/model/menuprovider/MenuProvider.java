@@ -1,13 +1,10 @@
 package com.twu.model.menuprovider;
 
 import com.twu.io.InputOutputHandler;
-import com.twu.io.inputreader.InputReader;
-import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menu.GeneralMenu;
 import com.twu.model.menu.Menu;
 import com.twu.model.menu.UserMenu;
 import com.twu.model.repository.LibraryRepository;
-import com.twu.model.repository.Repository;
 import com.twu.model.user.Customer;
 
 public class MenuProvider {

@@ -10,18 +10,9 @@ import com.twu.model.user.Customer;
 
 public class LoginMenuOption implements MenuOption{
     private final String LOGIN_SUCCESSFUL_MESSAGE = "\nLogin successful.";
-    private InputReader inputReader;
-    private OutputWriter outputWriter;
     private InputOutputHandler inputOutputHandler;
     private Customer loggedInUser;
     private final String MENU_OPTION_NAME = "Login to checkout and return";
-
-    public LoginMenuOption(InputReader inputReader, OutputWriter outputWriter, Customer loggedInUser) {
-
-        this.inputReader = inputReader;
-        this.outputWriter = outputWriter;
-        this.loggedInUser = loggedInUser;
-    }
 
     public LoginMenuOption(InputOutputHandler inputOutputHandler, Customer loggedInUser) {
         this.inputOutputHandler = inputOutputHandler;

@@ -167,12 +167,13 @@ public class LibraryTest {
     @Test
     public void customerShouldSeeCustomerMenuAfterLogin() {
         String loginMenuOption = "1\n";
-        String quitMenuOptionForUserMenu = "4\n";
+        String loginDetails = "STU-9176\npassword\n";
+        String quitMenuOptionForUserMenu = "8\n";
         ConsoleOutput expectedMenuOptions = getUserMenuOptions();
         TestOutputWriter outputWriter = new TestOutputWriter();
         InputOutputHandler inputOutputHandler =
-                new InputOutputHandler(new TestInputReader(loginMenuOption + quitMenuOptionForUserMenu),
-                                                             outputWriter);
+                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForUserMenu),
+                                         outputWriter);
         librarySystem = new LibrarySystem(inputOutputHandler);
 
         librarySystem.run();

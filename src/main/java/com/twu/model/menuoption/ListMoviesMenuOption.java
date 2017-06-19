@@ -4,7 +4,6 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.model.artifacts.Artifact;
 import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.LibraryRepository;
-import com.twu.model.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
