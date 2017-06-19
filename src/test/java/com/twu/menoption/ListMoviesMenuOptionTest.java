@@ -1,8 +1,9 @@
-package com.twu.menu;
+package com.twu.menoption;
 
 import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestMovieRepository;
 import com.twu.model.menuoption.ListMoviesMenuOption;
+import com.twu.model.repository.LibraryRepository;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +14,7 @@ public class ListMoviesMenuOptionTest {
         ConsoleOutput expectedBookListingOutput = new ConsoleOutput
                 (new TestMovieRepository().getMovieListing());
 
-        ConsoleOutput bookListOutput = new ListMoviesMenuOption(new TestMovieRepository()).action();
+        ConsoleOutput bookListOutput = new ListMoviesMenuOption(new LibraryRepository()).action();
 
         assertEquals(expectedBookListingOutput, bookListOutput);
     }

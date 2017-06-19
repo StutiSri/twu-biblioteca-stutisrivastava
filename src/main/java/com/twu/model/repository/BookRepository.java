@@ -3,7 +3,7 @@ package com.twu.model.repository;
 import com.twu.biblioteca.Status;
 import com.twu.model.artifacts.Artifact;
 import com.twu.model.artifacts.Book;
-import com.twu.model.artifacts.BookSorter;
+import com.twu.model.sorter.BookSorter;
 
 import java.util.*;
 

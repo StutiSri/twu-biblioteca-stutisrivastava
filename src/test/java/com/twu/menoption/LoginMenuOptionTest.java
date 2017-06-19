@@ -1,4 +1,4 @@
-package com.twu.menu;
+package com.twu.menoption;
 
 import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestInputReader;

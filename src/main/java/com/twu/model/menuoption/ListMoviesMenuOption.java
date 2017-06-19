@@ -2,17 +2,19 @@ package com.twu.model.menuoption;
 
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.artifacts.Artifact;
-import com.twu.model.repository.MovieRepository;
+import com.twu.model.artifacts.Movie;
+import com.twu.model.repository.LibraryRepository;
 import com.twu.model.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListMoviesMenuOption implements MenuOption{
-    private Repository repository;
+    private LibraryRepository repository;
+    private final String MENU_OPTION_NAME = "List Movies";
 
-    public ListMoviesMenuOption(Repository movieRepository) {
-        repository = movieRepository;
+    public ListMoviesMenuOption(LibraryRepository libraryRepository) {
+        repository = libraryRepository;
     }
 
     private void addColumnNames(List<String> movieListing) {
@@ -23,7 +25,7 @@ public class ListMoviesMenuOption implements MenuOption{
 
     @Override
     public ConsoleOutput action() {
-        List<Artifact> allMovies = repository.getAvailableArtifacts();
+        List<Movie> allMovies = repository.getAvailableMovies();
         List<String> movieListing = new ArrayList<>();
         movieListing.add("\nAvailable Movies :-\n");
         addColumnNames(movieListing);
@@ -31,5 +33,10 @@ public class ListMoviesMenuOption implements MenuOption{
             movieListing.add(movie.toString());
         movieListing.add("--------------------------------------------------\n");
         return new ConsoleOutput(movieListing);
+    }
+
+    @Override
+    public String getMenuOptionName() {
+        return MENU_OPTION_NAME;
     }
 }

@@ -1,8 +1,9 @@
 package com.twu.model.menuoption;
 
 import com.twu.model.artifacts.Artifact;
-import com.twu.model.artifacts.Book;
 import com.twu.io.output.ConsoleOutput;
+import com.twu.model.artifacts.Book;
+import com.twu.model.repository.LibraryRepository;
 import com.twu.model.repository.Repository;
 
 import java.util.ArrayList;
@@ -10,16 +11,17 @@ import java.util.List;
 
 public class ListBooksMenuOption implements MenuOption {
 
-    private final Repository repository;
+    private final LibraryRepository repository;
+    private final String MENU_OPTION_NAME = "List Books";
 
-    public ListBooksMenuOption(Repository bookRepository) {
+    public ListBooksMenuOption(LibraryRepository libraryRepository) {
 
-        this.repository = bookRepository;
+        this.repository = libraryRepository;
     }
 
     @Override
     public ConsoleOutput action() {
-        List<Artifact> allBooks = repository.getAvailableArtifacts();
+        List<Book> allBooks = repository.getAvailableBooks();
         List<String> bookListing = new ArrayList<>();
         bookListing.add("\nAvailable Books :-\n");
         addColumnNames(bookListing);
@@ -27,6 +29,11 @@ public class ListBooksMenuOption implements MenuOption {
             bookListing.add(book.toString());
         bookListing.add("--------------------------------------------------\n");
         return new ConsoleOutput(bookListing);
+    }
+
+    @Override
+    public String getMenuOptionName() {
+        return MENU_OPTION_NAME;
     }
 
     private void addColumnNames(List<String> bookListing) {

@@ -42,6 +42,8 @@ public class Movie implements Artifact{
     @Override
     public boolean equals(Object obj) {
         Movie movie = (Movie)obj;
-        return movie.title.equals(title);
+        return movie.title.equalsIgnoreCase(title) &&
+                movie.director.equalsIgnoreCase(director)&&
+                movie.yearOfRelease.equals(yearOfRelease);
     }
 }

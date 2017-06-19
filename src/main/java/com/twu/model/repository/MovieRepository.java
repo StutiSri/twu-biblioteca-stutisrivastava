@@ -2,6 +2,7 @@ package com.twu.model.repository;
 
 import com.twu.biblioteca.Status;
 import com.twu.model.artifacts.*;
+import com.twu.model.sorter.MovieSorter;
 
 import java.util.*;
 

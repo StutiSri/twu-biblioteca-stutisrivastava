@@ -16,7 +16,7 @@ public class Book implements Artifact {
         if(!(obj instanceof Book))
             return false;
         Book book = (Book)obj;
-        return title.equals(book.title) && author.equals(book.author) &&
+        return title.equalsIgnoreCase(book.title) && author.equalsIgnoreCase(book.author) &&
                 yearPublished.equals(book.yearPublished);
     }
 

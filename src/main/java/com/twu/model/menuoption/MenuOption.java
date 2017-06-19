@@ -5,4 +5,6 @@ import com.twu.model.repository.Repository;
 
 public interface MenuOption {
     ConsoleOutput action();
+
+    String getMenuOptionName();
 }

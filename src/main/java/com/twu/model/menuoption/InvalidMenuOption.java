@@ -10,4 +10,9 @@ public class InvalidMenuOption implements MenuOption {
     public ConsoleOutput action() {
         return new ConsoleOutput(ERROR_MESSAGE);
     }
+
+    @Override
+    public String getMenuOptionName() {
+        return null;
+    }
 }

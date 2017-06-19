@@ -1,7 +1,6 @@
-package com.twu.menu;
+package com.twu.menoption;
 
 import com.twu.io.output.ConsoleOutput;
-import com.twu.mockmodels.TestBookRepository;
 import com.twu.model.menuoption.InvalidMenuOption;
 import org.junit.Test;
 

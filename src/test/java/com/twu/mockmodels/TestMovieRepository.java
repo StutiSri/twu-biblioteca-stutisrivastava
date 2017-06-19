@@ -3,6 +3,7 @@ package com.twu.mockmodels;
 import com.twu.model.artifacts.*;
 import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.Repository;
+import com.twu.model.sorter.MovieSorter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,9 +45,8 @@ public class TestMovieRepository implements Repository {
         return movieListing;
     }
 
-    @Override
-    public List<Artifact> getAvailableArtifacts() {
-        List<Artifact> availableMovies = new ArrayList<>();
+    public List<Movie> getAvailableMovies() {
+        List<Movie> availableMovies = new ArrayList<>();
         for(Movie movie : movies) {
             if(!(movie.equals(checkedOutMovie) && isMovieCheckedOut))
                 availableMovies.add(movie);
@@ -54,16 +54,16 @@ public class TestMovieRepository implements Repository {
         return availableMovies;
     }
 
-    @Override
-    public boolean checkoutArtifact(String title) {
-        if(!checkedOutMovie.getTitle().equalsIgnoreCase(title))
+
+    public boolean checkoutMovie(String title) {
+        if(!(checkedOutMovie.getTitle().equalsIgnoreCase(title)))
             return false;
         isMovieCheckedOut = true;
         return true;
     }
 
-    @Override
-    public boolean returnArtifact(String title) {
+
+    public boolean returnMovie(String title) {
         return false;
     }
 
@@ -80,5 +80,20 @@ public class TestMovieRepository implements Repository {
         String movieRepresentation = String.format("%-30s%-17s%-30s%-7s",
                 movie.getTitle(), movie.getYearOfRelease(), movie.getDirector(), rating);
         movieListRepresentation.add(movieRepresentation);
+    }
+
+    @Override
+    public List<Artifact> getAvailableArtifacts() {
+        return null;
+    }
+
+    @Override
+    public boolean checkoutArtifact(String title) {
+        return false;
+    }
+
+    @Override
+    public boolean returnArtifact(String title) {
+        return false;
     }
 }

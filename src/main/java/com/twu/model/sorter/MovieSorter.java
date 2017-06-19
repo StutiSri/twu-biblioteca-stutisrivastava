@@ -1,4 +1,7 @@
-package com.twu.model.artifacts;
+package com.twu.model.sorter;
+
+import com.twu.model.artifacts.Artifact;
+import com.twu.model.artifacts.Movie;
 
 import java.util.Comparator;
 

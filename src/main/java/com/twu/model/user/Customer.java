@@ -1,14 +1,17 @@
 package com.twu.model.user;
 
-public class User {
+import com.twu.model.menu.Menu;
+import com.twu.model.menu.UserMenu;
+
+public class Customer{
     private final String name;
     private final String emailAddress;
     private final String phoneNumber;
     private final String libraryNumber;
     private final String password;
 
-    public User(String name, String libraryNumber, String emailAddress,
-                   String phoneNumber, String password) {
+    public Customer(String name, String libraryNumber, String emailAddress,
+                    String phoneNumber, String password) {
         this.name = name;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
@@ -38,9 +41,13 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof User))
+        if(!(obj instanceof Customer))
             return false;
-        User user = (User)obj;
+        Customer user = (Customer)obj;
         return user.libraryNumber.equals(libraryNumber);
     }
+
+//    public Menu getMenu() {
+//        return new UserMenu();
+//    }
 }

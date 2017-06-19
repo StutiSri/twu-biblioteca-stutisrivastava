@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.io.InputOutputHandler;
 import com.twu.io.inputreader.ConsoleInputReader;
 import com.twu.io.inputreader.InputReader;
 import com.twu.io.outputwriter.ConsoleOutputWriter;
@@ -18,6 +19,6 @@ public class BibliotecaApp {
         InputReader inputReader = new ConsoleInputReader(new BufferedReader
                 (new InputStreamReader(System.in)));
 
-        new LibrarySystem(inputReader, outputWriter).run();
+        new LibrarySystem(new InputOutputHandler(inputReader, outputWriter)).run();
     }
 }
