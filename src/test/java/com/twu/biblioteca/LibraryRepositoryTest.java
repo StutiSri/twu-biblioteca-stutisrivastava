@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import com.twu.mockmodels.TestLibraryRepository;
-import com.twu.mockmodels.TestMovieRepository;
 import com.twu.model.artifacts.Book;
 import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.LibraryRepository;
@@ -61,8 +60,8 @@ public class LibraryRepositoryTest {
     @Test
     public void shouldReturnListOfAvailableMovies() {
         LibraryRepository repository = new LibraryRepository();
-        TestMovieRepository testMovieRepository = new TestMovieRepository();
-        List<Movie> expectedMovies = testMovieRepository.getAvailableMovies();
+        TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
+        List<Movie> expectedMovies = testLibraryRepository.getAvailableMovies();
 
         List<Movie> movies = repository.getAvailableMovies();
 
@@ -87,9 +86,9 @@ public class LibraryRepositoryTest {
     public void shouldRemoveCheckedOutMovieFromAvailableMovies() {
         String movieToBeCheckedOut = "atlas shrugged";
         LibraryRepository repository = new LibraryRepository();
-        TestMovieRepository testMovieRepository = new TestMovieRepository();
-        testMovieRepository.checkoutMovie(movieToBeCheckedOut);
-        List<Movie> expectedMovies = testMovieRepository.getAvailableMovies();
+        TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
+        testLibraryRepository.checkoutMovie(movieToBeCheckedOut);
+        List<Movie> expectedMovies = testLibraryRepository.getAvailableMovies();
 
         repository.checkoutMovie(movieToBeCheckedOut, customer);
         List<Movie> movies = repository.getAvailableMovies();
@@ -170,10 +169,10 @@ public class LibraryRepositoryTest {
     @Test
     public void movieShouldBeAddedToAvailableMoviesAfterReturn(){
         LibraryRepository repository = new LibraryRepository();
-        TestMovieRepository testMovieRepository = new TestMovieRepository();
+        TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
         String movieTitle = "notting hill";
         repository.checkoutMovie(movieTitle, customer);
-        List<Movie> expectedMovies = testMovieRepository.getAvailableMovies();
+        List<Movie> expectedMovies = testLibraryRepository.getAvailableMovies();
 
         repository.returnMovie(movieTitle);
         List<Movie> movies = repository.getAvailableMovies();

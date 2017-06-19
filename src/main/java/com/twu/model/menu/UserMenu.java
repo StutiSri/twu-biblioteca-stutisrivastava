@@ -1,12 +1,12 @@
 package com.twu.model.menu;
 
+import com.twu.biblioteca.UserLogin;
 import com.twu.io.InputOutputHandler;
-import com.twu.io.inputreader.InputReader;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.menuoption.*;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.user.Customer;
+import com.twu.model.user.LibraryUser;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -15,8 +15,8 @@ public class UserMenu extends Menu {
 
     private Map<String, MenuOption> menuOptionProviders;
 
-    public UserMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository,
-                    Customer loggedInUser){
+    public UserMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository){
+        Customer loggedInUser = (Customer) UserLogin.getLoggedInUser();
         menuOptionProviders = new LinkedHashMap<>();
         menuOptionProviders.put("1", new ListBooksMenuOption(repository));
         menuOptionProviders.put("2", new CheckoutBookMenuOption(inputOutputHandler, repository, loggedInUser));

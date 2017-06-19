@@ -12,10 +12,9 @@ import java.util.Map;
 public class GeneralMenu extends Menu{
     private Map<String, MenuOption> menuOptionProviders;
 
-    public GeneralMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository,
-                           Customer loggedInUser) {
+    public GeneralMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository) {
         menuOptionProviders = new LinkedHashMap<>();
-        menuOptionProviders.put("1", new LoginMenuOption(inputOutputHandler, loggedInUser));
+        menuOptionProviders.put("1", new LoginMenuOption(inputOutputHandler));
         menuOptionProviders.put("2", new ListBooksMenuOption(repository));
         menuOptionProviders.put("3", new ListMoviesMenuOption(repository));
         menuOptionProviders.put("4", new QuitMenuOption());

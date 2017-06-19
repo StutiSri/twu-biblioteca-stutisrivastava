@@ -20,7 +20,7 @@ public class UserMenuTest {
     public void setUp() {
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(""), new TestOutputWriter());
-        menu = new UserMenu(inputOutputHandler, new TestLibraryRepository(), null);
+        menu = new UserMenu(inputOutputHandler, new TestLibraryRepository());
     }
 
     @Test

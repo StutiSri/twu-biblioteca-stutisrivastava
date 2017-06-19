@@ -2,11 +2,10 @@ package com.twu.biblioteca;
 
 import com.twu.exception.InvalidLoginException;
 import com.twu.io.InputOutputHandler;
-import com.twu.io.input.ConsoleInput;
-import com.twu.io.inputreader.InputReader;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.user.Customer;
+import com.twu.model.user.LibraryUser;
+import com.twu.model.user.UserType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,26 +17,26 @@ public class UserLogin {
     private final String PASSWORD = "\tPassword : ";
     private InputOutputHandler inputOutputHandler;
 
-    List<Customer> users;
+    List<LibraryUser> users;
 
-    static Customer loggedInUser;
+    static LibraryUser loggedInUser;
 
     public UserLogin(InputOutputHandler inputOutputHandler) {
         this.inputOutputHandler = inputOutputHandler;
         users = new ArrayList<>();
         users.add(new Customer("Stuti", "STU-9176", "stuti@gmail.com", "9176835429", "password"));
+        users.add(new LibraryUser("LIB-9176", "password", UserType.LIBRARIAN));
     }
 
-    public Customer login() throws InvalidLoginException {
+    public LibraryUser login() throws InvalidLoginException {
         inputOutputHandler.writeOutput(new ConsoleOutput(MESSAGE_FOR_LOGIN_DETAILS + LIBRARY_NUMBER));
         String libraryNumberInput = inputOutputHandler.readInput();
 
         inputOutputHandler.writeOutput(new ConsoleOutput(PASSWORD));
         String passwordInput = inputOutputHandler.readInput();
 
-        for(Customer user : users){
-            if(user.getLibraryNumber().equals(libraryNumberInput)
-                    && user.getPassword().equals(passwordInput)) {
+        for(LibraryUser user : users){
+            if(user.verifyCredentials(libraryNumberInput, passwordInput)) {
                 loggedInUser = user;
                 return user;
             }
@@ -45,7 +44,7 @@ public class UserLogin {
         throw new InvalidLoginException();
     }
 
-    public static Customer getLoggedInUser() {
+    public static LibraryUser getLoggedInUser() {
         return loggedInUser;
     }
 }

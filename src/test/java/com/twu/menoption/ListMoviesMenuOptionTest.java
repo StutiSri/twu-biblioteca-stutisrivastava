@@ -1,7 +1,7 @@
 package com.twu.menoption;
 
 import com.twu.io.output.ConsoleOutput;
-import com.twu.mockmodels.TestMovieRepository;
+import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.model.menuoption.ListMoviesMenuOption;
 import com.twu.model.repository.LibraryRepository;
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class ListMoviesMenuOptionTest {
     @Test
     public void shouldReturnListOfMovies(){
         ConsoleOutput expectedBookListingOutput = new ConsoleOutput
-                (new TestMovieRepository().getMovieListing());
+                (new TestLibraryRepository().getMovieListing());
 
         ConsoleOutput bookListOutput = new ListMoviesMenuOption(new LibraryRepository()).action();
 

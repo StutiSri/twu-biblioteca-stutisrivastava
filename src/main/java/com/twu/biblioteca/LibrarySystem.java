@@ -30,7 +30,7 @@ public class LibrarySystem {
         MenuOption menuOption;
 
         do{
-            menu = menuProvider.getMenu(loggedInUser);
+            menu = menuProvider.getMenu();
             ConsoleOutput menuOptionsOutput = menu.getMenuOptions();
             inputOutputHandler.writeOutput(menuOptionsOutput);
 

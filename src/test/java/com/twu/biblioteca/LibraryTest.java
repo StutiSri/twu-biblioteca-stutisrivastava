@@ -19,6 +19,7 @@ public class LibraryTest {
     private LibrarySystem librarySystem;
     private String quitMenuOption;
     private ConsoleOutput generalMenuOptions;
+    private ConsoleOutput librarianMenuOptions;
 
     @Before
     public void setUp() {
@@ -147,8 +148,10 @@ public class LibraryTest {
         expectedMenuOptions.add("\t2. Checkout Book");
         expectedMenuOptions.add("\t3. Return Book");
         expectedMenuOptions.add("\t4. List Movies");
-        expectedMenuOptions.add("\t6. Customer Information");
-        expectedMenuOptions.add("\t7. Quit");
+        expectedMenuOptions.add("\t5. Checkout Movie");
+        expectedMenuOptions.add("\t6. My Account");
+        expectedMenuOptions.add("\t7. Logout");
+        expectedMenuOptions.add("\t8. Quit");
         expectedMenuOptions.add("\nPlease enter your choice :- ");
         return new ConsoleOutput(expectedMenuOptions);
     }
@@ -180,5 +183,34 @@ public class LibraryTest {
 
         ConsoleOutput menuOptions = outputWriter.getMenuAfterLogin();
         assertEquals(expectedMenuOptions, menuOptions);
+    }
+
+    @Test
+    public void librarianShouldSeeLibrarianMenuAfterLogin() {
+        String loginMenuOption = "1\n";
+        String loginDetails = "LIB-9176\npassword\n";
+        String quitMenuOptionForLibrarianMenu = "4\n";
+        ConsoleOutput expectedMenuOptions = getLibrarianMenuOptions();
+        TestOutputWriter outputWriter = new TestOutputWriter();
+        InputOutputHandler inputOutputHandler =
+                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForLibrarianMenu),
+                        outputWriter);
+        librarySystem = new LibrarySystem(inputOutputHandler);
+
+        librarySystem.run();
+
+        ConsoleOutput menuOptions = outputWriter.getMenuAfterLogin();
+        assertEquals(expectedMenuOptions, menuOptions);
+    }
+
+    public ConsoleOutput getLibrarianMenuOptions() {
+        List<String> expectedMenuOptions = new ArrayList<>();
+        expectedMenuOptions.add("Menu\n");
+        expectedMenuOptions.add("\t1. List checked out books");
+        expectedMenuOptions.add("\t2. List checked out movies");
+        expectedMenuOptions.add("\t3. Logout");
+        expectedMenuOptions.add("\t4. Quit");
+        expectedMenuOptions.add("\nPlease enter your choice :- ");
+        return new ConsoleOutput(expectedMenuOptions);
     }
 }
