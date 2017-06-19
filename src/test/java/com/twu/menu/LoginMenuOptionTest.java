@@ -15,7 +15,7 @@ public class LoginMenuOptionTest {
         String password = "password";
         TestInputReader inputReader = new TestInputReader(libraryNumber + password);
         LoginMenuOption loginMenuOption = new LoginMenuOption(inputReader, new TestOutputWriter(), null);
-        String successfulMessage = "\nLogin succesful.\n";
+        String successfulMessage = "\nLogin successful.";
         ConsoleOutput expectedOutput = new ConsoleOutput(successfulMessage);
 
         ConsoleOutput output = loginMenuOption.action();
@@ -29,7 +29,7 @@ public class LoginMenuOptionTest {
         String password = "hello";
         TestInputReader inputReader = new TestInputReader(libraryNumber + password);
         LoginMenuOption loginMenuOption = new LoginMenuOption(inputReader, new TestOutputWriter(), null);
-        String unsuccessfulMessage = "\nIncorrect login credentials! Please try again.\n";
+        String unsuccessfulMessage = "\nIncorrect login credentials! Please try again.";
         ConsoleOutput expectedOutput = new ConsoleOutput(unsuccessfulMessage);
 
         ConsoleOutput output = loginMenuOption.action();

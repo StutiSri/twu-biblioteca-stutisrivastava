@@ -30,4 +30,12 @@ public class TestOutputWriter implements OutputWriter {
     public List<ConsoleOutput> getOutputMessagesAfterUsersChoosesAMenuOption(){
         return outputMessages.subList(2, outputMessages.size());
     }
+
+    public ConsoleOutput getLoginResult() {
+        return outputMessages.get(4);
+    }
+
+    public ConsoleOutput getMenuAfterLogin() {
+        return outputMessages.get(5);
+    }
 }

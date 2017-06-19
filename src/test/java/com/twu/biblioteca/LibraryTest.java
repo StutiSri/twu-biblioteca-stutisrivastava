@@ -107,4 +107,37 @@ public class LibraryTest {
         assertEquals(expectedQuitMenuOptionMessage, actualQuitMenuOptionMessage);
     }
 
+    @Test
+    public void menuOptionsShouldChangeAfterSuccesfulLogin(){
+        String loginMenuOptionInput = "6\n";
+        String loginDetails = "STU-9176\npassword\n";
+        String quitMenuOptionInput = "7\n";
+        TestOutputWriter outputWriter = new TestOutputWriter();
+        librarySystem = new LibrarySystem(new TestInputReader
+                (loginMenuOptionInput + loginDetails + quitMenuOptionInput), outputWriter);
+        String successfulMessage = "\nLogin successful.";
+        ConsoleOutput outputAfterSuccessfulLogin = new ConsoleOutput(successfulMessage);
+        ConsoleOutput menuOptionsOutput = getExpectedMenuOptionsAfterSuccesfulLogin();
+
+        librarySystem.run();
+
+        ConsoleOutput bookListingOutput = outputWriter.getLoginResult();
+        assertEquals(outputAfterSuccessfulLogin, bookListingOutput);
+
+        ConsoleOutput menuOptions = outputWriter.getMenuAfterLogin();
+        assertEquals(menuOptionsOutput, menuOptions);
+    }
+
+    private ConsoleOutput getExpectedMenuOptionsAfterSuccesfulLogin() {
+        List<String> expectedMenuOptions = new ArrayList<>();
+        expectedMenuOptions.add("Menu\n");
+        expectedMenuOptions.add("\t1. List Books");
+        expectedMenuOptions.add("\t2. Checkout Book");
+        expectedMenuOptions.add("\t3. Return Book");
+        expectedMenuOptions.add("\t4. List Movies");
+        expectedMenuOptions.add("\t6. User Information");
+        expectedMenuOptions.add("\t7. Quit");
+        expectedMenuOptions.add("\nPlease enter your choice :- ");
+        return new ConsoleOutput(expectedMenuOptions);
+    }
 }

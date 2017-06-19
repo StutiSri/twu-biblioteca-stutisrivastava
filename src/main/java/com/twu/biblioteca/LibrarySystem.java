@@ -9,11 +9,13 @@ import com.twu.model.menuoption.QuitMenuOption;
 import com.twu.model.repository.BookRepository;
 import com.twu.model.repository.MovieRepository;
 import com.twu.model.repository.Repository;
+import com.twu.model.user.User;
 
 public class LibrarySystem {
 
     private static final String WELCOME_MESSAGE = "Hello User! Welcome to " +
             "Biblioteca! :)\n";
+    private final User loggedInUser;
     private InputReader inputReader;
     private OutputWriter outputWriter;
     private Menu menu;
@@ -21,8 +23,9 @@ public class LibrarySystem {
     public LibrarySystem(InputReader inputReader, OutputWriter outputWriter) {
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
+        loggedInUser = null;
         menu = new Menu(inputReader, outputWriter,
-                new BookRepository(), new MovieRepository());
+                new BookRepository(), new MovieRepository(), loggedInUser);
     }
 
     public void run() {

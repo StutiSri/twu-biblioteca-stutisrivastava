@@ -8,7 +8,7 @@ import com.twu.io.outputwriter.OutputWriter;
 import com.twu.model.user.User;
 
 public class LoginMenuOption implements MenuOption{
-    private final String LOGIN_SUCCESSFUL_MESSAGE = "\nLogin succesful.\n";
+    private final String LOGIN_SUCCESSFUL_MESSAGE = "\nLogin successful.";
     private final InputReader inputReader;
     private final OutputWriter outputWriter;
     private User loggedInUser;
