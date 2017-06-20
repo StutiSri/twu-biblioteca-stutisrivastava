@@ -18,7 +18,7 @@ public class ListCheckedOutMoviesMenuOption implements MenuOption {
     @Override
     public ConsoleOutput action() {
         List<String> movieListing = repository.getCheckedOutMovieListing();
-        if(movieListing == null)
+        if (movieListing == null)
             return new ConsoleOutput(NO_MOVIES_CHECKED_OUT);
         return new ConsoleOutput(movieListing);
     }

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ListMoviesMenuOptionTest {
     @Test
-    public void shouldReturnListOfMovies(){
+    public void shouldReturnListOfMovies() {
         ConsoleOutput expectedBookListingOutput = new ConsoleOutput
                 (new TestLibraryRepository().getMovieListing());
 

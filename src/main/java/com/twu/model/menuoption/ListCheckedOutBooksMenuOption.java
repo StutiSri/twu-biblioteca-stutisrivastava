@@ -1,11 +1,8 @@
 package com.twu.model.menuoption;
 
 import com.twu.io.output.ConsoleOutput;
-import com.twu.model.artifacts.Book;
 import com.twu.model.repository.LibraryRepository;
-import com.twu.model.user.Customer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListCheckedOutBooksMenuOption implements MenuOption {

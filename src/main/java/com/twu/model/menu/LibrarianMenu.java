@@ -1,6 +1,5 @@
 package com.twu.model.menu;
 
-import com.twu.io.InputOutputHandler;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.model.menuoption.*;
 import com.twu.model.repository.LibraryRepository;

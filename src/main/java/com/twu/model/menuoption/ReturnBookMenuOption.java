@@ -21,7 +21,7 @@ public class ReturnBookMenuOption implements MenuOption {
     @Override
     public ConsoleOutput action() {
         titleOfBook = readBookForReturn();
-        if(libraryRepository.returnBook(titleOfBook))
+        if (libraryRepository.returnBook(titleOfBook))
             return new ConsoleOutput(RETURN_SUCCESSFUL_MESSAGE);
         return new ConsoleOutput(RETURN_UNSUCCESSFUL_MESSAGE);
     }

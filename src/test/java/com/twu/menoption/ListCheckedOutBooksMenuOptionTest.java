@@ -30,7 +30,7 @@ public class ListCheckedOutBooksMenuOptionTest {
 
     public ConsoleOutput getCheckedOutBooksDetails(Book book, Customer customer) {
         ArrayList<String> bookDetails = new ArrayList<>();
-        bookDetails.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
+        bookDetails.add(String.format("Checked Out Books are :-\n\n%-20s %-20s %-20s","Title", "User Name", "Library Number"));
         bookDetails.add(String.format("%-20s %-20s %-20s",book.getTitle(), customer.getName(), customer.getLibraryNumber()));
         return new ConsoleOutput(bookDetails);
     }

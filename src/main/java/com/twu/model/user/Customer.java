@@ -1,7 +1,5 @@
 package com.twu.model.user;
 
-import com.twu.io.output.ConsoleOutput;
-
 import java.util.ArrayList;
 import java.util.List;
 

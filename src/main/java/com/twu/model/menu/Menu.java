@@ -13,21 +13,21 @@ public abstract class Menu {
 
     abstract public MenuOption getMenuForOption(String option);
 
-    public ConsoleOutput getMenuOptionsFromMenuProviders(Map<String, MenuOption> menuOptionProvider){
+    public ConsoleOutput getMenuOptionsFromMenuProviders(Map<String, MenuOption> menuOptionProvider) {
         List<String> menuOptions = new ArrayList<>();
         menuOptions.add("Menu\n");
-        for(Map.Entry menuEntry : menuOptionProvider.entrySet()){
+        for (Map.Entry menuEntry : menuOptionProvider.entrySet()) {
             MenuOption menuOption = (MenuOption) menuEntry.getValue();
             menuOptions.add("\t" + menuEntry.getKey() + ". " + menuOption.getMenuOptionName());
         }
-        menuOptions.add("\nPlease enter your choice :- ");
+        menuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(menuOptions);
     }
 
     public MenuOption getMenuFromMenuProviders(Map<String, MenuOption> menuOptionProvider,
-                                              String option){
+                                               String option) {
         MenuOption menuOption = menuOptionProvider.get(option);
-        if(menuOption == null)
+        if (menuOption == null)
             return new InvalidMenuOption();
         return menuOption;
     }

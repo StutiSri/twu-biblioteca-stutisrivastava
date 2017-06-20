@@ -4,12 +4,11 @@ import com.twu.biblioteca.UserLogin;
 import com.twu.exception.InvalidLoginException;
 import com.twu.io.InputOutputHandler;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.model.user.Customer;
 
-public class LoginMenuOption implements MenuOption{
+public class LoginMenuOption implements MenuOption {
     private final String LOGIN_SUCCESSFUL_MESSAGE = "\nLogin successful.";
     private InputOutputHandler inputOutputHandler;
-    private final String MENU_OPTION_NAME = "Login to checkout and return";
+    private final String MENU_OPTION_NAME = "Login as Librarian or Customer";
 
     public LoginMenuOption(InputOutputHandler inputOutputHandler) {
         this.inputOutputHandler = inputOutputHandler;

@@ -11,7 +11,7 @@ public class LibraryUser {
         this.userType = userType;
     }
 
-    public boolean verifyCredentials(String inputLibraryNumber, String inputPassword){
+    public boolean verifyCredentials(String inputLibraryNumber, String inputPassword) {
         return libraryNumber.equals(inputLibraryNumber)
                 && password.equals(inputPassword);
     }
@@ -22,11 +22,11 @@ public class LibraryUser {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LibraryUser))
+        if (!(obj instanceof LibraryUser))
             return false;
-        LibraryUser user = (LibraryUser)obj;
+        LibraryUser user = (LibraryUser) obj;
         return user.getLibraryNumber().equals(getLibraryNumber())
-                 && userType == user.userType;
+                && userType == user.userType;
     }
 
     public UserType getUserType() {

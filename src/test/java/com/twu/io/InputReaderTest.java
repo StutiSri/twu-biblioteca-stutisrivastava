@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class InputReaderTest {
     @Test
-    public void shouldReadInputFromUser(){
+    public void shouldReadInputFromUser() {
         String inputString = "This is input.";
         InputReader inputReader = new ConsoleInputReader(new BufferedReader
                 (new StringReader(inputString)));

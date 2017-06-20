@@ -7,11 +7,11 @@ public class ConsoleOutput {
 
     private List<String> outputMessages;
 
-    public ConsoleOutput(List<String> outputMessages){
+    public ConsoleOutput(List<String> outputMessages) {
         this.outputMessages = outputMessages;
     }
 
-    public ConsoleOutput(String outputMessage){
+    public ConsoleOutput(String outputMessage) {
         outputMessages = new ArrayList<>();
         outputMessages.add(outputMessage);
     }
@@ -19,8 +19,11 @@ public class ConsoleOutput {
     @Override
     public String toString() {
         String outputMessage = "";
-        for(String message : outputMessages)
-            outputMessage += message + "\n";
+        for (String message : outputMessages) {
+            outputMessage += message;
+            if (!outputMessage.contains(" : "))
+                outputMessage += "\n";
+        }
         return outputMessage;
     }
 

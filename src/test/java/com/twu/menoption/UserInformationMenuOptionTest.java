@@ -1,6 +1,5 @@
 package com.twu.menoption;
 
-import com.twu.biblioteca.UserLogin;
 import com.twu.io.InputOutputHandler;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestInputReader;
@@ -8,8 +7,6 @@ import com.twu.mockmodels.TestOutputWriter;
 import com.twu.mockmodels.TestUserLogin;
 import com.twu.model.menuoption.UserInformationMenuOption;
 import com.twu.model.user.Customer;
-import com.twu.model.user.Librarian;
-import com.twu.model.user.LibraryUser;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -19,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UserInformationMenuOptionTest {
     @Test
-    public void shouldDisplayDetailsOfCustomer(){
+    public void shouldDisplayDetailsOfCustomer() {
         String libraryNumber = "CUS-TEST\n";
         String password = "test";
         TestInputReader inputReader = new TestInputReader(libraryNumber + password);

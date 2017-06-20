@@ -10,7 +10,7 @@ public class TestOutputWriter implements OutputWriter {
 
     ArrayList<ConsoleOutput> outputMessages;
 
-    public TestOutputWriter(){
+    public TestOutputWriter() {
         outputMessages = new ArrayList<>();
     }
 
@@ -19,15 +19,15 @@ public class TestOutputWriter implements OutputWriter {
         outputMessages.add(output);
     }
 
-    public ConsoleOutput getOutputForWelcomeMessage(){
+    public ConsoleOutput getOutputForWelcomeMessage() {
         return outputMessages.get(0);
     }
 
-    public ConsoleOutput getOutputForMenuAfterWelcomeMessage(){
+    public ConsoleOutput getOutputForMenuAfterWelcomeMessage() {
         return outputMessages.get(1);
     }
 
-    public List<ConsoleOutput> getOutputMessagesAfterUsersChoosesAMenuOption(){
+    public List<ConsoleOutput> getOutputMessagesAfterUsersChoosesAMenuOption() {
         return outputMessages.subList(2, outputMessages.size());
     }
 

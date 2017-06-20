@@ -1,23 +1,22 @@
 package com.twu.mockmodels;
 
 import com.twu.biblioteca.UserLogin;
-import com.twu.exception.InvalidLoginException;
 import com.twu.exception.InvalidLogoutException;
 import com.twu.io.InputOutputHandler;
 import com.twu.model.user.Customer;
 import com.twu.model.user.Librarian;
 import com.twu.model.user.LibraryUser;
 
-public class TestUserLogin extends UserLogin{
+public class TestUserLogin extends UserLogin {
     private final InputOutputHandler inputOutputHandler;
-    private  static LibraryUser loggedInUser;
+    private static LibraryUser loggedInUser;
 
     public TestUserLogin(InputOutputHandler inputOutputHandler) {
         super(null);
         this.inputOutputHandler = inputOutputHandler;
     }
 
-    public void reset(){
+    public void reset() {
         try {
             loggedInUser = null;
             logout();
@@ -32,14 +31,14 @@ public class TestUserLogin extends UserLogin{
         String testPassword = "test";
         String libraryNumber = inputOutputHandler.readInput();
         String password = inputOutputHandler.readInput();
-        if(libraryNumber.equals(testCustomerLibraryNumber)
+        if (libraryNumber.equals(testCustomerLibraryNumber)
                 && password.equals(testPassword)) {
             loggedInUser = new Customer("Test", testCustomerLibraryNumber, "test@gmail.com",
                     "xxxxxxxx", testPassword);
             return loggedInUser;
         }
-        if(libraryNumber.equals(testLibrarianLibraryNumber)
-                && password.equals(testPassword)){
+        if (libraryNumber.equals(testLibrarianLibraryNumber)
+                && password.equals(testPassword)) {
             loggedInUser = new Librarian(testLibrarianLibraryNumber, password);
             return loggedInUser;
         }

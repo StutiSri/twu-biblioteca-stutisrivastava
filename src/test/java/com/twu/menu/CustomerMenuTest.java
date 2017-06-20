@@ -4,7 +4,7 @@ import com.twu.io.InputOutputHandler;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.mockmodels.TestOutputWriter;
-import com.twu.model.menu.UserMenu;
+import com.twu.model.menu.CustomerMenu;
 import com.twu.model.menuoption.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,15 +12,15 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
-public class UserMenuTest {
+public class CustomerMenuTest {
 
-    private UserMenu menu;
+    private CustomerMenu menu;
 
     @Before
     public void setUp() {
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(""), new TestOutputWriter());
-        menu = new UserMenu(inputOutputHandler, new TestLibraryRepository());
+        menu = new CustomerMenu(inputOutputHandler, new TestLibraryRepository());
     }
 
     @Test

@@ -29,7 +29,7 @@ public class LibrarySystem {
 
         MenuOption menuOption;
 
-        do{
+        do {
             menu = menuProvider.getMenu();
             ConsoleOutput menuOptionsOutput = menu.getMenuOptions();
             inputOutputHandler.writeOutput(menuOptionsOutput);
@@ -40,7 +40,7 @@ public class LibrarySystem {
             ConsoleOutput menuActionOutput = menuOption.action();
             inputOutputHandler.writeOutput(menuActionOutput);
 
-        }while(!(menuOption instanceof QuitMenuOption));
+        } while (!(menuOption instanceof QuitMenuOption));
     }
 
     private MenuOption getMenuOptionForUserInput(String userInput) {

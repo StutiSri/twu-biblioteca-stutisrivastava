@@ -1,19 +1,17 @@
 package com.twu.menoption;
 
-import com.twu.biblioteca.UserLogin;
 import com.twu.io.InputOutputHandler;
 import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestInputReader;
 import com.twu.mockmodels.TestOutputWriter;
 import com.twu.model.menuoption.LoginMenuOption;
-import com.twu.model.user.Customer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class LoginMenuOptionTest {
     @Test
-    public void shouldDisplayMessageAfterSuccessfulLogin(){
+    public void shouldDisplayMessageAfterSuccessfulLogin() {
         String libraryNumber = "STU-9176\n";
         String password = "password";
         TestInputReader inputReader = new TestInputReader(libraryNumber + password);
@@ -29,7 +27,7 @@ public class LoginMenuOptionTest {
     }
 
     @Test
-    public void shouldDisplayMessageAfterUnsuccessfulLogin(){
+    public void shouldDisplayMessageAfterUnsuccessfulLogin() {
         String libraryNumber = "STU-9176\n";
         String password = "hello";
         TestInputReader inputReader = new TestInputReader(libraryNumber + password);

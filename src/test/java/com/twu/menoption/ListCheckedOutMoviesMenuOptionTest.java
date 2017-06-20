@@ -28,8 +28,8 @@ public class ListCheckedOutMoviesMenuOptionTest {
 
     public ConsoleOutput getCheckedOutMoviesDetails(Movie movie, Customer customer) {
         ArrayList<String> movieDetails = new ArrayList<>();
-        movieDetails.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
-        movieDetails.add(String.format("%-20s %-20s %-20s",movie.getTitle(), customer.getName(), customer.getLibraryNumber()));
+        movieDetails.add(String.format("Checked Out Movies are :-\n\n%-20s %-20s %-20s", "Title", "User Name", "Library Number"));
+        movieDetails.add(String.format("%-20s %-20s %-20s", movie.getTitle(), customer.getName(), customer.getLibraryNumber()));
         return new ConsoleOutput(movieDetails);
     }
 

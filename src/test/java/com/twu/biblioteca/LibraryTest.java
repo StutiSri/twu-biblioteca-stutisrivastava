@@ -3,11 +3,10 @@ package com.twu.biblioteca;
 
 import com.twu.io.InputOutputHandler;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.mockmodels.TestInputReader;
+import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.mockmodels.TestOutputWriter;
 import com.twu.mockmodels.TestUserLogin;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -103,7 +102,7 @@ public class LibraryTest {
         assertEquals(expectedQuitMenuOptionMessage, actualQuitMenuOptionMessage);
     }
 
-    private ConsoleOutput getUserMenuOptions() {
+    private ConsoleOutput getCustomerMenuOptions() {
         List<String> expectedMenuOptions = new ArrayList<>();
         expectedMenuOptions.add("Menu\n");
         expectedMenuOptions.add("\t1. List Books");
@@ -114,18 +113,18 @@ public class LibraryTest {
         expectedMenuOptions.add("\t6. My Account");
         expectedMenuOptions.add("\t7. Logout");
         expectedMenuOptions.add("\t8. Quit");
-        expectedMenuOptions.add("\nPlease enter your choice :- ");
+        expectedMenuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(expectedMenuOptions);
     }
 
     public ConsoleOutput getGeneralMenuOptions() {
         List<String> expectedMenuOptions = new ArrayList<>();
         expectedMenuOptions.add("Menu\n");
-        expectedMenuOptions.add("\t1. Login to checkout and return");
+        expectedMenuOptions.add("\t1. Login as Librarian or Customer");
         expectedMenuOptions.add("\t2. List Books");
         expectedMenuOptions.add("\t3. List Movies");
         expectedMenuOptions.add("\t4. Quit");
-        expectedMenuOptions.add("\nPlease enter your choice :- ");
+        expectedMenuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(expectedMenuOptions);
     }
 
@@ -134,12 +133,12 @@ public class LibraryTest {
         new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "STU-9176\npassword\n";
-        String quitMenuOptionForUserMenu = "8\n";
-        ConsoleOutput expectedMenuOptions = getUserMenuOptions();
+        String quitMenuOptionForCustomerMenu = "8\n";
+        ConsoleOutput expectedMenuOptions = getCustomerMenuOptions();
         TestOutputWriter outputWriter = new TestOutputWriter();
         InputOutputHandler inputOutputHandler =
-                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForUserMenu),
-                                         outputWriter);
+                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForCustomerMenu),
+                        outputWriter);
         librarySystem = new LibrarySystem(inputOutputHandler);
 
         librarySystem.run();
@@ -149,15 +148,15 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldDisplayLoginSuccessfulAfterSuccessfulLoginByCustomer(){
+    public void shouldDisplayLoginSuccessfulAfterSuccessfulLoginByCustomer() {
         new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "STU-9176\npassword\n";
-        String quitMenuOptionForUserMenu = "8\n";
+        String quitMenuOptionForCustomerMenu = "8\n";
         ConsoleOutput expectedOutput = new ConsoleOutput("\nLogin successful.");
         TestOutputWriter outputWriter = new TestOutputWriter();
         InputOutputHandler inputOutputHandler =
-                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForUserMenu),
+                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForCustomerMenu),
                         outputWriter);
         librarySystem = new LibrarySystem(inputOutputHandler);
 
@@ -168,15 +167,15 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldDisplayLoginSuccessfulAfterSuccessfulLoginByLibrarian(){
+    public void shouldDisplayLoginSuccessfulAfterSuccessfulLoginByLibrarian() {
         new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "LIB-9176\npassword\n";
-        String quitMenuOptionForUserMenu = "4\n";
+        String quitMenuOptionForCustomerMenu = "4\n";
         ConsoleOutput expectedOutput = new ConsoleOutput("\nLogin successful.");
         TestOutputWriter outputWriter = new TestOutputWriter();
         InputOutputHandler inputOutputHandler =
-                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForUserMenu),
+                new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails + quitMenuOptionForCustomerMenu),
                         outputWriter);
         librarySystem = new LibrarySystem(inputOutputHandler);
 
@@ -212,12 +211,12 @@ public class LibraryTest {
         expectedMenuOptions.add("\t2. List checked out movies");
         expectedMenuOptions.add("\t3. Logout");
         expectedMenuOptions.add("\t4. Quit");
-        expectedMenuOptions.add("\nPlease enter your choice :- ");
+        expectedMenuOptions.add("\nPlease enter your choice : ");
         return new ConsoleOutput(expectedMenuOptions);
     }
 
     @Test
-    public void shouldDisplayGeneralMenuAfterCustomerLogout(){
+    public void shouldDisplayGeneralMenuAfterCustomerLogout() {
         new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "STU-9176\npassword\n";
@@ -227,7 +226,7 @@ public class LibraryTest {
         TestOutputWriter outputWriter = new TestOutputWriter();
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(loginMenuOption + loginDetails +
-                                                 logoutMenuOption + quitMenuOption), outputWriter);
+                        logoutMenuOption + quitMenuOption), outputWriter);
         librarySystem = new LibrarySystem(inputOutputHandler);
 
         librarySystem.run();
@@ -237,7 +236,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldDisplayGeneralMenuAfterLibrarianLogout(){
+    public void shouldDisplayGeneralMenuAfterLibrarianLogout() {
         new TestUserLogin(null).reset();
         String loginMenuOption = "1\n";
         String loginDetails = "LIB-9176\npassword\n";

@@ -16,41 +16,41 @@ public class GeneralMenuTest {
     private GeneralMenu menu;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         menu = new GeneralMenu(new InputOutputHandler(new TestInputReader(""), new TestOutputWriter()),
                 new TestLibraryRepository());
     }
 
     @Test
-    public void shouldReturnLoginOptionFromMenuOptionInputChoiceForLogin(){
+    public void shouldReturnLoginOptionFromMenuOptionInputChoiceForLogin() {
         String loginMenuOption = "1";
         assertThat(menu.getMenuForOption(loginMenuOption),
                 instanceOf(LoginMenuOption.class));
     }
 
     @Test
-    public void shouldReturnListBooksOptionFromMenuOptionInputChoiceForListBooks(){
+    public void shouldReturnListBooksOptionFromMenuOptionInputChoiceForListBooks() {
         String listBooksMenuOption = "2";
         assertThat(menu.getMenuForOption(listBooksMenuOption),
                 instanceOf(ListBooksMenuOption.class));
     }
 
     @Test
-    public void shouldReturnListMoviesOptionFromMenuOptionInputChoiceForListMovies(){
+    public void shouldReturnListMoviesOptionFromMenuOptionInputChoiceForListMovies() {
         String listMoviesMenuOption = "3";
         assertThat(menu.getMenuForOption(listMoviesMenuOption),
                 instanceOf(ListMoviesMenuOption.class));
     }
 
     @Test
-    public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit(){
+    public void shouldReturnQuitMenuOptionFromMenuOptionInputChoiceForQuit() {
         String quitMenuOption = "4";
         assertThat(menu.getMenuForOption(quitMenuOption),
                 instanceOf(QuitMenuOption.class));
     }
 
     @Test
-    public void shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid(){
+    public void shouldReturnInvalidMenuOptionFromMenuOptionInputChoiceWhichIsInvalid() {
         String invalidMenuOption = "0";
         assertThat(menu.getMenuForOption(invalidMenuOption),
                 instanceOf(InvalidMenuOption.class));

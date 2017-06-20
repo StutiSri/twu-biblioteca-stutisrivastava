@@ -13,13 +13,14 @@ public class Book implements Artifact {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Book))
+        if (!(obj instanceof Book))
             return false;
-        Book book = (Book)obj;
+        Book book = (Book) obj;
         return title.equalsIgnoreCase(book.title) && author.equalsIgnoreCase(book.author) &&
                 yearPublished.equals(book.yearPublished);
     }
 
+    @Override
     public String getTitle() {
         return title;
     }

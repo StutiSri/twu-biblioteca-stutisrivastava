@@ -36,8 +36,8 @@ public class UserLogin {
         inputOutputHandler.writeOutput(new ConsoleOutput(PASSWORD));
         String passwordInput = inputOutputHandler.readInput();
 
-        for(LibraryUser user : users){
-            if(user.verifyCredentials(libraryNumberInput, passwordInput)) {
+        for (LibraryUser user : users) {
+            if (user.verifyCredentials(libraryNumberInput, passwordInput)) {
                 loggedInUser = user;
                 return user;
             }
@@ -50,7 +50,7 @@ public class UserLogin {
     }
 
     public boolean logout() throws InvalidLogoutException {
-        if(loggedInUser == null)
+        if (loggedInUser == null)
             throw new InvalidLogoutException();
         loggedInUser = null;
         return true;

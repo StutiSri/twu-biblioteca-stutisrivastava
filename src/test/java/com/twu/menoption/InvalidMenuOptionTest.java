@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class InvalidMenuOptionTest {
 
     @Test
-    public void shouldReturnInvalidMenuOptionMessage(){
+    public void shouldReturnInvalidMenuOptionMessage() {
         ConsoleOutput expectedInvalidOptionMessage = new ConsoleOutput("Select a valid option!\n");
         ConsoleOutput invalidMenuOptionMessage = new InvalidMenuOption().action();
         assertEquals(expectedInvalidOptionMessage, invalidMenuOptionMessage);

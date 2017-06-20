@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class InputOutputHandlerTest {
     @Test
-    public void shouldReadInputFromUser(){
+    public void shouldReadInputFromUser() {
         String inputString = "This is input.";
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(inputString), new TestOutputWriter());
@@ -20,7 +20,7 @@ public class InputOutputHandlerTest {
     }
 
     @Test
-    public void shouldWriteOnOutputStream(){
+    public void shouldWriteOnOutputStream() {
         TestOutputWriter testOutputWriter = new TestOutputWriter();
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(""), testOutputWriter);

@@ -16,12 +16,12 @@ public class CheckoutBookMenuOptionTest {
     private Customer customer;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         customer = new Customer("Stuti", "STU-9176", "stuti@gmail.com", "9176835429", "password");
     }
 
     @Test
-    public void shouldCheckoutAvailableBook(){
+    public void shouldCheckoutAvailableBook() {
         String bookInput = "atlas shrugged";
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(bookInput), new TestOutputWriter());
@@ -36,7 +36,7 @@ public class CheckoutBookMenuOptionTest {
     }
 
     @Test
-    public void shouldNotCheckoutUnavailableBook(){
+    public void shouldNotCheckoutUnavailableBook() {
         String bookInput = "harry potter";
         InputOutputHandler inputOutputHandler =
                 new InputOutputHandler(new TestInputReader(bookInput), new TestOutputWriter());

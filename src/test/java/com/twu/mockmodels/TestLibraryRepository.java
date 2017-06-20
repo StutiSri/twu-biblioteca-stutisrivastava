@@ -2,7 +2,6 @@ package com.twu.mockmodels;
 
 import com.twu.model.artifacts.Artifact;
 import com.twu.model.artifacts.Book;
-import com.twu.model.artifacts.LibraryItem;
 import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.sorter.BookSorter;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TestLibraryRepository extends LibraryRepository{
+public class TestLibraryRepository extends LibraryRepository {
 
     private List<Book> books;
     private List<Movie> movies;
@@ -24,7 +23,7 @@ public class TestLibraryRepository extends LibraryRepository{
     private Customer movieCheckedOutBy;
     private Customer bookCheckedOutBy;
 
-    public TestLibraryRepository(){
+    public TestLibraryRepository() {
         addBooks();
         addMovies();
     }
@@ -49,7 +48,7 @@ public class TestLibraryRepository extends LibraryRepository{
         books = new ArrayList<>();
         books.add(new Book("Life of Pi", "Yann Martel", "2001"));
         books.add(new Book("Fellowship of the Ring",
-                "J. R. R. Tolkein","1991"));
+                "J. R. R. Tolkein", "1991"));
 
         checkedOutBook = new Book("Atlas Shrugged", "Ayn Rand", "1939");
         books.add(checkedOutBook);
@@ -67,7 +66,7 @@ public class TestLibraryRepository extends LibraryRepository{
 
     @Override
     public Book checkoutBook(String title, Customer customer) {
-        if(!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
+        if (!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
             return null;
         this.bookCheckedOutBy = customer;
         isBookCheckedOut = true;
@@ -76,7 +75,7 @@ public class TestLibraryRepository extends LibraryRepository{
 
     @Override
     public boolean returnBook(String title) {
-        if(!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
+        if (!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
             return false;
         isBookCheckedOut = false;
         return true;
@@ -85,22 +84,22 @@ public class TestLibraryRepository extends LibraryRepository{
     @Override
     public List<Book> getAvailableBooks() {
         List<Book> availableBooks = new ArrayList<>();
-        for(Book book : books) {
-            if(!(book.equals(checkedOutBook) && isBookCheckedOut))
+        for (Book book : books) {
+            if (!(book.equals(checkedOutBook) && isBookCheckedOut))
                 availableBooks.add(book);
         }
         return availableBooks;
     }
 
 
-    public List<String> getBookListing(){
+    public List<String> getBookListing() {
         List<String> bookListing = new ArrayList<>();
 
         bookListing.add("\nAvailable Books :-\n");
         addColumnNamesForBooks(bookListing);
 
-        for(Book book : books) {
-                addBookInColumnRepresentation(bookListing, book);
+        for (Book book : books) {
+            addBookInColumnRepresentation(bookListing, book);
         }
 
         bookListing.add("--------------------------------------------------\n");
@@ -138,8 +137,8 @@ public class TestLibraryRepository extends LibraryRepository{
     @Override
     public List<Movie> getAvailableMovies() {
         List<Movie> availableMovies = new ArrayList<>();
-        for(Movie movie : movies) {
-            if(!(movie.equals(checkedOutMovie) && isMovieCheckedOut))
+        for (Movie movie : movies) {
+            if (!(movie.equals(checkedOutMovie) && isMovieCheckedOut))
                 availableMovies.add(movie);
         }
         return availableMovies;
@@ -147,7 +146,7 @@ public class TestLibraryRepository extends LibraryRepository{
 
     @Override
     public Movie checkoutMovie(String title, Customer customer) {
-        if(!(checkedOutMovie.getTitle().equalsIgnoreCase(title)))
+        if (!(checkedOutMovie.getTitle().equalsIgnoreCase(title)))
             return null;
         this.movieCheckedOutBy = customer;
         isMovieCheckedOut = true;
@@ -162,7 +161,7 @@ public class TestLibraryRepository extends LibraryRepository{
 
     private void addMovieInColumnRepresentation(List<String> movieListRepresentation, Movie movie) {
         String rating = movie.getRating();
-        if(movie.getRating() == null)
+        if (movie.getRating() == null)
             rating = "Unrated";
         String movieRepresentation = String.format("%-30s%-17s%-30s%-7s",
                 movie.getTitle(), movie.getYearOfRelease(), movie.getDirector(), rating);
@@ -171,14 +170,14 @@ public class TestLibraryRepository extends LibraryRepository{
 
     @Override
     public List<String> getCheckedOutBookListing() {
-        if(!isBookCheckedOut)
+        if (!isBookCheckedOut)
             return null;
         return checkedOutListing(checkedOutBook, bookCheckedOutBy);
     }
 
     @Override
     public List<String> getCheckedOutMovieListing() {
-        if(!isMovieCheckedOut)
+        if (!isMovieCheckedOut)
             return null;
         return checkedOutListing(checkedOutMovie, movieCheckedOutBy);
 
@@ -186,8 +185,11 @@ public class TestLibraryRepository extends LibraryRepository{
 
     private List<String> checkedOutListing(Artifact artifact, Customer checkedOutBy) {
         List<String> listing = new ArrayList<>();
-        listing.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
-        listing.add(String.format("%-20s %-20s %-20s",artifact.getTitle(),  checkedOutBy.getName(),
+        if (artifact instanceof Book)
+            listing.add(String.format("Checked Out Books are :-\n\n%-20s %-20s %-20s", "Title", "User Name", "Library Number"));
+        else
+            listing.add(String.format("Checked Out Movies are :-\n\n%-20s %-20s %-20s", "Title", "User Name", "Library Number"));
+        listing.add(String.format("%-20s %-20s %-20s", artifact.getTitle(), checkedOutBy.getName(),
                 checkedOutBy.getLibraryNumber()));
         return listing;
     }

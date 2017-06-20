@@ -16,7 +16,7 @@ public class LibraryRepository {
     private Map<LibraryItem, Customer> checkedOutLibraryItems;
     private List<Movie> availableMovies;
 
-    public LibraryRepository(){
+    public LibraryRepository() {
         availableLibraryItems = new ArrayList<>();
         checkedOutLibraryItems = new HashMap<>();
         addBooks();
@@ -31,14 +31,14 @@ public class LibraryRepository {
 
     private void addBooks() {
         List<Book> books = getBooks();
-        for(Book book : books)
+        for (Book book : books)
             availableLibraryItems.add(new LibraryItem(book, BOOK));
     }
 
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<>();
         books.add(new Book("Life of Pi", "Yann Martel", "2001"));
-        books.add(new Book("Fellowship of the Ring", "J. R. R. Tolkein","1991"));
+        books.add(new Book("Fellowship of the Ring", "J. R. R. Tolkein", "1991"));
         books.add(new Book("Atlas Shrugged", "Ayn Rand", "1939"));
         books.add(new Book("The Immortals of Meluha", "Amish Tripathi", "2010"));
         books.add(new Book("Game of Thrones", "George R. R. Martin", "2001"));
@@ -62,20 +62,20 @@ public class LibraryRepository {
     }
 
     public Movie checkoutMovie(String movieToBeCheckedOut, Customer customer) {
-        return (Movie)checkoutLibraryItem(movieToBeCheckedOut, MOVIE, customer);
+        return (Movie) checkoutLibraryItem(movieToBeCheckedOut, MOVIE, customer);
     }
 
     private Artifact checkoutLibraryItem(String itemToBeCheckedOut, ItemType type, Customer customer) {
         LibraryItem checkedOutLibraryItem = null;
-        for(LibraryItem libraryItem : availableLibraryItems){
-            if(libraryItem.getType() == type
+        for (LibraryItem libraryItem : availableLibraryItems) {
+            if (libraryItem.getType() == type
                     && libraryItem.getTitle().equalsIgnoreCase(itemToBeCheckedOut)) {
                 checkedOutLibraryItems.put(libraryItem, customer);
                 checkedOutLibraryItem = libraryItem;
                 break;
             }
         }
-        if(checkedOutLibraryItem == null)
+        if (checkedOutLibraryItem == null)
             return null;
         availableLibraryItems.remove(checkedOutLibraryItem);
         return checkedOutLibraryItem.getArtifact();
@@ -83,8 +83,8 @@ public class LibraryRepository {
 
     public List<Book> getAvailableBooks() {
         List<Book> books = new ArrayList<>();
-        for(LibraryItem libraryItem : availableLibraryItems){
-            if(libraryItem.getType() == BOOK) {
+        for (LibraryItem libraryItem : availableLibraryItems) {
+            if (libraryItem.getType() == BOOK) {
                 books.add((Book) libraryItem.getArtifact());
             }
         }
@@ -98,14 +98,14 @@ public class LibraryRepository {
 
     private boolean returnLibraryItem(String itemToBeReturned, ItemType type) {
         LibraryItem returnedItem = null;
-        for(Map.Entry checkedoutEntry : checkedOutLibraryItems.entrySet()){
+        for (Map.Entry checkedoutEntry : checkedOutLibraryItems.entrySet()) {
             LibraryItem item = (LibraryItem) checkedoutEntry.getKey();
-            if(item.getType() == type && item.getTitle().equalsIgnoreCase(itemToBeReturned)){
+            if (item.getType() == type && item.getTitle().equalsIgnoreCase(itemToBeReturned)) {
                 returnedItem = item;
                 break;
             }
         }
-        if(returnedItem == null)
+        if (returnedItem == null)
             return false;
         availableLibraryItems.add(returnedItem);
         checkedOutLibraryItems.remove(returnedItem);
@@ -114,8 +114,8 @@ public class LibraryRepository {
 
     public List<Movie> getAvailableMovies() {
         List<Movie> movies = new ArrayList<>();
-        for(LibraryItem libraryItem : availableLibraryItems){
-            if(libraryItem.getType() == MOVIE) {
+        for (LibraryItem libraryItem : availableLibraryItems) {
+            if (libraryItem.getType() == MOVIE) {
                 movies.add((Movie) libraryItem.getArtifact());
             }
         }
@@ -128,37 +128,37 @@ public class LibraryRepository {
     }
 
     public List<String> getCheckedOutBookListing() {
-        if(checkedOutLibraryItems.size() == 0)
+        if (checkedOutLibraryItems.size() == 0)
             return null;
         List<String> checkedOutBooks = getCheckedOutItems(BOOK);
-        if(checkedOutBooks.size() == 1)
+        if (checkedOutBooks.size() == 1)
             return null;
         return checkedOutBooks;
     }
 
     private List<String> getCheckedOutItems(ItemType type) {
         List<String> listing = new ArrayList<>();
-        listing.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
-        for(Map.Entry checkedOutItemEntry : checkedOutLibraryItems.entrySet()){
-            LibraryItem libraryItem = (LibraryItem)checkedOutItemEntry.getKey();
-            if(libraryItem.getType() != type)
+        listing.add(String.format("Checked Out " + type.toString() + " are:-\n\n%-20s %-20s %-20s", "Title", "User Name", "Library Number"));
+        for (Map.Entry checkedOutItemEntry : checkedOutLibraryItems.entrySet()) {
+            LibraryItem libraryItem = (LibraryItem) checkedOutItemEntry.getKey();
+            if (libraryItem.getType() != type)
                 continue;
             Artifact artifact = libraryItem.getArtifact();
-            Customer customer = (Customer)checkedOutItemEntry.getValue();
+            Customer customer = (Customer) checkedOutItemEntry.getValue();
             getCheckedOutItemDetails(listing, artifact, customer);
         }
         return listing;
     }
 
     public void getCheckedOutItemDetails(List<String> details, Artifact artifact, Customer customer) {
-        details.add(String.format("%-20s %-20s %-20s",artifact.getTitle(), customer.getName(), customer.getLibraryNumber()));
+        details.add(String.format("%-20s %-20s %-20s", artifact.getTitle(), customer.getName(), customer.getLibraryNumber()));
     }
 
     public List<String> getCheckedOutMovieListing() {
-        if(checkedOutLibraryItems.size() == 0)
+        if (checkedOutLibraryItems.size() == 0)
             return null;
         List<String> checkedOutMovies = getCheckedOutItems(MOVIE);
-        if(checkedOutMovies.size() == 1)
+        if (checkedOutMovies.size() == 1)
             return null;
         return checkedOutMovies;
     }

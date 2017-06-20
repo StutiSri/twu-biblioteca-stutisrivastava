@@ -1,10 +1,8 @@
 package com.twu.biblioteca;
 
-import com.twu.io.output.ConsoleOutput;
 import com.twu.mockmodels.TestLibraryRepository;
 import com.twu.model.artifacts.Book;
 import com.twu.model.artifacts.Movie;
-import com.twu.model.menuoption.ListCheckedOutBooksMenuOption;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.user.Customer;
 import org.junit.Assert;
@@ -23,12 +21,12 @@ public class LibraryRepositoryTest {
     private Customer customer;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         customer = new Customer("Stuti", "STU-9176", "stuti@gmail.com", "9176835429", "password");
     }
 
     @Test
-    public void shouldCheckoutAnAvailableBook(){
+    public void shouldCheckoutAnAvailableBook() {
         LibraryRepository repository = new LibraryRepository();
         String bookToBeCheckedOut = "life of pi";
         Book expectedBook = new Book(bookToBeCheckedOut, "Yann Martel", "2001");
@@ -39,10 +37,10 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldCheckoutAnAvailableMovie(){
+    public void shouldCheckoutAnAvailableMovie() {
         LibraryRepository repository = new LibraryRepository();
         String movieToBeCheckedOut = "when harry met sally";
-        Movie expectedMovie = new Movie(movieToBeCheckedOut,  "1989", "Rob Reiner", "7.6");
+        Movie expectedMovie = new Movie(movieToBeCheckedOut, "1989", "Rob Reiner", "7.6");
 
         Movie movie = repository.checkoutMovie(movieToBeCheckedOut, customer);
 
@@ -100,7 +98,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldNotCheckoutAnUnavailableBook(){
+    public void shouldNotCheckoutAnUnavailableBook() {
         LibraryRepository repository = new LibraryRepository();
         String bookToBeCheckedOut = "harry potter";
 
@@ -110,7 +108,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldNotCheckoutAnUnavailableMovie(){
+    public void shouldNotCheckoutAnUnavailableMovie() {
         LibraryRepository repository = new LibraryRepository();
         String movieToBeCheckedOut = "harry potter";
 
@@ -120,7 +118,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldReturnACheckedOutBook(){
+    public void shouldReturnACheckedOutBook() {
         LibraryRepository repository = new LibraryRepository();
         String bookTitle = "game of thrones";
         repository.checkoutBook(bookTitle, customer);
@@ -130,7 +128,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldReturnACheckedOutMovie(){
+    public void shouldReturnACheckedOutMovie() {
         LibraryRepository repository = new LibraryRepository();
         String movieTitle = "notting hill";
         repository.checkoutMovie(movieTitle, customer);
@@ -140,7 +138,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldNotReturnABookThatIsNotCheckedOut(){
+    public void shouldNotReturnABookThatIsNotCheckedOut() {
         LibraryRepository repository = new LibraryRepository();
         String bookTitle = "game of thrones";
 
@@ -148,7 +146,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldNotReturnAMovieThatIsNotCheckedOut(){
+    public void shouldNotReturnAMovieThatIsNotCheckedOut() {
         LibraryRepository repository = new LibraryRepository();
         String movieTitle = "game of thrones";
 
@@ -156,7 +154,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void bookShouldBeAddedToAvailableBooksAfterReturn(){
+    public void bookShouldBeAddedToAvailableBooksAfterReturn() {
         LibraryRepository repository = new LibraryRepository();
         TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
         String bookTitle = "atlas shrugged";
@@ -170,7 +168,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void movieShouldBeAddedToAvailableMoviesAfterReturn(){
+    public void movieShouldBeAddedToAvailableMoviesAfterReturn() {
         LibraryRepository repository = new LibraryRepository();
         TestLibraryRepository testLibraryRepository = new TestLibraryRepository();
         String movieTitle = "notting hill";
@@ -184,7 +182,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldReturnListOfCheckedOutBooks(){
+    public void shouldReturnListOfCheckedOutBooks() {
         Customer customer = new Customer("Test", "CUS-TEST", "test@gmail.com", "98", "test");
         LibraryRepository libraryRepository = new LibraryRepository();
         Book book = libraryRepository.checkoutBook("atlas shrugged", customer);
@@ -197,13 +195,13 @@ public class LibraryRepositoryTest {
 
     public List<String> getCheckedOutBooksDetails(Book book, Customer customer) {
         List<String> bookDetails = new ArrayList<>();
-        bookDetails.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
-        bookDetails.add(String.format("%-20s %-20s %-20s",book.getTitle(), customer.getName(), customer.getLibraryNumber()));
+        bookDetails.add(String.format("Checked Out Books are:-\n\n%-20s %-20s %-20s", "Title", "User Name", "Library Number"));
+        bookDetails.add(String.format("%-20s %-20s %-20s", book.getTitle(), customer.getName(), customer.getLibraryNumber()));
         return bookDetails;
     }
 
     @Test
-    public void shouldReturnNullWhenThereAreNoCheckedOutBooks(){
+    public void shouldReturnNullWhenThereAreNoCheckedOutBooks() {
         LibraryRepository libraryRepository = new LibraryRepository();
 
         List<String> output = libraryRepository.getCheckedOutBookListing();
@@ -212,7 +210,7 @@ public class LibraryRepositoryTest {
     }
 
     @Test
-    public void shouldReturnListOfCheckedOutMovies(){
+    public void shouldReturnListOfCheckedOutMovies() {
         Customer customer = new Customer("Test", "CUS-TEST", "test@gmail.com", "98", "test");
         LibraryRepository libraryRepository = new LibraryRepository();
         Movie movie = libraryRepository.checkoutMovie("when harry met sally", customer);
@@ -225,13 +223,13 @@ public class LibraryRepositoryTest {
 
     public List<String> getCheckedOutMoviesDetails(Movie movie, Customer customer) {
         List<String> movieDetails = new ArrayList<>();
-        movieDetails.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
-        movieDetails.add(String.format("%-20s %-20s %-20s",movie.getTitle(), customer.getName(), customer.getLibraryNumber()));
+        movieDetails.add(String.format("Checked Out Movies are:-\n\n%-20s %-20s %-20s", "Title", "User Name", "Library Number"));
+        movieDetails.add(String.format("%-20s %-20s %-20s", movie.getTitle(), customer.getName(), customer.getLibraryNumber()));
         return movieDetails;
     }
 
     @Test
-    public void shouldReturnNullWhenThereAreNoCheckedOutMovies(){
+    public void shouldReturnNullWhenThereAreNoCheckedOutMovies() {
         LibraryRepository libraryRepository = new LibraryRepository();
 
         List<String> output = libraryRepository.getCheckedOutMovieListing();

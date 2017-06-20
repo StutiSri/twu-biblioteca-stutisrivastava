@@ -1,6 +1,6 @@
 package com.twu.model.artifacts;
 
-public class Movie implements Artifact{
+public class Movie implements Artifact {
     private String title;
     private String yearOfRelease;
     private String director;
@@ -33,7 +33,7 @@ public class Movie implements Artifact{
     @Override
     public String toString() {
         String displayRating = rating;
-        if(displayRating == null)
+        if (displayRating == null)
             displayRating = "Unrated";
         return String.format("%-30s%-17s%-30s%-7s",
                 title, yearOfRelease, director, displayRating);
@@ -41,9 +41,9 @@ public class Movie implements Artifact{
 
     @Override
     public boolean equals(Object obj) {
-        Movie movie = (Movie)obj;
+        Movie movie = (Movie) obj;
         return movie.title.equalsIgnoreCase(title) &&
-                movie.director.equalsIgnoreCase(director)&&
+                movie.director.equalsIgnoreCase(director) &&
                 movie.yearOfRelease.equals(yearOfRelease);
     }
 }

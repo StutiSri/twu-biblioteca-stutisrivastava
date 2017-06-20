@@ -10,11 +10,11 @@ import com.twu.model.user.Customer;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class UserMenu extends Menu {
+public class CustomerMenu extends Menu {
 
     private Map<String, MenuOption> menuOptionProviders;
 
-    public UserMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository){
+    public CustomerMenu(InputOutputHandler inputOutputHandler, LibraryRepository repository) {
         Customer loggedInUser = (Customer) UserLogin.getLoggedInUser();
         menuOptionProviders = new LinkedHashMap<>();
         menuOptionProviders.put("1", new ListBooksMenuOption(repository));
@@ -28,7 +28,7 @@ public class UserMenu extends Menu {
     }
 
     @Override
-    public ConsoleOutput getMenuOptions(){
+    public ConsoleOutput getMenuOptions() {
         return super.getMenuOptionsFromMenuProviders(menuOptionProviders);
     }
 

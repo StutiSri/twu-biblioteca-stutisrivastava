@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OutputWriterTest {
     @Test
-    public void shouldWriteOnOutputStream(){
+    public void shouldWriteOnOutputStream() {
         StringWriter stringWriter = new StringWriter();
         OutputWriter outputWriter = new ConsoleOutputWriter(new
                 BufferedWriter(stringWriter));

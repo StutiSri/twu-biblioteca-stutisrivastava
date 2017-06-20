@@ -3,8 +3,6 @@ package com.twu.model.menuoption;
 import com.twu.biblioteca.UserLogin;
 import com.twu.exception.InvalidLogoutException;
 import com.twu.io.output.ConsoleOutput;
-import com.twu.model.user.Customer;
-import org.omg.PortableInterceptor.SUCCESSFUL;
 
 public class LogoutMenuOption implements MenuOption {
 

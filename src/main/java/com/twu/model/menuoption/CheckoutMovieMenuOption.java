@@ -5,7 +5,7 @@ import com.twu.io.output.ConsoleOutput;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.user.Customer;
 
-public class CheckoutMovieMenuOption implements MenuOption{
+public class CheckoutMovieMenuOption implements MenuOption {
     private final InputOutputHandler inputOutputHandler;
     private final LibraryRepository libraryRepository;
     private final Customer loggedInUser;
@@ -22,7 +22,7 @@ public class CheckoutMovieMenuOption implements MenuOption{
     @Override
     public ConsoleOutput action() {
         String titleOfMovie = readMovieToBeCheckedOut();
-        if(libraryRepository.checkoutMovie(titleOfMovie, loggedInUser)!=null)
+        if (libraryRepository.checkoutMovie(titleOfMovie, loggedInUser) != null)
             return new ConsoleOutput(CHECKOUT_SUCCESS_MESSAGE);
         return new ConsoleOutput(CHECKOUT_FAIL_MESSAGE);
     }
