@@ -55,4 +55,5 @@ public class UserLogin {
         loggedInUser = null;
         return true;
     }
+
 }

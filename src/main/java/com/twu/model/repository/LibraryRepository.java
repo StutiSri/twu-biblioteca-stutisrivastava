@@ -126,4 +126,40 @@ public class LibraryRepository {
     public boolean returnMovie(String movieTitle) {
         return returnLibraryItem(movieTitle, MOVIE);
     }
+
+    public List<String> getCheckedOutBookListing() {
+        if(checkedOutLibraryItems.size() == 0)
+            return null;
+        List<String> checkedOutBooks = getCheckedOutItems(BOOK);
+        if(checkedOutBooks.size() == 1)
+            return null;
+        return checkedOutBooks;
+    }
+
+    private List<String> getCheckedOutItems(ItemType type) {
+        List<String> listing = new ArrayList<>();
+        listing.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
+        for(Map.Entry checkedOutItemEntry : checkedOutLibraryItems.entrySet()){
+            LibraryItem libraryItem = (LibraryItem)checkedOutItemEntry.getKey();
+            if(libraryItem.getType() != type)
+                continue;
+            Artifact artifact = libraryItem.getArtifact();
+            Customer customer = (Customer)checkedOutItemEntry.getValue();
+            getCheckedOutItemDetails(listing, artifact, customer);
+        }
+        return listing;
+    }
+
+    public void getCheckedOutItemDetails(List<String> details, Artifact artifact, Customer customer) {
+        details.add(String.format("%-20s %-20s %-20s",artifact.getTitle(), customer.getName(), customer.getLibraryNumber()));
+    }
+
+    public List<String> getCheckedOutMovieListing() {
+        if(checkedOutLibraryItems.size() == 0)
+            return null;
+        List<String> checkedOutMovies = getCheckedOutItems(MOVIE);
+        if(checkedOutMovies.size() == 1)
+            return null;
+        return checkedOutMovies;
+    }
 }

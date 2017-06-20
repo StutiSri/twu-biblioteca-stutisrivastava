@@ -1,6 +1,8 @@
 package com.twu.mockmodels;
 
+import com.twu.model.artifacts.Artifact;
 import com.twu.model.artifacts.Book;
+import com.twu.model.artifacts.LibraryItem;
 import com.twu.model.artifacts.Movie;
 import com.twu.model.repository.LibraryRepository;
 import com.twu.model.sorter.BookSorter;
@@ -19,6 +21,8 @@ public class TestLibraryRepository extends LibraryRepository{
     private boolean isBookCheckedOut;
     private boolean isMovieCheckedOut;
     private Movie checkedOutMovie;
+    private Customer movieCheckedOutBy;
+    private Customer bookCheckedOutBy;
 
     public TestLibraryRepository(){
         addBooks();
@@ -65,6 +69,7 @@ public class TestLibraryRepository extends LibraryRepository{
     public Book checkoutBook(String title, Customer customer) {
         if(!(checkedOutBook.getTitle().equalsIgnoreCase(title)))
             return null;
+        this.bookCheckedOutBy = customer;
         isBookCheckedOut = true;
         return checkedOutBook;
     }
@@ -144,6 +149,7 @@ public class TestLibraryRepository extends LibraryRepository{
     public Movie checkoutMovie(String title, Customer customer) {
         if(!(checkedOutMovie.getTitle().equalsIgnoreCase(title)))
             return null;
+        this.movieCheckedOutBy = customer;
         isMovieCheckedOut = true;
         return checkedOutMovie;
     }
@@ -162,4 +168,28 @@ public class TestLibraryRepository extends LibraryRepository{
                 movie.getTitle(), movie.getYearOfRelease(), movie.getDirector(), rating);
         movieListRepresentation.add(movieRepresentation);
     }
+
+    @Override
+    public List<String> getCheckedOutBookListing() {
+        if(!isBookCheckedOut)
+            return null;
+        return checkedOutListing(checkedOutBook, bookCheckedOutBy);
+    }
+
+    @Override
+    public List<String> getCheckedOutMovieListing() {
+        if(!isMovieCheckedOut)
+            return null;
+        return checkedOutListing(checkedOutMovie, movieCheckedOutBy);
+
+    }
+
+    private List<String> checkedOutListing(Artifact artifact, Customer checkedOutBy) {
+        List<String> listing = new ArrayList<>();
+        listing.add(String.format("%-20s %-20s %-20s","Title", "User Name", "Library Number"));
+        listing.add(String.format("%-20s %-20s %-20s",artifact.getTitle(),  checkedOutBy.getName(),
+                checkedOutBy.getLibraryNumber()));
+        return listing;
+    }
+
 }
